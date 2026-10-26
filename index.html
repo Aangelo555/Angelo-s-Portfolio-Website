@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Angelo's Portfolio Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+  </head>
+  <body>
+    <header class="header">
+        <a href="#home" class="logo">Angelo
+            <span>Howe</span>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi, It's <span>Angelo!</span></h1>
+            <h3>I'm an Aspiring <span>Software Developer</span></h3>
+            <p>A Year 2 IT student at Republic Polytechnic specialising in Full Stack Development. I enjoy building web and mobile applications, and when I'm not coding, I'm building gaming PCs on my spare time.</p>
+            <div class="social-icon"> 
+                <a href="#"><i class="bx bxl-github"></i></a>
+                <a href="#"><i class="bx bxl-linkedin-square"></i></a>
+                <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+                <a href="#"><i class="bx bxl-twitter"></i></a>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn">Hire</a>
+                <a href="#contact" class="btn">Contact</a>
+            </div>
+        </div>
+        <div class="home-img">
+    <p id="loading-text">Loading...</p>
+    <canvas id="three-canvas"></canvas>
+</div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="./assets/Profile Pic.jpeg" alt="">
+        </div>
+        <div class="about-content">
+            <h2>About <span>Me</span></h2>
+            <p>Hi, I'm Angelo, a Year 2 IT student at Republic Polytechnic specialising in Full Stack Development. I'm passionate about creating web and mobile applications that solve real problems. Outside of coding, I enjoy building PCs and gaming. I'm currently working towards getting into university to pursue my goal of one day working at a top tech company like FAANG.</p>
+            <a href="./assets/DYL.pdf" class="btn">Download Resume</a>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script type="module" src="three.js"></script>
+  </body>
+</html>
