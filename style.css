@@ -81,19 +81,22 @@ section {
     padding: 10rem 12%;
 }
 
+/* --- UPDATED: Main alignment changed to preserve central symmetry across different resolutions --- */
 .home {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 5rem;
+    justify-content: center; /* Centers the content structure on both wide and narrow screens */
+    gap: 8rem;               /* Strict spacing boundary prevents elements drifting apart on wider displays */
     background: radial-gradient(circle at 75% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
 }
 
+/* --- UPDATED: Reverted alignment anchors back to left-aligned desktop standard --- */
 .home-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start; /* Aligns text elements to the left */
+    text-align: left;        /* Left aligns the paragraph copy */
+    max-width: 550px;        /* Limits text width so copy remains highly readable on wide desktop monitors */
 }
 
 .home-content h1 {
@@ -120,9 +123,12 @@ section {
     justify-content: center;
 }
 
+/* --- UPDATED: Canvas constraints added to safely fit inside laptop container dimensions --- */
 #three-canvas {
     width: 600px;
     height: 500px;
+    max-width: 100%;       /* Gracefully scales down within laptop viewports */
+    height: auto !important;
 }
 
 #loading-text {

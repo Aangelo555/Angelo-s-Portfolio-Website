@@ -1,11 +1,30 @@
-@media screen and (max-width: 1200px) {
-    #desktop-nav {
-        display: none;
-    }
-    #hamburger-nav {
-        display: block; 
-    }
-    #hamburger-nav ul {
-        display: flex;
-    }
-}
+@media (max-width: 1440px) {
+  
+  /* 1. Scale down the base rem sizing so all fonts shrink proportionally */
+  html {
+    font-size: 52%; /* Drops 1rem down slightly on laptops to combat system scaling */
+  }
+
+  /* 2. Tighten up header padding so the navigation bar fits without breaking */
+  .header {
+    padding: 2.5rem 8%;
+  }
+
+  /* 3. Drop down the giant hero typography scales */
+  .home-content h1 {
+    font-size: 6rem;
+  }
+  .home-content h3 {
+    font-size: 3.2rem;
+  }
+
+  /* 4. Fix layout proportions for the About section so text and image don't crash */
+  .about {
+    gap: 5rem;
+    padding: 8rem 8%;
+  }
+  .about-content h2 {
+    font-size: 5.5rem;
+  }
+
+} /* <--- This brace must close your media block down here! */
