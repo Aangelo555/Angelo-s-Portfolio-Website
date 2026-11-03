@@ -1,11 +1,32 @@
-@media screen and (max-width: 1200px) {
-    #desktop-nav {
-        display: none;
+@media (max-width: 1500px) {
+    html {
+        font-size: 55%;
     }
-    #hamburger-nav {
-        display: block; 
+    .header {
+        padding: 2.5rem 8%;
     }
-    #hamburger-nav ul {
-        display: flex;
+    .home-content {
+        max-width: none;
+    }
+    .home-content h1 {
+        font-size: 6rem;
+        white-space: nowrap;
+    }
+    .home-content h3 {
+        font-size: 3rem;
+        white-space: nowrap;
+    }
+    .about {
+        gap: 5rem;
+        padding: 8rem 8%;
+    }
+    .about-content h2 {
+        font-size: 5.5rem;
+    }
+}
+
+@media (min-width: 1501px) {
+    html {
+        font-size: 60%;
     }
 }
