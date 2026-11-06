@@ -32,7 +32,9 @@ My personal portfolio website, where I show my projects, certifications and a bi
 
 ## Credits
 
-3D model: [MODEL NAME](MODEL-LINK) by CREATOR NAME, licensed under LICENSE
+3D models from Sketchfab, both licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/):
+- ["Gaming Desktop PC"](https://sketchfab.com/3d-models/gaming-desktop-pc-d1d8282c9916438091f11aeb28787b66) by Yolala3D (Y3D), used on the home page
+- ["Certificate"](https://sketchfab.com/3d-models/certificate-409d9c30c88946558e4e278eb58de61a) by NoLagHere, used on the certs page
 
 ## Author
 
