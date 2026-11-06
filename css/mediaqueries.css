@@ -1,4 +1,21 @@
 /* ========================
+   LAPTOPS (1600px and below)
+======================== */
+@media (max-width: 1600px) {
+    .home {
+        gap: 6rem;
+    }
+
+    .home-content h1 {
+        font-size: 6.5rem;
+    }
+
+    .home-content h3 {
+        font-size: 3.2rem;
+    }
+}
+
+/* ========================
    SMALL LAPTOPS (1200px and below)
 ======================== */
 @media (max-width: 1200px) {
