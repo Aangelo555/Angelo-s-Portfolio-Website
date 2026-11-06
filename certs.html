@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certifications | Angelo</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mediaqueries.css" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+  </head>
+  <body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="./index.html" class="logo">Angelo <span>Howe</span></a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="./index.html">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./projects.html">Projects</a>
+            <a href="./certs.html" class="active-nav">Certs</a>
+            <a href="./contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="certs-hero">
+        <div class="certs-wrapper">
+            <div class="certs-hero-text reveal">
+                <h1>My <span>Certifications</span></h1>
+                <p>Courses and certs I've picked up outside of class, mostly in Python, web development and design.</p>
+            </div>
+            <canvas id="certs-canvas"></canvas>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===== CERTS LIST ===== -->
+    <section class="certs-content">
+        <div class="certs-wrapper">
+
+            <h2 class="certs-group-title reveal">Certifications</h2>
+            <div class="cert-list stagger">
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>CSS (Basic)</h3>
+                        <span>HackerRank · Nov 2026</span>
+                    </div>
+                    <a href="#" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
+                </div>
+            </div>
+
+            <h2 class="certs-group-title reveal">Online Courses</h2>
+            <div class="cert-list stagger">
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Certified Entry-Level Python Programmer (PCEP-30-02) Cert Prep</h3>
+                        <span>LinkedIn Learning · Nov 2026</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Building a Website with Node.js and Express.js</h3>
+                        <span>LinkedIn Learning · Aug 2026</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Programming Foundations: APIs and Web Services</h3>
+                        <span>LinkedIn Learning · Aug 2026</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Learning Photoshop</h3>
+                        <span>LinkedIn Learning · Jul 2026</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Illustrator 2023 Quick Start</h3>
+                        <span>LinkedIn Learning · May 2026</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Python for Data Visualization</h3>
+                        <span>LinkedIn Learning · Dec 2025</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Agile Foundations</h3>
+                        <span>LinkedIn Learning · Nov 2025</span>
+                    </div>
+                </div>
+                <div class="cert-row">
+                    <div class="cert-text">
+                        <h3>Python Object-Oriented Programming</h3>
+                        <span>LinkedIn Learning</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank" class="btn">View All on LinkedIn</a>
+
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="projects-footer">
+        <p class="footer-name">Angelo <span>Howe</span></p>
+        <p class="footer-sub">© 2026 Angelo Howe. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/Aangelo555" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank">LinkedIn</a>
+            <a href="./index.html">Home</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script type="module" src="js/certs.js"></script>
+  </body>
+</html>

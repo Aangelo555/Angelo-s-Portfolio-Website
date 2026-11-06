@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Angelo's Portfolio Website</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mediaqueries.css" />
     <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,31 +19,33 @@
     </script>
   </head>
   <body>
-    
+
+    <!-- ===== NAVBAR ===== -->
     <header class="header">
-        <a href="#home" class="logo">Angelo <span>Howe</span></a>
+        <a href="./index.html" class="logo">Angelo <span>Howe</span></a>
         <i class="bx bx-menu" id="menu-icon"></i>
         <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
+            <a href="./index.html" class="active-nav">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./projects.html">Projects</a>
+            <a href="./certs.html">Certs</a>
+            <a href="./contact.html">Contact</a>
         </nav>
     </header>
 
+    <!-- ===== HOME ===== -->
     <section class="home" id="home">
         <div class="home-content">
             <h1>Hi, I'm <span>Angelo!</span></h1>
             <h3>I'm an Aspiring <span id="typing-text"></span><span class="cursor">|</span></h3>
             <p>A Year 2 IT student at Republic Polytechnic specialising in Full Stack Development. I enjoy building web and mobile applications, and when I'm not coding, I'm building gaming PCs.</p>
             <div class="social-icon">
-                <a href="https://github.com/Aangelo555"><i class="bx bxl-github"></i></a>
-                <a href="https://www.linkedin.com/in/angelo-h-a74b47377/"><i class="bx bxl-linkedin-square"></i></a>
+                <a href="https://github.com/Aangelo555" target="_blank"><i class="bx bxl-github"></i></a>
+                <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
             </div>
             <div class="btn-group">
                 <a href="#" class="btn">Resume</a>
-                <a href="#contact" class="btn">Contact</a>
+                <a href="./contact.html" class="btn">Contact</a>
             </div>
         </div>
         <div class="home-img">
@@ -53,210 +56,91 @@
 
     <div class="divider"></div>
 
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="./assets/Profile Pic.jpeg" alt="">
-            <div class="about-facts">
-                <div class="fact-row">
-                    <span class="fact-label">CURRENTLY</span>
-                    <span class="fact-value">Year 2 IT Student at Republic Polytechnic</span>
+    <!-- ===== FEATURED PROJECTS ===== -->
+    <section class="projects" id="projects">
+        <h2 class="section-title reveal">Featured <span>Projects</span></h2>
+        <div class="projects-grid stagger">
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/project1.png" alt="Project 1" class="project-img">
                 </div>
-                <div class="fact-row">
-                    <span class="fact-label">STUDYING</span>
-                    <span class="fact-value">Diploma in Information Technology (Full Stack Development)</span>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <p class="project-desc">Short description of what this project does.</p>
+                    <span class="project-tag">In Progress</span>
                 </div>
-                <div class="fact-row">
-                    <span class="fact-label">FOCUS</span>
-                    <span class="fact-value">Web Development, Full-Stack Development</span>
+            </div>
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/project2.png" alt="Project 2" class="project-img">
                 </div>
-                <div class="fact-row">
-                    <span class="fact-label">BASED IN</span>
-                    <span class="fact-value">Singapore</span>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <p class="project-desc">Short description of what this project does.</p>
+                    <span class="project-tag">Completed</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/project3.png" alt="Project 3" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <p class="project-desc">Short description of what this project does.</p>
+                    <span class="project-tag">Completed</span>
                 </div>
             </div>
         </div>
-        <div class="about-content">
-            <h2>About <span>Me</span></h2>
-            <p>I'm a Year 2 IT student at Republic Polytechnic specialising in <span>Full Stack Development</span>, with a strong interest in building web and mobile applications that are <span>both functional and visually polished.</span> I take pride in the details, from how an interface looks to how it feels to use.<br><br>
-            Outside of coding, I have a <span>strong passion for sports</span>, particularly football, which I play regularly. I also recently developed an interest in <span>building Gaming PCs</span>, starting with my own build and since then helping friends and family with theirs. I hope to grow this into a <span>small side business</span> down the line.<br><br>
-            My current goals are to build a solid foundation in software development, pursue a university degree, and continue working on meaningful projects. I'm exploring opportunities in <span>software engineering, web development, and business data analytics</span>, and in the long run I aspire to work at a top-tier tech company and see how far I can go in this industry.</p>
-        </div>
+        <a href="./projects.html" class="btn">View All Projects</a>
     </section>
 
     <div class="divider"></div>
 
-    <section class="education" id="education">
-        <h2 class="section-title">My <span>Journey</span> so far!</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>Sengkang Green Primary School</h4>
-                    <span class="timeline-date">Until 2018</span>
-                    <ul>
-                        <li>Football School Team</li>
-                        <li>Class Leadership</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>Pei Cai Secondary School</h4>
-                    <span class="timeline-date">Jan 2019 – 2024</span>
-                    <ul>
-                        <li>N Levels (2023), O Levels (2024)</li>
-                        <li>Class Committee Chairperson</li>
-                        <li>Eagles Edusave Award for Achievement, Good Leadership and Service (MOE)</li>
-                        <li>Volleyball Team Member</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>Republic Polytechnic</h4>
-                    <span class="timeline-date">Apr 2025 – Present</span>
-                    <ul>
-                        <li>Common ICT Programme (Year 1, 2025)</li>
-                        <li>Diploma in Information Technology (Full Stack Development)</li>
-                        <li>Touch Football Squad Member</li>
-                        <li>G1212 Silver Medallion Award ($1,000) - Awarded to top innovators in the cohort for the Time2Play app</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>Community Service</h4>
-                    <span class="timeline-date">2020 – Present</span>
-                    <ul>
-                        <li>Youth Corps Singapore - Beach clean-up at identified hotspots along the coast</li>
-                        <li>Clean Up for A Sustainable Future (Woodlands Waterfront) - Led and coordinated a group of RP students in a large-scale environmental clean-up initiative</li>
-                        <li>Loving Heart MSC - Housekeeping Lite Programme (SG Cares VC @ Jurong East)</li>
-                        <li>Meals on Wheels - Delivered meals to elderly residents in the community</li>
-                        <li>St Luke's ElderCare - Created online content to support elderly care during COVID-19</li>
-                        <li>Lions Clubs International - Organised a school-based donation drive for poverty alleviation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+        <h2 class="reveal">Have something <span>worth building?</span></h2>
+        <p class="reveal">Open to internship roles and problems worth the effort.</p>
+        <a href="./contact.html" class="btn">Get in touch</a>
     </section>
 
     <div class="divider"></div>
 
-    <section class="skills" id="skills">
-        <h2 class="section-title">My <span>Tech Stack</span></h2>
-        <div class="skills-container">
-            <div class="skills-category">
-                <h3 class="category-title">Languages</h3>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-                        <span>Python</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
-                        <span>JavaScript</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
-                        <span>HTML</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
-                        <span>CSS</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-category">
-                <h3 class="category-title">Frameworks & Libraries</h3>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-                        <span>React</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
-                        <span>Node.js</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" alt="Express" style="filter: invert(1);">
-                        <span>Express</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
-                        <span>Pandas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-category">
-                <h3 class="category-title">Databases</h3>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
-                        <span>MongoDB</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
-                        <span>MySQL</span>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-category">
-                <h3 class="category-title">Tools</h3>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-                        <span>Git</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
-                        <span>Figma</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
-                        <span>VS Code</span>
-                    </div>
-                    <div class="skill-card">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tableau/tableau-original.svg" alt="Tableau">
-                        <span>Tableau</span>
-                    </div>
-                </div>
-            </div>
+    <!-- ===== FOOTER ===== -->
+    <footer class="projects-footer">
+        <p class="footer-name">Angelo <span>Howe</span></p>
+        <p class="footer-sub">© 2026 Angelo Howe. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/Aangelo555" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank">LinkedIn</a>
+            <a href="./index.html">Home</a>
         </div>
-    </section>
+    </footer>
 
-    <div class="divider"></div>
-
-    <section class="certs" id="certs">
-        <h2 class="section-title">My <span>Certifications</span></h2>
-        <div class="certs-grid">
-            <div class="cert-card">
-                <i class="bx bxl-python cert-icon"></i>
-                <h3>Certified Entry-Level Python Programmer</h3>
-                <span class="cert-issuer">LinkedIn Learning</span>
-                <span class="cert-date">2026</span>
-                <p class="cert-desc">Prep course for the PCEP-30-02 exam covering Python fundamentals, data types, control flow, and functions.</p>
-            </div>
-            <div class="cert-card">
-                <i class="bx bx-certification cert-icon"></i>
-                <h3>CSS(Basic)</h3>
-                <span class="cert-issuer">HackerRank—</span>
-                <span class="cert-date">Nov 2026</span>
-                <p class="cert-desc">Covers cascading and inheritance, text styling, layouts, and the box model.</p>
-            </div>
-            <div class="cert-card placeholder">
-                <i class="bx bx-certification cert-icon"></i>
-                <h3>Coming Soon</h3>
-                <span class="cert-issuer">—</span>
-                <span class="cert-date">—</span>
-                <p class="cert-desc">Certification in progress.</p>
-            </div>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
-    <script type="module" src="three.js"></script>
+    <script src="js/script.js"></script>
+    <script type="module" src="js/three.js"></script>
   </body>
 </html>

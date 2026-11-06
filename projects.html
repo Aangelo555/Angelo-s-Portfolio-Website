@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Angelo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mediaqueries.css">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <a href="./index.html" class="logo">Angelo <span>Howe</span></a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="./index.html">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./projects.html" class="active-nav">Projects</a>
+            <a href="./certs.html">Certs</a>
+            <a href="./contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="projects-page">
+        <div class="projects-page-header reveal">
+            <h1>All <span>Projects</span></h1>
+            <p class="projects-page-sub">A collection of things I've built — from web apps to group projects and UI designs.</p>
+        </div>
+
+        <div class="filter-btns reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="frontend">Front-End</button>
+            <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+            <button class="filter-btn" data-filter="group">Group Projects</button>
+            <button class="filter-btn" data-filter="uiux">UI/UX</button>
+        </div>
+
+        <div class="projects-page-grid stagger">
+
+            <div class="project-card-full" data-category="fullstack">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/project1.png" alt="Project 1" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="project-category-tag">Full-Stack</span>
+                    </div>
+                    <p class="project-desc">Short description of what this project does and the problem it solves.</p>
+                    <div class="project-tags-row">
+                        <span class="project-tech">HTML</span>
+                        <span class="project-tech">CSS</span>
+                        <span class="project-tech">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="btn btn-sm">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-outline-sm">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card-full" data-category="frontend">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/project2.png" alt="Project 2" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="project-category-tag">Front-End</span>
+                    </div>
+                    <p class="project-desc">Short description of what this project does and the problem it solves.</p>
+                    <div class="project-tags-row">
+                        <span class="project-tech">React</span>
+                        <span class="project-tech">CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="btn btn-sm">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-outline-sm">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card-full" data-category="group">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/project3.png" alt="Project 3" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="project-category-tag">Group Project</span>
+                    </div>
+                    <p class="project-desc">Short description of what this project does and the problem it solves.</p>
+                    <div class="project-tags-row">
+                        <span class="project-tech">Node.js</span>
+                        <span class="project-tech">MySQL</span>
+                        <span class="project-tech">Express</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" class="btn btn-sm">Live Demo</a>
+                        <a href="#" target="_blank" class="btn-outline-sm">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="projects-footer">
+        <p class="footer-name">Angelo <span>Howe</span></p>
+        <p class="footer-sub">© 2026 Angelo Howe. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/Aangelo555" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank">LinkedIn</a>
+            <a href="./index.html">Home</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.project-card-full');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

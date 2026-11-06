@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Angelo</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mediaqueries.css" />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <a href="./index.html" class="logo">Angelo <span>Howe</span></a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="./index.html">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./projects.html">Projects</a>
+            <a href="./certs.html">Certs</a>
+            <a href="./contact.html" class="active-nav">Contact</a>
+        </nav>
+    </header>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact-page">
+        <div class="contact-wrapper">
+            <h1 class="contact-title reveal">Get in <span>Touch</span></h1>
+
+            <div class="contact-grid reveal">
+                <div class="contact-info">
+                    <p>Open to internship roles and problems worth the effort. Drop me a message and I'll get back to you as soon as I can.</p>
+                    <a href="mailto:angelohowedeleon@gmail.com" class="contact-email"><i class="bx bx-envelope"></i> angelohowedeleon@gmail.com</a>
+                    <div class="contact-links">
+                        <a href="https://github.com/Aangelo555" target="_blank"><i class="bx bxl-github"></i> github.com/Aangelo555</a>
+                        <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank"><i class="bx bxl-linkedin-square"></i> Angelo Howe</a>
+                        <span><i class="bx bx-map"></i> Singapore</span>
+                    </div>
+                </div>
+
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="What's on your mind?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="projects-footer">
+        <p class="footer-name">Angelo <span>Howe</span></p>
+        <p class="footer-sub">© 2026 Angelo Howe. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://github.com/Aangelo555" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank">LinkedIn</a>
+            <a href="./index.html">Home</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

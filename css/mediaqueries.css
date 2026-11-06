@@ -1,0 +1,209 @@
+/* ========================
+   SMALL LAPTOPS (1200px and below)
+======================== */
+@media (max-width: 1200px) {
+    .header {
+        padding: 3rem 6%;
+    }
+
+    .navbar a {
+        margin-left: 2.5rem;
+    }
+
+    section {
+        padding: 10rem 6%;
+    }
+
+    .home {
+        gap: 4rem;
+    }
+
+    .about {
+        padding-top: 15rem;
+    }
+
+    .about-container {
+        gap: 6rem;
+    }
+
+    .timeline {
+        width: 80%;
+    }
+}
+
+/* ========================
+   TABLETS (991px and below)
+======================== */
+@media (max-width: 991px) {
+
+    /* Navbar */
+    #menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 6%;
+        background: rgba(0, 0, 0, 0.9);
+        display: none;
+    }
+
+    .navbar.active {
+        display: block;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+
+    /* Home */
+    .home {
+        flex-direction: column;
+        padding-top: 14rem;
+    }
+
+    .home-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    #three-canvas {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+
+    /* About */
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .about-img {
+        width: 100%;
+        max-width: 40rem;
+        margin: 0 auto;
+    }
+
+    .about-title {
+        font-size: 5rem;
+        text-align: center;
+    }
+
+    /* Journey */
+    .timeline {
+        width: 100%;
+    }
+
+    /* Contact page */
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    /* Skills */
+    .skills-container {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    /* Projects */
+    .projects-page-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .projects-grid {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    /* Certs page */
+    .certs-hero .certs-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .certs-hero p {
+        margin: 0 auto;
+    }
+
+    #certs-canvas {
+        width: 100%;
+        max-width: 380px;
+        height: auto;
+    }
+
+    /* Other sections */
+    .contact {
+        padding: 8rem 6%;
+    }
+
+    .projects-page {
+        padding: 12rem 6% 6rem;
+    }
+}
+
+/* ========================
+   PHONES (600px and below)
+======================== */
+@media (max-width: 600px) {
+    html {
+        font-size: 50%;
+    }
+
+    /* Home */
+    .home-content h1 {
+        font-size: 6rem;
+    }
+
+    .home-content h3 {
+        font-size: 2.6rem;
+    }
+
+    /* About */
+    .about-title {
+        font-size: 4.5rem;
+    }
+
+    /* Titles */
+    .section-title {
+        font-size: 4rem;
+    }
+
+    .contact h2 {
+        font-size: 4rem;
+    }
+
+    /* Projects */
+    .projects-page-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Certs page */
+    .certs-hero h1 {
+        font-size: 4.5rem;
+    }
+
+    /* Contact page */
+    .contact-title {
+        font-size: 5rem;
+    }
+
+    .contact-email {
+        font-size: 1.9rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

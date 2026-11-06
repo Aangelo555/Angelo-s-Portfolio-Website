@@ -1,3 +1,11 @@
+// Mobile menu
+let menuIcon = document.querySelector('#menu-icon');
+let navbar = document.querySelector('.navbar');
+
+menuIcon.onclick = () => {
+    navbar.classList.toggle('active');
+};
+
 // Typing animation
 const roles = [
     "Front-End Developer",
@@ -26,15 +34,31 @@ function type() {
     let speed = isDeleting ? 60 : 90;
 
     if (!isDeleting && charIndex === currentRole.length) {
-        speed = 1500; // pause at end
+        speed = 1500;
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         roleIndex = (roleIndex + 1) % roles.length;
-        speed = 400; // pause before next word
+        speed = 400;
     }
 
     setTimeout(type, speed);
 }
 
-type();
+if (typingTarget) {
+    type();
+}
+
+// Scroll animations
+const hiddenItems = document.querySelectorAll('.reveal, .stagger');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.15 });
+
+hiddenItems.forEach(item => observer.observe(item));
