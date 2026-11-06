@@ -208,6 +208,7 @@ section {
 }
 
 .home-content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -233,14 +234,16 @@ section {
 }
 
 .home-img {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #three-canvas {
-    width: 600px;
-    height: 500px;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
 }
 
 #loading-text {
@@ -616,6 +619,10 @@ section {
     transition: 0.3s ease;
 }
 
+a.project-card {
+    color: var(--text-color);
+}
+
 .project-card:hover {
     border-color: var(--main-color);
     box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
@@ -663,6 +670,7 @@ section {
 .project-header h3 {
     font-size: 2rem;
     font-weight: 600;
+    color: var(--text-color);
 }
 
 .project-year {
