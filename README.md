@@ -4,7 +4,7 @@ My personal portfolio website, where I show my projects, certifications and a bi
 
 **Live site:** [aangelo555.github.io/Angelo-s-Portfolio-Website](https://aangelo555.github.io/Angelo-s-Portfolio-Website/)
 
-![Home page](assets/portfolio-home.png)
+![Home page](assets/Portfoliowelcome.png)
 
 ## Pages
 
