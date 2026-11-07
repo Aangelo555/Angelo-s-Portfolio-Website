@@ -1,26 +1,36 @@
 # Angelo's Portfolio Website
 
-My personal portfolio website, where I show my projects, certifications and a bit about me.
+My personal portfolio website, where I show my projects, design work, certifications and a bit about me.
 
-**Live site:** [aangelo555.github.io/Angelo-s-Portfolio-Website](https://aangelo555.github.io/Angelo-s-Portfolio-Website/)
+**Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
 ![Home page](assets/Portfoliowelcome.png)
 
 ## Pages
 
 - **Home:** intro, 3D model, featured projects
-- **About:** who I am, skills and tech stack
-- **Projects:** all my projects with filters (Front-End, Full-Stack, Group, UI/UX)
-- **Certs:** certifications and courses
-- **Contact:** contact form and socials
+- **About:** who I am, my timeline, skills and tech stack
+- **Projects:** all my projects with filters (Front-End, Full-Stack, Group Projects, Design)
+- **Certs:** certifications and online courses
+- **Contact:** a working contact form and my socials
 
 ## Features
 
-- Interactive 3D model on the home page made with Three.js
+- Interactive 3D models made with Three.js
 - Typing animation in the hero section
 - Scroll animations when sections come into view
-- Project filter buttons
+- Project filters, where a project can sit in more than one category
+- Image gallery popup for my design work, with arrow buttons and keyboard controls
+- Working contact form that sends messages straight to my email (Formspree)
+- Resume button in the navbar that opens my resume PDF
 - Fully responsive for laptop, tablet and mobile
+
+## Featured Projects
+
+- **PC Build Planner:** full stack PC part picker with user accounts and saved builds (React, Express, MongoDB)
+- **Who's That Bloke?:** football quiz game (React)
+- **Time2Play:** mobile app UI/UX design, G121 Silver Medallion Award
+- **SG Green Plan 2030:** website UI design and email newsletter
 
 ## Tech Stack
 
@@ -28,7 +38,8 @@ My personal portfolio website, where I show my projects, certifications and a bi
 - CSS
 - JavaScript
 - Three.js
-- Hosted on GitHub Pages
+- Formspree (contact form)
+- Hosted on Vercel
 
 ## Credits
 
