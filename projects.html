@@ -291,6 +291,7 @@
 
     <script src="js/script.js"></script>
     <script>
+        // ----- Project filter -----
         const filterBtns = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.project-card-full');
         filterBtns.forEach(btn => {
@@ -298,9 +299,24 @@
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
+                let shown = 0; // counts only the visible cards
+
                 cards.forEach(card => {
                     if (filter === 'all' || card.dataset.category.includes(filter)) {
                         card.style.display = 'block';
+
+                        // turn off the CSS stagger animation, otherwise it restarts with its old delay and the card flashes
+                        card.style.animation = 'none';
+
+                        // fade in one by one, in the order they appear on screen
+                        card.animate(
+                            [
+                                { opacity: 0, transform: 'translateY(20px)' },
+                                { opacity: 1, transform: 'translateY(0)' }
+                            ],
+                            { duration: 400, delay: shown * 100, easing: 'ease-out', fill: 'backwards' }
+                        );
+                        shown++;
                     } else {
                         card.style.display = 'none';
                     }
