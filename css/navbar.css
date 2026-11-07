@@ -1,0 +1,33 @@
+/* ========================
+   NAVBAR RESUME BUTTON
+======================== */
+.navbar a.nav-resume {
+    margin-left: 4rem;
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 4rem;
+}
+
+.navbar a.nav-resume:hover {
+    background: var(--main-color);
+    color: black;
+    border: 2px solid var(--main-color);
+    box-shadow: 0 0 15px var(--main-color);
+}
+
+/* ----- Smaller laptops ----- */
+@media (max-width: 1200px) {
+    .navbar a.nav-resume {
+        margin-left: 2.5rem;
+    }
+}
+
+/* ----- Mobile menu ----- */
+@media (max-width: 991px) {
+    .navbar a.nav-resume {
+        display: inline-block;
+        margin: 1rem 0 3rem;
+    }
+}
