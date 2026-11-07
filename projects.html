@@ -6,6 +6,7 @@
     <title>Projects | Angelo</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mediaqueries.css">
+    <link rel="stylesheet" href="css/gallery.css">
     <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -35,7 +36,7 @@
             <button class="filter-btn" data-filter="frontend">Front-End</button>
             <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
             <button class="filter-btn" data-filter="group">Group Projects</button>
-            <button class="filter-btn" data-filter="uiux">UI/UX</button>
+            <button class="filter-btn" data-filter="design">Design</button>
         </div>
 
         <div class="projects-page-grid stagger">
@@ -95,6 +96,58 @@
                 </div>
             </div>
 
+            <div class="project-card-full" data-category="design">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/sg-green-plan-website.jpg" alt="SG Green Plan 2030 website design" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>SG Green Plan 2030 Website</h3>
+                        <span class="project-category-tag">Design</span>
+                    </div>
+                    <p class="project-desc">A 4-page website UI design for SG Green Plan 2030 with Home, Events, About and Contact pages. Made for my Fundamentals of Design final assessment.</p>
+                    <div class="project-tags-row">
+                        <span class="project-tech">UI Design</span>
+                        <span class="project-tech">Illustrator</span>
+                        <span class="project-tech">Photoshop</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="btn btn-sm view-gallery" data-images="./assets/fa-home.jpg,./assets/fa-events.jpg,./assets/fa-about.jpg,./assets/fa-contact.jpg">View Project</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card-full" data-category="design">
+                <div class="project-preview">
+                    <div class="browser-bar">
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                        <span class="browser-dot"></span>
+                    </div>
+                    <img src="./assets/resilient-future-edm.jpg" alt="Resilient Future EDM" class="project-img">
+                </div>
+                <div class="project-info">
+                    <div class="project-header">
+                        <h3>Resilient Future EDM</h3>
+                        <span class="project-category-tag">Design</span>
+                    </div>
+                    <p class="project-desc">An email newsletter (EDM) for the SG Green Plan 2030 "Resilient Future" pillar, with a pixel city skyline, key climate stats and a call to action. Made for my Fundamentals of Design module.</p>
+                    <div class="project-tags-row">
+                        <span class="project-tech">Photoshop</span>
+                        <span class="project-tech">Illustrator</span>
+                        <span class="project-tech">Email Design</span>
+                    </div>
+                    <div class="project-links">
+                        <button class="btn btn-sm view-gallery" data-images="./assets/edm.jpg">View Project</button>
+                    </div>
+                </div>
+            </div>
+
             <div class="project-card-full" data-category="group">
                 <div class="project-preview">
                     <div class="browser-bar">
@@ -138,6 +191,17 @@
         </div>
     </footer>
 
+    <!-- ===== GALLERY POPUP ===== -->
+    <div class="gallery" id="gallery">
+        <button class="gallery-close" id="gallery-close">&times;</button>
+        <button class="gallery-arrow left" id="gallery-prev"><i class="bx bx-chevron-left"></i></button>
+        <div class="gallery-frame" id="gallery-frame">
+            <img id="gallery-img" src="" alt="Project image">
+        </div>
+        <button class="gallery-arrow right" id="gallery-next"><i class="bx bx-chevron-right"></i></button>
+        <p class="gallery-count" id="gallery-count"></p>
+    </div>
+
     <script src="js/script.js"></script>
     <script>
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -155,6 +219,72 @@
                     }
                 });
             });
+        });
+
+        // ----- Gallery popup -----
+        const gallery = document.getElementById('gallery');
+        const galleryImg = document.getElementById('gallery-img');
+        const galleryFrame = document.getElementById('gallery-frame');
+        const galleryCount = document.getElementById('gallery-count');
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+        let images = [];
+        let current = 0;
+
+        function showImage() {
+            galleryImg.src = images[current];
+            galleryCount.textContent = (current + 1) + ' / ' + images.length;
+            galleryFrame.scrollTop = 0;
+        }
+
+        function openGallery(list) {
+            images = list;
+            current = 0;
+            showImage();
+
+            // hide arrows if there's only 1 image
+            const display = images.length > 1 ? 'flex' : 'none';
+            prevBtn.style.display = display;
+            nextBtn.style.display = display;
+
+            gallery.classList.add('open');
+        }
+
+        function closeGallery() {
+            gallery.classList.remove('open');
+        }
+
+        function nextImage() {
+            current = (current + 1) % images.length;
+            showImage();
+        }
+
+        function prevImage() {
+            current = (current - 1 + images.length) % images.length;
+            showImage();
+        }
+
+        document.querySelectorAll('.view-gallery').forEach(btn => {
+            btn.addEventListener('click', () => {
+                openGallery(btn.dataset.images.split(','));
+            });
+        });
+
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+        document.getElementById('gallery-close').addEventListener('click', closeGallery);
+
+        // close when clicking the dark background
+        gallery.addEventListener('click', (e) => {
+            if (e.target === gallery) closeGallery();
+        });
+
+        // keyboard: arrows to switch, Esc to close
+        document.addEventListener('keydown', (e) => {
+            if (!gallery.classList.contains('open')) return;
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') closeGallery();
         });
     </script>
 

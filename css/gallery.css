@@ -1,0 +1,107 @@
+/* ========================
+   GALLERY POPUP
+======================== */
+.gallery {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.gallery.open {
+    display: flex;
+}
+
+/* ----- Image area ----- */
+.gallery-frame {
+    width: 80%;
+    max-width: 900px;
+    height: 85vh;
+    overflow-y: auto;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.gallery-frame img {
+    display: block;
+    width: 100%;
+}
+
+/* ----- Arrows ----- */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 2px solid var(--main-color);
+    background: transparent;
+    color: var(--main-color);
+    font-size: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.gallery-arrow:hover {
+    background: var(--main-color);
+    color: black;
+    box-shadow: 0 0 20px var(--main-color);
+}
+
+.gallery-arrow.left {
+    left: 3%;
+}
+
+.gallery-arrow.right {
+    right: 3%;
+}
+
+/* ----- Close button + counter ----- */
+.gallery-close {
+    position: absolute;
+    top: 2rem;
+    right: 3%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.gallery-close:hover {
+    color: var(--main-color);
+}
+
+.gallery-count {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1.6rem;
+    color: #aaa;
+}
+
+/* ----- Mobile ----- */
+@media (max-width: 600px) {
+    .gallery-frame {
+        width: 92%;
+        height: 75vh;
+    }
+
+    .gallery-arrow {
+        top: auto;
+        bottom: 1.5rem;
+        transform: none;
+        width: 4.4rem;
+        height: 4.4rem;
+    }
+
+    .gallery-count {
+        bottom: 2.6rem;
+    }
+}
