@@ -148,7 +148,7 @@
                 </div>
             </div>
 
-            <div class="project-card-full" data-category="group design">
+            <div class="project-card-full" id="time2play" data-category="group design" style="scroll-margin-top: 10rem;">
                 <div class="project-preview">
                     <div class="browser-bar">
                         <span class="browser-dot"></span>
@@ -160,7 +160,10 @@
                 <div class="project-info">
                     <div class="project-header">
                         <h3>Time2Play</h3>
-                        <span class="project-category-tag">Group Project</span>
+                        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                            <span class="project-category-tag">Group Project</span>
+                            <span class="project-category-tag">Design</span>
+                        </div>
                     </div>
                     <p class="project-desc">A mobile app concept that helps kids cut down screen time by turning tasks into points they can trade for rewards. Parents set the tasks and approve them. Won the G1212 Silver Medallion award.</p>
                     <div class="project-tags-row">
@@ -236,6 +239,12 @@
             galleryFrame.scrollTop = 0;
         }
 
+        // tall images (like the EDM) get a narrower frame so they don't look zoomed in
+        galleryImg.onload = function () {
+            const isTall = galleryImg.naturalHeight > galleryImg.naturalWidth * 1.5;
+            galleryFrame.style.maxWidth = isTall ? '550px' : '';
+        };
+
         function openGallery(list) {
             images = list;
             current = 0;
@@ -245,6 +254,7 @@
             const display = images.length > 1 ? 'flex' : 'none';
             prevBtn.style.display = display;
             nextBtn.style.display = display;
+            galleryCount.style.display = images.length > 1 ? 'block' : 'none';
 
             gallery.classList.add('open');
         }
