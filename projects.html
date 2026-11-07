@@ -148,29 +148,28 @@
                 </div>
             </div>
 
-            <div class="project-card-full" data-category="group">
+            <div class="project-card-full" data-category="group design">
                 <div class="project-preview">
                     <div class="browser-bar">
                         <span class="browser-dot"></span>
                         <span class="browser-dot"></span>
                         <span class="browser-dot"></span>
                     </div>
-                    <img src="./assets/project3.png" alt="Project 3" class="project-img">
+                    <img src="./assets/time2play.jpg" alt="Time2Play app screens" class="project-img">
                 </div>
                 <div class="project-info">
                     <div class="project-header">
-                        <h3>Project Name</h3>
+                        <h3>Time2Play</h3>
                         <span class="project-category-tag">Group Project</span>
                     </div>
-                    <p class="project-desc">Short description of what this project does and the problem it solves.</p>
+                    <p class="project-desc">A mobile app concept that helps kids cut down screen time by turning tasks into points they can trade for rewards. Parents set the tasks and approve them. Won the G1212 Silver Medallion award.</p>
                     <div class="project-tags-row">
-                        <span class="project-tech">Node.js</span>
-                        <span class="project-tech">MySQL</span>
-                        <span class="project-tech">Express</span>
+                        <span class="project-tech">Figma</span>
+                        <span class="project-tech">UI/UX</span>
+                        <span class="project-tech">Prototyping</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" target="_blank" class="btn btn-sm">Live Demo</a>
-                        <a href="#" target="_blank" class="btn-outline-sm">GitHub</a>
+                        <a href="https://www.figma.com/proto/fMwkXOBAaXLDkQ0Ydpgd6b/Time2Play-?node-id=58003-42&starting-point-node-id=58003%3A42&scaling=scale-down" target="_blank" class="btn btn-sm">View Prototype</a>
                     </div>
                 </div>
             </div>
@@ -212,7 +211,7 @@
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
                 cards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
+                    if (filter === 'all' || card.dataset.category.includes(filter)) {
                         card.style.display = 'block';
                     } else {
                         card.style.display = 'none';
