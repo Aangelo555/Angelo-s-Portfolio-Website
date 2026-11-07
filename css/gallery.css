@@ -19,7 +19,7 @@
 .gallery-frame {
     width: 80%;
     max-width: 900px;
-    height: 85vh;
+    max-height: 85vh;
     overflow-y: auto;
     border-radius: 1rem;
     border: 1px solid rgba(0, 212, 255, 0.3);
@@ -90,7 +90,7 @@
 @media (max-width: 600px) {
     .gallery-frame {
         width: 92%;
-        height: 75vh;
+        max-height: 75vh;
     }
 
     .gallery-arrow {
