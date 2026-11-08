@@ -425,6 +425,87 @@ section {
 }
 
 /* ========================
+   JOURNEY (ABOUT PAGE)
+   simple rows, like the certs list
+======================== */
+.journey-wrapper {
+    max-width: 110rem; /* same width as the About Me section above */
+    margin: 0 auto;
+}
+
+.journey-group {
+    margin-bottom: 6rem;
+}
+
+.journey-group:last-child {
+    margin-bottom: 0;
+}
+
+.journey-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--main-color);
+    margin-bottom: 1.5rem;
+}
+
+.journey-row {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    gap: 3rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-side {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.55);
+    padding-top: 0.4rem;
+}
+
+.journey-body h4 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.journey-sub {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0.4rem;
+}
+
+.journey-points {
+    list-style: none;
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.journey-points li {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* rows with no subtitle (volunteering) sit closer to the title */
+.journey-body h4 + .journey-points {
+    margin-top: 0.8rem;
+}
+
+.journey-points a {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .journey-row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+}
+
+/* ========================
    SKILLS / TECH STACK
 ======================== */
 .skills {
@@ -633,19 +714,6 @@ a.project-card {
     background: #0d0d0d;
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
     min-height: 20rem;
-}
-
-.browser-bar {
-    display: flex;
-    gap: 0.6rem;
-    padding: 1rem 1.5rem;
-}
-
-.browser-dot {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
 }
 
 .project-img {
@@ -1053,7 +1121,6 @@ a.project-card {
     border: 1px solid rgba(0, 212, 255, 0.15);
     border-radius: 16px;
     overflow: hidden;
-    cursor: pointer;
     transition: 0.3s ease;
     display: flex;            /* lets the buttons sit at the bottom */
     flex-direction: column;
@@ -1069,10 +1136,9 @@ a.project-card {
     margin-top: auto; /* buttons always line up at the bottom of each card */
 }
 
+/* soft highlight only, the buttons are what you click */
 .project-card-full:hover {
-    border-color: var(--main-color);
-    box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
-    transform: translateY(-6px);
+    border-color: rgba(0, 212, 255, 0.4);
 }
 
 .project-tags-row {
