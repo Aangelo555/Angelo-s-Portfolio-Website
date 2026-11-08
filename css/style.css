@@ -1055,6 +1055,18 @@ a.project-card {
     overflow: hidden;
     cursor: pointer;
     transition: 0.3s ease;
+    display: flex;            /* lets the buttons sit at the bottom */
+    flex-direction: column;
+}
+
+.project-card-full .project-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-full .project-links {
+    margin-top: auto; /* buttons always line up at the bottom of each card */
 }
 
 .project-card-full:hover {
@@ -1099,6 +1111,27 @@ a.project-card {
     display: flex;
     gap: 1rem;
 }
+
+/* ----- Project card headers (projects page) -----
+   title on its own line, pills in a row underneath,
+   so every card looks the same on any screen size */
+.project-card-full .project-header {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.8rem 0.6rem;
+}
+
+.project-card-full .project-header h3 {
+    flex-basis: 100%; /* title always takes the full line */
+}
+
+.project-card-full .project-header > div {
+    display: flex;
+    flex-direction: row !important; /* pills side by side, never stacked */
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
 /* ========================
    ANIMATIONS
 ======================== */

@@ -50,7 +50,7 @@
                         <span class="browser-dot"></span>
                         <span class="browser-dot"></span>
                     </div>
-                    <img src="./assets/pcbuilder.png" alt="PC Build Planner" class="project-img">
+                    <img src="./assets/pcbuilder.png" alt="PC Build Planner" class="project-img" style="object-position: left top;">
                 </div>
                 <div class="project-info">
                     <div class="project-header">
@@ -63,7 +63,6 @@
                         <span class="project-tech">Express</span>
                         <span class="project-tech">MongoDB</span>
                         <span class="project-tech">JWT</span>
-                        <span class="project-tech">Three.js</span>
                     </div>
                     <div class="project-links">
                         <a href="https://pcbuildplanner.vercel.app" target="_blank" class="btn btn-sm">Live Demo</a>
@@ -79,12 +78,12 @@
                         <span class="browser-dot"></span>
                         <span class="browser-dot"></span>
                     </div>
-                    <img src="./assets/final-whistle.jpg" alt="Final Whistle coming soon" class="project-img">
+                    <img src="./assets/final-whistle.jpg" alt="Final Whistle coming soon" class="project-img" style="object-position: left top;">
                 </div>
                 <div class="project-info">
                     <div class="project-header">
-                        <h3>Final Whistle (In Development)</h3>
-                        <span class="project-category-tag">Coming Soon</span>
+                        <h3>Final Whistle</h3>
+                        <span class="project-category-tag">In Development</span>
                     </div>
                     <p class="project-desc">A web app for following live football matches as they happen. Currently in the planning stage, more details will be added once development starts.</p>
                     <div class="project-tags-row">
@@ -242,7 +241,7 @@
                         <span class="browser-dot"></span>
                         <span class="browser-dot"></span>
                     </div>
-                    <img src="./assets/polypath-home.jpg" alt="PolyPath career guidance site" class="project-img">
+                    <img src="./assets/polypath-home.jpg" alt="PolyPath career guidance site" class="project-img" style="object-position: left top;">
                 </div>
                 <div class="project-info">
                     <div class="project-header">
@@ -303,7 +302,7 @@
 
                 cards.forEach(card => {
                     if (filter === 'all' || card.dataset.category.includes(filter)) {
-                        card.style.display = 'block';
+                        card.style.display = ''; // back to the CSS layout (flex)
 
                         // turn off the CSS stagger animation, otherwise it restarts with its old delay and the card flashes
                         card.style.animation = 'none';
