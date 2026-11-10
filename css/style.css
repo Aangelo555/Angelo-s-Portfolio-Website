@@ -469,7 +469,7 @@ h1, h2 {
     color: var(--main-color);
 }
 
-/* dark logos (Express, MySQL, Pandas) turned white so they show on dark */
+/* dark logos (MySQL, Pandas) turned white so they show on dark */
 .tech-item .icon-white {
     filter: brightness(0) invert(1);
 }
