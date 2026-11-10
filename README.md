@@ -4,12 +4,12 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 **Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
-![Home page](assets/Portfoliowelcome.png)
+![Home page](assets/PortfoliowelcomeV2.png)
 
 ## Pages
 
 - **Home:** intro, 3D model, featured projects
-- **About:** who I am, my timeline, skills and tech stack
+- **About:** who I am, my journey (education and volunteering) and tech stack
 - **Projects:** all my projects with filters (Front-End, Full-Stack, Group Projects, Design)
 - **Certs:** certifications and online courses
 - **Contact:** a working contact form and my socials
@@ -24,12 +24,14 @@ My personal portfolio website, where I show my projects, design work, certificat
 - Working contact form that sends messages straight to my email (Formspree)
 - Resume button in the navbar that opens my resume PDF
 - Fully responsive for laptop, tablet and mobile
+- Animations turn off for users who have "reduce motion" switched on in their device settings
 
-## Featured Projects
+## Projects
 
 - **PC Build Planner:** full stack PC part picker with user accounts and saved builds (React, Express, MongoDB)
 - **Who's That Bloke?:** football quiz game (React)
-- **Time2Play:** mobile app UI/UX design, G121 Silver Medallion Award
+- **Time2Play:** mobile app UI/UX design in Figma, G121 Silver Medallion Award
+- **StudyHub:** group web app for Information Technology students (Node.js, Express, MySQL)
 - **SG Green Plan 2030:** website UI design and email newsletter
 
 ## Tech Stack
@@ -39,6 +41,7 @@ My personal portfolio website, where I show my projects, design work, certificat
 - JavaScript
 - Three.js
 - Formspree (contact form)
+- Geist font (Google Fonts), Boxicons and Devicon icons
 - Hosted on Vercel
 
 ## Credits
@@ -49,6 +52,6 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 ## Author
 
-Angelo, Year 2 IT student at Republic Polytechnic
+Angelo Howe, Year 2 Information Technology student at Republic Polytechnic, specialising in Full Stack Development
 GitHub: [Aangelo555](https://github.com/Aangelo555)
 LinkedIn: [Angelo Howe](https://www.linkedin.com/in/angelo-h-a74b47377/)
