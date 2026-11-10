@@ -11,7 +11,7 @@ const roles = [
     "Front-End Developer",
     "Software Engineer",
     "Full-Stack Developer",
-    "Data Analyst"
+    "UI Designer"
 ];
 
 let roleIndex = 0;

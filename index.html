@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Angelo's Portfolio Website</title>
+    <title>Angelo Howe | Front-End Developer</title>
+    <meta name="description" content="Portfolio of Angelo Howe, a Year 2 Information Technology student at Republic Polytechnic specialising in Full Stack Development. Projects, skills and contact details.">
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaqueries.css" />
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="icon" type="image/svg+xml" href="./assets/favicon_v11.png">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
     <script type="importmap">
     {
         "imports": {
@@ -40,14 +41,14 @@
         <div class="home-content">
             <h1>Hi, I'm <span>Angelo!</span></h1>
             <h3>I'm an Aspiring<br><span id="typing-text"></span><span class="cursor">|</span></h3>
-            <p>A Year 2 IT student at Republic Polytechnic specialising in Full Stack Development. I enjoy building web and mobile applications, and when I'm not coding, I'm building gaming PCs.</p>
-            <div class="social-icon">
-                <a href="https://github.com/Aangelo555" target="_blank"><i class="bx bxl-github"></i></a>
-                <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
-            </div>
+            <p>A Year 2 Information Technology student at Republic Polytechnic, specialising in Full Stack Development. I enjoy building web and mobile applications, and when I'm not coding, I'm building gaming PCs.</p>
             <div class="btn-group">
                 <a href="./assets/Angelo_Howe_De_Leon_Resume.pdf" target="_blank" class="btn">Resume</a>
                 <a href="./contact.html" class="btn">Contact</a>
+            </div>
+            <div class="hero-links">
+                <a href="https://github.com/Aangelo555" target="_blank" class="card-link">GitHub <span class="arrow">&#8599;</span></a>
+                <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank" class="card-link">LinkedIn <span class="arrow">&#8599;</span></a>
             </div>
         </div>
         <div class="home-img">
@@ -60,7 +61,8 @@
 
     <!-- ===== FEATURED PROJECTS ===== -->
     <section class="projects" id="projects">
-        <h2 class="section-title reveal">Featured <span>Projects</span></h2>
+        <span class="eyebrow center reveal">Selected Work</span>
+        <h2 class="section-title reveal">Featured Projects</h2>
         <div class="projects-grid stagger">
             <a href="https://pcbuildplanner.vercel.app" target="_blank" class="project-card">
                 <div class="project-preview">
@@ -72,7 +74,7 @@
                         <span class="project-year">2026</span>
                     </div>
                     <p class="project-desc">A full stack PC part picker that checks if your parts work together, with user accounts and saved builds.</p>
-                    <span class="project-tag">Completed</span>
+                    <span class="project-link">pcbuildplanner.vercel.app <span class="arrow">&#8599;</span></span>
                 </div>
             </a>
             <a href="https://whos-that-bloke.vercel.app" target="_blank" class="project-card">
@@ -85,20 +87,20 @@
                         <span class="project-year">2026</span>
                     </div>
                     <p class="project-desc">A React football quiz game where you guess Manchester United players from their photos.</p>
-                    <span class="project-tag">Completed</span>
+                    <span class="project-link">whos-that-bloke.vercel.app <span class="arrow">&#8599;</span></span>
                 </div>
             </a>
-            <a href="./projects.html" class="project-card">
+            <a href="https://www.figma.com/proto/fMwkXOBAaXLDkQ0Ydpgd6b/Time2Play-?node-id=58003-42&starting-point-node-id=58003%3A42&scaling=scale-down" target="_blank" class="project-card">
                 <div class="project-preview">
-                    <img src="./assets/sg-green-plan-website.jpg" alt="SG Green Plan 2030 website design" class="project-img">
+                    <img src="./assets/time2play.jpg" alt="Time2Play app screens" class="project-img">
                 </div>
                 <div class="project-info">
                     <div class="project-header">
-                        <h3>SG Green Plan 2030 Website</h3>
-                        <span class="project-year">2026</span>
+                        <h3>Time2Play</h3>
+                        <span class="project-year">2025</span>
                     </div>
-                    <p class="project-desc">A 4-page website UI design for SG Green Plan 2030, made in Illustrator and Photoshop.</p>
-                    <span class="project-tag">Completed</span>
+                    <p class="project-desc">A Figma UI/UX design for a mobile app that helps kids cut down screen time. Won the G121 Silver Medallion Award ($1,000).</p>
+                    <span class="project-link">Figma · live prototype <span class="arrow">&#8599;</span></span>
                 </div>
             </a>
         </div>
@@ -109,8 +111,8 @@
 
     <!-- ===== CONTACT ===== -->
     <section class="contact" id="contact">
-        <h2 class="reveal">Have something <span>worth building?</span></h2>
-        <p class="reveal">Open to internship roles and problems worth the effort.</p>
+        <h2 class="reveal">Looking for an intern?</h2>
+        <p class="reveal">I'm available for web development internships from March 2027. Send me a message and I'll get back to you.</p>
         <a href="./contact.html" class="btn">Get in touch</a>
     </section>
 
@@ -118,12 +120,16 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="projects-footer">
-        <p class="footer-name">Angelo <span>Howe</span></p>
-        <p class="footer-sub">© 2026 Angelo Howe. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="https://github.com/Aangelo555" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank">LinkedIn</a>
-            <a href="./index.html">Home</a>
+        <div class="footer-row">
+            <div>
+                <p class="footer-sub">Designed and coded by Angelo Howe with HTML, CSS, JavaScript and Three.js.</p>
+                <p class="footer-note">Hosted on Vercel · Last updated Nov 2026</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/Aangelo555" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank">LinkedIn</a>
+                <a href="./contact.html">Contact</a>
+            </div>
         </div>
     </footer>
 

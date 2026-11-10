@@ -42,10 +42,6 @@
     .about-container {
         gap: 6rem;
     }
-
-    .timeline {
-        width: 80%;
-    }
 }
 
 /* ========================
@@ -113,21 +109,10 @@
         text-align: center;
     }
 
-    /* Journey */
-    .timeline {
-        width: 100%;
-    }
-
     /* Contact page */
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 5rem;
-    }
-
-    /* Skills */
-    .skills-container {
-        width: 100%;
-        grid-template-columns: 1fr;
     }
 
     /* Projects */
