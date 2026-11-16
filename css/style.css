@@ -412,6 +412,12 @@ h1, h2 {
     margin-top: 0.8rem;
 }
 
+/* organisation name at the start of a point */
+.journey-points strong {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .journey-points a {
     color: var(--main-color);
     text-decoration: underline;
@@ -469,7 +475,7 @@ h1, h2 {
     color: var(--main-color);
 }
 
-/* dark logos (MySQL, Pandas) turned white so they show on dark */
+/* dark logos (MySQL, Pandas, GitHub, Vercel, Three.js) turned white so they show on dark */
 .tech-item .icon-white {
     filter: brightness(0) invert(1);
 }
