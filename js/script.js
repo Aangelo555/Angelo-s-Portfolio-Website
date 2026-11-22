@@ -79,7 +79,12 @@ hiddenItems.forEach(item => observer.observe(item));
     `;
 
     const fragmentSrc = `
+        // high precision so the noise doesn't turn blocky after the page has been open a while
+        #ifdef GL_FRAGMENT_PRECISION_HIGH
+        precision highp float;
+        #else
         precision mediump float;
+        #endif
         uniform vec2 uRes;
         uniform float uTime;
         uniform vec2 uMouse;
@@ -88,7 +93,12 @@ hiddenItems.forEach(item => observer.observe(item));
         uniform vec3 uBeam;
         uniform vec3 uGold;
 
-        float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+        // random number for each grid point (no sin(), which loses precision on big numbers)
+        float hash(vec2 p) {
+            vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+            p3 += dot(p3, p3.yzx + 33.33);
+            return fract((p3.x + p3.y) * p3.z);
+        }
 
         float noise(vec2 p) {
             vec2 i = floor(p);
@@ -224,7 +234,9 @@ hiddenItems.forEach(item => observer.observe(item));
         smoothY += (mouseY - smoothY) * 0.05;
         smoothScroll += (scroll - smoothScroll) * 0.05;
 
-        gl.uniform1f(uTime, reduceMotion ? 0 : (performance.now() - start) / 1000);
+        // time loops every ~3 hours so the numbers never get too big
+        const seconds = ((performance.now() - start) / 1000) % 10000;
+        gl.uniform1f(uTime, reduceMotion ? 0 : seconds);
         gl.uniform2f(uMouse, smoothX, smoothY);
         gl.uniform1f(uScroll, smoothScroll);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
