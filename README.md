@@ -4,7 +4,7 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 **Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
-![Home page](assets/readme/PortfoliowelcomeV4.png)
+![Home page](assets/readme/PortfoliowelcomeV5.png)
 
 ## Pages
 
@@ -17,6 +17,9 @@ My personal portfolio website, where I show my projects, design work, certificat
 ## Features
 
 - Interactive 3D models made with Three.js
+- Animated northern lights background with twinkling stars, written as a WebGL shader so it runs smoothly on laptops
+- Background light slowly shifts to gold as you scroll down the page
+- See-through navbar that turns into frosted glass when you scroll
 - Typing animation in the hero section
 - Scroll animations when sections come into view
 - Project filters, where a project can sit in more than one category
@@ -40,6 +43,7 @@ My personal portfolio website, where I show my projects, design work, certificat
 - CSS
 - JavaScript
 - Three.js
+- WebGL (GLSL shader for the background)
 - Formspree (contact form)
 - Archivo font (Google Fonts), Boxicons, Devicon and Iconify icons
 - Hosted on Vercel
