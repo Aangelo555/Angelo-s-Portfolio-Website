@@ -4,7 +4,7 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 **Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
-![Home page](assets/PortfoliowelcomeV2.png)
+![Home page](assets/PortfoliowelcomeV3.png)
 
 ## Pages
 
@@ -41,7 +41,7 @@ My personal portfolio website, where I show my projects, design work, certificat
 - JavaScript
 - Three.js
 - Formspree (contact form)
-- Geist font (Google Fonts), Boxicons and Devicon icons
+- Archivo font (Google Fonts), Boxicons, Devicon and Iconify icons
 - Hosted on Vercel
 
 ## Credits

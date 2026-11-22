@@ -6,7 +6,7 @@
   border: none;
   outline: none;
   scroll-behavior: smooth;
-  font-family: "Geist", sans-serif;
+  font-family: "Archivo", sans-serif;
 }
 
 html {
@@ -18,16 +18,18 @@ html {
    VARIABLES & BASE
 ======================== */
 :root {
-  --bg-color: #080808;
-  --second-bg-color: #00d5ff0a;
-  --text-color: white;
-  --main-color: #00d4ff;
+  --bg-color: #0d1310;          /* very dark green, like a circuit board */
+  --second-bg-color: #111915;
+  --card-color: #151e19;
+  --text-color: #eeeee6;
+  --main-color: #e3b04b;        /* gold, like the pins on a PC part */
+  --line-color: rgba(255, 255, 255, 0.08);
 }
 
 body {
     background: var(--bg-color);
     color: var(--text-color);
-    background-image: radial-gradient(circle at 75% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 60%);
+    background-image: radial-gradient(circle at 75% 40%, rgba(70, 120, 90, 0.18) 0%, transparent 60%);
     background-attachment: fixed;
 }
 
@@ -53,7 +55,6 @@ span {
 /* ========================
    DIVIDER
 ======================== */
-/* plain faint line between sections */
 .divider {
     width: 76%;
     height: 1px;
@@ -70,7 +71,7 @@ span {
     top: 0%;
     left: 0%;
     padding: 3rem 12%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(13, 19, 16, 0.75);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
@@ -85,15 +86,16 @@ span {
 }
 
 .logo {
-    font-size: 3rem;
+    font-stretch: 112%;
+    font-size: 2.6rem;
     color: var(--text-color);
     font-weight: 800;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
-.logo:hover {
-    transform: scale(1.1);
+.logo span {
+    color: var(--text-color);
 }
 
 .navbar a {
@@ -123,25 +125,10 @@ section {
     margin-bottom: 5rem;
 }
 
-/* big headings feel sharper with tighter letter spacing */
+/* wide letters for big headings */
 h1, h2 {
-    letter-spacing: -0.03em;
-}
-
-/* small label above each heading (replaces the two-colour headings) */
-.eyebrow {
-    display: block;
-    font-family: "Geist Mono", monospace;
-    font-size: 1.4rem;
-    font-weight: 500;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    color: var(--main-color);
-    margin-bottom: 1.2rem;
-}
-
-.eyebrow.center {
-    text-align: center;
+    font-stretch: 112%;
+    letter-spacing: -0.01em;
 }
 
 /* ========================
@@ -156,29 +143,26 @@ h1, h2 {
     display: inline-block;
     padding: 1rem 3rem;
     background: var(--main-color);
-    border-radius: 3rem;
-    font-size: 1.8rem;
-    color: black;
+    border-radius: 8px;
+    font-size: 1.7rem;
+    color: var(--bg-color);
     border: 2px solid transparent;
     font-weight: 600;
     transition: 0.3s ease-in-out;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    background: #f0c66d;
 }
 
 .btn-group a:nth-of-type(2) {
-    background-color: black;
-    color: var(--main-color);
-    border: 2px solid var(--main-color);
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.25);
 }
 
 .btn-group a:nth-of-type(2):hover {
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-    background-color: var(--main-color);
-    color: black;
+    border-color: var(--text-color);
 }
 
 /* ========================
@@ -200,8 +184,12 @@ h1, h2 {
     text-align: left;
 }
 
+.home-content h1 span {
+    color: var(--text-color);
+}
+
 .home-content h1 {
-    font-size: 8rem;
+    font-size: 7.6rem;
     font-weight: 700;
     margin-top: 1.5rem;
     line-height: 1;
@@ -229,14 +217,14 @@ h1, h2 {
     isolation: isolate;
 }
 
-/* the one big glow on the site: light coming off the PC */
+/* glow behind the 3D PC */
 .home-img::before {
     content: "";
     position: absolute;
     width: 110%;
     aspect-ratio: 1;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.16) 0%, rgba(0, 212, 255, 0.05) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(90, 150, 110, 0.22) 0%, rgba(90, 150, 110, 0.06) 40%, transparent 70%);
     z-index: -1;
 }
 
@@ -246,12 +234,11 @@ h1, h2 {
     height: auto;
 }
 
-/* space between the intro text and the buttons */
 .home-content .btn-group {
     margin-top: 3rem;
 }
 
-/* GitHub and LinkedIn as small text links under the buttons */
+/* GitHub and LinkedIn links */
 .hero-links {
     display: flex;
     gap: 2.5rem;
@@ -278,7 +265,6 @@ h1, h2 {
 ======================== */
 .about {
     padding-top: 15rem;
-    background: var(--second-bg-color);
 }
 
 .about-container {
@@ -293,16 +279,16 @@ h1, h2 {
 .about-img img {
     width: 100%;
     aspect-ratio: 4 / 5;
-    border-radius: 12px;
+    border-radius: 10px;
     object-fit: cover;
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    border: 1px solid var(--line-color);
 }
 
 .about-facts {
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
-    border-top: 1px solid rgba(0, 212, 255, 0.15);
+    border-top: 1px solid var(--line-color);
 }
 
 .fact-row {
@@ -311,12 +297,12 @@ h1, h2 {
     align-items: center;
     gap: 2rem;
     padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid var(--line-color);
 }
 
 .fact-label {
     font-size: 1.5rem;
-    color: var(--main-color);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 600;
     white-space: nowrap;
 }
@@ -344,10 +330,9 @@ h1, h2 {
 
 /* ========================
    JOURNEY (ABOUT PAGE)
-   simple rows, like the certs list
 ======================== */
 .journey-wrapper {
-    max-width: 110rem; /* same width as the About Me section above */
+    max-width: 110rem;
     margin: 0 auto;
 }
 
@@ -360,12 +345,8 @@ h1, h2 {
 }
 
 .journey-label {
-    font-family: "Geist Mono", monospace;
-    font-size: 1.3rem;
-    font-weight: 500;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    color: var(--main-color);
+    font-size: 2.4rem;
+    font-weight: 600;
     margin-bottom: 1.5rem;
 }
 
@@ -407,12 +388,12 @@ h1, h2 {
     color: rgba(255, 255, 255, 0.65);
 }
 
-/* rows with no subtitle (volunteering) sit closer to the title */
+/* less space when there is no subtitle */
 .journey-body h4 + .journey-points {
     margin-top: 0.8rem;
 }
 
-/* organisation name at the start of a point */
+/* organisation names */
 .journey-points strong {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
@@ -433,7 +414,6 @@ h1, h2 {
 /* ========================
    SKILLS / TECH STACK
 ======================== */
-/* line up the category name with the middle of the logos */
 .skills .journey-row {
     align-items: center;
 }
@@ -442,7 +422,6 @@ h1, h2 {
     padding-top: 0;
 }
 
-/* each tool: small logo + name, in a row that wraps */
 .tech-list {
     display: flex;
     flex-wrap: wrap;
@@ -462,7 +441,7 @@ h1, h2 {
 }
 
 .tech-item:hover {
-    border-color: rgba(0, 212, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .tech-item img {
@@ -470,12 +449,7 @@ h1, h2 {
     height: 2.2rem;
 }
 
-.tech-item i {
-    font-size: 2.2rem;
-    color: var(--main-color);
-}
-
-/* dark logos (MySQL, Pandas, GitHub, Vercel, Three.js) turned white so they show on dark */
+/* makes black logos white */
 .tech-item .icon-white {
     filter: brightness(0) invert(1);
 }
@@ -498,9 +472,9 @@ h1, h2 {
 }
 
 .project-card {
-    background: rgba(0, 212, 255, 0.03);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 16px;
+    background: var(--card-color);
+    border: 1px solid var(--line-color);
+    border-radius: 10px;
     overflow: hidden;
     width: 33%;
     cursor: pointer;
@@ -514,13 +488,13 @@ a.project-card {
 }
 
 .project-card:hover {
-    border-color: var(--main-color);
-    transform: translateY(-6px);
+    border-color: rgba(227, 176, 75, 0.5);
+    transform: translateY(-4px);
 }
 
 .project-preview {
-    background: #0d0d0d;
-    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    background: #0a0f0c;
+    border-bottom: 1px solid var(--line-color);
     min-height: 20rem;
 }
 
@@ -564,18 +538,10 @@ a.project-card {
     margin-bottom: 1.5rem;
 }
 
-/* where the card goes, shown like a real link */
 .project-link {
     margin-top: auto;
-    font-family: "Geist Mono", monospace;
     font-size: 1.3rem;
     color: rgba(255, 255, 255, 0.45);
-    transition: 0.3s ease;
-}
-
-.project-link .arrow {
-    display: inline-block;
-    color: inherit;
     transition: 0.3s ease;
 }
 
@@ -583,8 +549,9 @@ a.project-card {
     color: var(--main-color);
 }
 
-.project-card:hover .project-link .arrow {
-    transform: translate(2px, -2px);
+.project-link i,
+.card-link i {
+    vertical-align: middle;
 }
 
 /* ========================
@@ -748,7 +715,6 @@ a.project-card {
     padding: 4rem 12%;
 }
 
-/* text on the left, links on the right */
 .footer-row {
     display: flex;
     justify-content: space-between;
@@ -764,7 +730,6 @@ a.project-card {
 }
 
 .footer-note {
-    font-family: "Geist Mono", monospace;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.35);
 }
@@ -813,7 +778,7 @@ a.project-card {
 }
 
 .certs-hero h1 {
-    font-size: 7rem;
+    font-size: 6rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 2.5rem;
@@ -854,7 +819,7 @@ a.project-card {
 }
 
 .cert-row:hover {
-    background: rgba(0, 212, 255, 0.04);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .cert-text {
@@ -920,14 +885,14 @@ a.project-card {
 
 .filter-btn {
     font-size: 1.5rem;
-    padding: 0.8rem 2.2rem;
-    border-radius: 2rem;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: transparent;
     color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     transition: 0.3s ease;
-    font-family: "Geist", sans-serif;
+    font-family: "Archivo", sans-serif;
 }
 
 .filter-btn:hover {
@@ -938,7 +903,7 @@ a.project-card {
 .filter-btn.active {
     background: var(--main-color);
     border-color: var(--main-color);
-    color: black;
+    color: var(--bg-color);
     font-weight: 600;
 }
 
@@ -949,12 +914,12 @@ a.project-card {
 }
 
 .project-card-full {
-    background: rgba(0, 212, 255, 0.03);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 16px;
+    background: var(--card-color);
+    border: 1px solid var(--line-color);
+    border-radius: 10px;
     overflow: hidden;
     transition: 0.3s ease;
-    display: flex;            /* lets the buttons sit at the bottom */
+    display: flex;
     flex-direction: column;
 }
 
@@ -965,45 +930,47 @@ a.project-card {
 }
 
 .project-card-full .project-links {
-    margin-top: auto; /* buttons always line up at the bottom of each card */
+    margin-top: auto; /* keeps links at the bottom */
 }
 
-/* soft highlight only, the buttons are what you click */
 .project-card-full:hover {
-    border-color: rgba(0, 212, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* ----- Card text (projects page) ----- */
 .project-card-full .project-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.4rem;
 }
 
-/* category line under the title, e.g. "Group Project · Design" */
+/* category under the title */
 .project-meta {
-    font-family: "Geist Mono", monospace;
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: var(--main-color);
 }
 
-/* tech used, as plain text instead of chips */
+/* tech used, shown as small tags */
 .project-stack {
-    font-family: "Geist Mono", monospace;
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.5);
-    line-height: 1.7;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
     margin-bottom: 2rem;
 }
 
-/* ----- Card links (projects page) ----- */
+.project-stack .tag {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 0.4rem 1rem;
+}
+
 .project-links {
     display: flex;
     gap: 2.5rem;
 }
 
 .card-link {
-    font-family: "Geist Mono", monospace;
     font-size: 1.4rem;
     font-weight: 500;
     color: var(--main-color);
@@ -1014,16 +981,6 @@ a.project-card {
 
 .card-link:hover {
     text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-.card-link .arrow {
-    display: inline-block;
-    transition: 0.3s ease;
-}
-
-.card-link:hover .arrow {
-    transform: translate(2px, -2px);
 }
 
 /* ========================
@@ -1084,7 +1041,7 @@ a.project-card {
 .stagger.show > *:nth-child(6) { animation-delay: 0.75s; }
 .stagger.show > *:nth-child(7) { animation-delay: 0.9s; }
 
-/* Turn animations off for people who set "reduce motion" on their device */
+/* turns off animations if reduce motion is on */
 @media (prefers-reduced-motion: reduce) {
     .reveal,
     .stagger > * {
