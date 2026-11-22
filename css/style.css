@@ -18,7 +18,7 @@ html {
    VARIABLES & BASE
 ======================== */
 :root {
-  --bg-color: #0d1310;          /* very dark green, like a circuit board */
+  --bg-color: #0a0e0c;          /* very dark green, like a circuit board */
   --second-bg-color: #111915;
   --card-color: #151e19;
   --text-color: #eeeee6;
@@ -29,8 +29,78 @@ html {
 body {
     background: var(--bg-color);
     color: var(--text-color);
-    background-image: radial-gradient(circle at 75% 40%, rgba(70, 120, 90, 0.18) 0%, transparent 60%);
-    background-attachment: fixed;
+}
+
+/* light beams: soft bands of light that flow across the top of the page */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -10%;
+    z-index: -1;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(60, 145, 98, 0.32) 4%,
+        transparent 9%,
+        rgba(227, 176, 75, 0.16) 13%,
+        transparent 17%,
+        rgba(45, 120, 92, 0.26) 21%,
+        transparent 26%
+    );
+    background-size: 250% 100%;
+    filter: blur(26px);
+    /* fades the light out towards the bottom and edges */
+    mask-image: radial-gradient(ellipse 90% 80% at 65% 12%, #000 15%, transparent 80%);
+    animation: beams 40s linear infinite;
+    /* --move-x and --move-y come from script.js when the mouse moves */
+    transform: translate(var(--move-x, 0), var(--move-y, 0));
+    transition: transform 0.6s ease-out;
+}
+
+/* second, fainter layer behind that moves slower, plus a soft glow along the top edge */
+html::before {
+    content: "";
+    position: fixed;
+    inset: -10%;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 60% 18% at 60% 8%, rgba(70, 150, 105, 0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 35% at 15% 85%, rgba(50, 125, 95, 0.09) 0%, transparent 70%),
+        repeating-linear-gradient(
+            125deg,
+            transparent 0%,
+            rgba(50, 125, 95, 0.22) 6%,
+            transparent 13%,
+            rgba(40, 110, 85, 0.18) 20%,
+            transparent 28%
+        );
+    background-size: 100% 100%, 100% 100%, 300% 100%;
+    filter: blur(40px);
+    mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.6) 100%);
+    animation: beamsBack 70s linear infinite;
+}
+
+@keyframes beams {
+    from { background-position: 0% 0; }
+    to { background-position: 200% 0; }
+}
+
+@keyframes beamsBack {
+    from { background-position: 0 0, 0 0, 300% 0; }
+    to { background-position: 0 0, 0 0, 0% 0; }
+}
+
+/* fine grain on top so the gradient doesn't look flat */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 span {
@@ -215,17 +285,6 @@ h1, h2 {
     justify-content: center;
     position: relative;
     isolation: isolate;
-}
-
-/* glow behind the 3D PC */
-.home-img::before {
-    content: "";
-    position: absolute;
-    width: 110%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(90, 150, 110, 0.22) 0%, rgba(90, 150, 110, 0.06) 40%, transparent 70%);
-    z-index: -1;
 }
 
 #three-canvas {
@@ -826,6 +885,12 @@ a.project-card {
     flex: 1;
 }
 
+/* small badge picture next to the name */
+.cert-badge {
+    width: 4.8rem;
+    height: 4.8rem;
+}
+
 .cert-text h3 {
     font-size: 1.7rem;
     font-weight: 600;
@@ -1053,6 +1118,11 @@ a.project-card {
 
     .home-content > *,
     .home-img {
+        animation: none;
+    }
+
+    body::before,
+    html::before {
         animation: none;
     }
 }

@@ -9,9 +9,9 @@ menuIcon.onclick = () => {
 // Typing animation
 const roles = [
     "Front-End Developer",
-    "Software Engineer",
+    "Business Analyst",
     "Full-Stack Developer",
-    "Business Analyst"
+    "Data Analyst"
 ];
 
 let roleIndex = 0;
@@ -62,3 +62,14 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 hiddenItems.forEach(item => observer.observe(item));
+
+// Beams follow the mouse slightly (only on devices with a mouse)
+if (window.matchMedia('(hover: hover)').matches) {
+    window.addEventListener('mousemove', (e) => {
+        // mouse position from -1 to 1
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        document.body.style.setProperty('--move-x', x * 20 + 'px');
+        document.body.style.setProperty('--move-y', y * 12 + 'px');
+    });
+}
