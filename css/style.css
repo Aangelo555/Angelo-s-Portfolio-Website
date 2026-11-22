@@ -18,13 +18,13 @@ html {
    VARIABLES & BASE
 ======================== */
 :root {
-  --bg-color: #0a0e0c;          /* very dark green, like a circuit board */
-  --second-bg-color: #111915;
-  --card-color: #151e19;
+  --bg-color: #06100c;          /* night sky, tinted green so the gold fits */
+  --second-bg-color: #0c1813;
+  --card-color: #101d17;
   --text-color: #eeeee6;
-  --main-color: #e3b04b;        /* gold, like the pins on a PC part */
+  --main-color: #e8b44f;        /* gold */
   --line-color: rgba(255, 255, 255, 0.08);
-  --beam-color: #1a8c52;        /* colour of the moving light in the background */
+  --beam-color: #10b981;        /* colour of the moving light in the background */
 }
 
 body {
@@ -92,12 +92,22 @@ span {
     top: 0%;
     left: 0%;
     padding: 3rem 12%;
-    background: color-mix(in srgb, var(--bg-color) 75%, transparent);
-    backdrop-filter: blur(10px);
+    /* see-through at the top so the light flows behind it */
+    background: transparent;
+    border-bottom: 1px solid transparent;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* once you scroll down, the navbar gets a dark background so the text stays readable */
+.header.scrolled {
+    /* frosted glass: a bit see-through so the green light still shows, blurred so text behind it doesn't */
+    background: color-mix(in srgb, var(--second-bg-color) 65%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--line-color);
 }
 
 #menu-icon {
@@ -115,22 +125,51 @@ span {
     transition: 0.3s ease;
 }
 
+/* small AH mark next to the name, same image as the favicon */
+.logo::before {
+    content: "";
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 8px;
+    background: url("../assets/favicon_v12.png") center / cover;
+    display: inline-block;
+    vertical-align: middle;
+    margin: -0.4rem 1.2rem 0 0;
+}
+
 .logo span {
     color: var(--text-color);
 }
 
 .navbar a {
+    position: relative;
     font-size: 1.8rem;
     color: var(--text-color);
     margin-left: 4rem;
     font-weight: 500;
-    border-bottom: 3px solid transparent;
-    transition: 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+/* gold line under the link, grows out from the middle on hover */
+.navbar a:not(.nav-resume)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.6rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--main-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
 .navbar a:hover {
-    border-bottom: 3px solid var(--main-color);
     color: var(--main-color);
+}
+
+.navbar a:not(.nav-resume):hover::after {
+    transform: scaleX(1);
 }
 
 /* ========================
@@ -242,6 +281,24 @@ h1, h2 {
     width: 100%;
     max-width: 600px;
     height: auto;
+}
+
+/* soft glow behind the 3D PC so it stands out from the background */
+.home-img::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 28% 24% at 50% 52%, color-mix(in srgb, var(--main-color) 14%, transparent) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 45% at 50% 55%, color-mix(in srgb, var(--beam-color) 40%, transparent) 0%, transparent 70%);
+    animation: pcGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes pcGlow {
+    from { opacity: 0.6; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1.05); }
 }
 
 .home-content .btn-group {
@@ -763,8 +820,12 @@ a.project-card {
    ACTIVE NAV
 ======================== */
 .active-nav {
-    border-bottom: 3px solid var(--main-color) !important;
     color: var(--main-color) !important;
+}
+
+/* current page keeps its line showing */
+.navbar a.active-nav::after {
+    transform: scaleX(1);
 }
 
 /* ========================
@@ -1068,7 +1129,8 @@ a.project-card {
     }
 
     .home-content > *,
-    .home-img {
+    .home-img,
+    .home-img::before {
         animation: none;
     }
 

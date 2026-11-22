@@ -63,6 +63,14 @@ const observer = new IntersectionObserver((entries) => {
 
 hiddenItems.forEach(item => observer.observe(item));
 
+// Navbar gets a background once you scroll
+const header = document.querySelector('.header');
+function updateHeader() {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+}
+window.addEventListener('scroll', updateHeader);
+updateHeader();
+
 // ===== Background light (WebGL) =====
 // draws soft flowing beams on the graphics card, so it stays smooth on laptops
 (function () {
@@ -87,7 +95,6 @@ hiddenItems.forEach(item => observer.observe(item));
         #endif
         uniform vec2 uRes;
         uniform float uTime;
-        uniform vec2 uMouse;
         uniform float uScroll;
         uniform vec3 uBg;
         uniform vec3 uBeam;
@@ -126,7 +133,7 @@ hiddenItems.forEach(item => observer.observe(item));
             float t = uTime * 0.075;
 
             // two layers of wavy noise moving different ways, so the light keeps shifting
-            float n = fbm(p * 1.4 + uMouse * 0.2 + vec2(t, -t * 0.6));
+            float n = fbm(p * 1.4 + vec2(t, -t * 0.6));
             float n2 = fbm(p * 2.2 - vec2(t * 0.8, t * 0.4));
             n = mix(n, n2, 0.4);
 
@@ -153,6 +160,25 @@ hiddenItems.forEach(item => observer.observe(item));
             col += uGold * goldBeams * 0.17 * fade;
             col += main * glow * (0.24 + 0.06 * sin(t * 3.0));
             col += uBeam * n * 0.03;
+
+            // ----- stars -----
+            // split the screen into a grid, some cells get a star at a random spot
+            vec2 cell = gl_FragCoord.xy / 48.0;
+            vec2 id = floor(cell);
+            float h = hash(id);
+            vec2 starPos = vec2(hash(id + 1.3), hash(id + 7.1)) * 0.8 + 0.1;
+            float d = length(fract(cell) - starPos) * 48.0;            // distance from the star in pixels
+
+            // soft round dot with a faint glow around it, so it doesn't look like a square
+            float star = exp(-d * d / 1.5) + 0.2 * exp(-d * d / 12.0);
+            star *= step(0.72, h);                                     // only some cells get a star
+
+            // twinkle: mostly dim, every now and then a star gets brighter
+            float twinkle = 0.5 + 0.5 * sin(uTime * (0.6 + h * 1.5) + h * 40.0);
+            star *= 0.25 + 0.75 * pow(twinkle, 3.0);
+
+            star *= 0.2 + 0.8 * uv.y;                                  // more stars near the top, like a night sky
+            col += vec3(0.88, 0.92, 1.0) * star * 0.55;
 
             gl_FragColor = vec4(col, 1.0);
         }
@@ -185,7 +211,6 @@ hiddenItems.forEach(item => observer.observe(item));
 
     const uRes = gl.getUniformLocation(program, 'uRes');
     const uTime = gl.getUniformLocation(program, 'uTime');
-    const uMouse = gl.getUniformLocation(program, 'uMouse');
     const uScroll = gl.getUniformLocation(program, 'uScroll');
 
     // read the colours from the CSS variables, so changing them in style.css changes the light too
@@ -198,26 +223,18 @@ hiddenItems.forEach(item => observer.observe(item));
     gl.uniform3fv(gl.getUniformLocation(program, 'uBeam'), hexToRgb(styles.getPropertyValue('--beam-color')));
     gl.uniform3fv(gl.getUniformLocation(program, 'uGold'), hexToRgb(styles.getPropertyValue('--main-color')));
 
-    // draw at half size, it's soft light anyway so nobody can tell, and it's much faster
+    // draw at normal screen size (not retina size), sharp enough and still light on laptops
     function resize() {
-        canvas.width = Math.round(window.innerWidth * 0.5);
-        canvas.height = Math.round(window.innerHeight * 0.5);
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.uniform2f(uRes, canvas.width, canvas.height);
     }
     resize();
     window.addEventListener('resize', resize);
 
-    // mouse and scroll, smoothed so the light eases instead of jumping
-    let mouseX = 0, mouseY = 0, smoothX = 0, smoothY = 0;
+    // scroll position, smoothed so the colour change eases in
     let scroll = 0, smoothScroll = 0;
-
-    if (window.matchMedia('(hover: hover)').matches) {
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth - 0.5;
-            mouseY = 0.5 - e.clientY / window.innerHeight;
-        });
-    }
 
     function updateScroll() {
         const max = document.documentElement.scrollHeight - window.innerHeight;
@@ -230,14 +247,11 @@ hiddenItems.forEach(item => observer.observe(item));
     const start = performance.now();
 
     function draw() {
-        smoothX += (mouseX - smoothX) * 0.05;
-        smoothY += (mouseY - smoothY) * 0.05;
         smoothScroll += (scroll - smoothScroll) * 0.05;
 
         // time loops every ~3 hours so the numbers never get too big
         const seconds = ((performance.now() - start) / 1000) % 10000;
         gl.uniform1f(uTime, reduceMotion ? 0 : seconds);
-        gl.uniform2f(uMouse, smoothX, smoothY);
         gl.uniform1f(uScroll, smoothScroll);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 

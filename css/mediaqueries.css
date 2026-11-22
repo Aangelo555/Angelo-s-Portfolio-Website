@@ -75,6 +75,11 @@
         margin: 3rem 0;
     }
 
+    /* no sliding underline in the mobile menu, the gold text is enough */
+    .navbar a::after {
+        display: none;
+    }
+
     /* Home */
     .home {
         flex-direction: column;
