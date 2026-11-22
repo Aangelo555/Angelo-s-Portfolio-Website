@@ -24,6 +24,7 @@ html {
   --text-color: #eeeee6;
   --main-color: #e3b04b;        /* gold, like the pins on a PC part */
   --line-color: rgba(255, 255, 255, 0.08);
+  --beam-color: #1a8c52;        /* colour of the moving light in the background */
 }
 
 body {
@@ -31,65 +32,15 @@ body {
     color: var(--text-color);
 }
 
-/* light beams: soft bands of light that flow across the top of the page */
-body::before {
-    content: "";
+/* ===== Background ===== */
+/* the moving light is drawn with WebGL in script.js onto this canvas */
+#bg-canvas {
     position: fixed;
-    inset: -10%;
-    z-index: -1;
-    pointer-events: none;
-    background: repeating-linear-gradient(
-        115deg,
-        transparent 0%,
-        rgba(60, 145, 98, 0.32) 4%,
-        transparent 9%,
-        rgba(227, 176, 75, 0.16) 13%,
-        transparent 17%,
-        rgba(45, 120, 92, 0.26) 21%,
-        transparent 26%
-    );
-    background-size: 250% 100%;
-    filter: blur(26px);
-    /* fades the light out towards the bottom and edges */
-    mask-image: radial-gradient(ellipse 90% 80% at 65% 12%, #000 15%, transparent 80%);
-    animation: beams 40s linear infinite;
-    /* --move-x and --move-y come from script.js when the mouse moves */
-    transform: translate(var(--move-x, 0), var(--move-y, 0));
-    transition: transform 0.6s ease-out;
-}
-
-/* second, fainter layer behind that moves slower, plus a soft glow along the top edge */
-html::before {
-    content: "";
-    position: fixed;
-    inset: -10%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     z-index: -2;
     pointer-events: none;
-    background:
-        radial-gradient(ellipse 60% 18% at 60% 8%, rgba(70, 150, 105, 0.25) 0%, transparent 70%),
-        radial-gradient(ellipse 45% 35% at 15% 85%, rgba(50, 125, 95, 0.09) 0%, transparent 70%),
-        repeating-linear-gradient(
-            125deg,
-            transparent 0%,
-            rgba(50, 125, 95, 0.22) 6%,
-            transparent 13%,
-            rgba(40, 110, 85, 0.18) 20%,
-            transparent 28%
-        );
-    background-size: 100% 100%, 100% 100%, 300% 100%;
-    filter: blur(40px);
-    mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.35) 55%, rgba(0, 0, 0, 0.6) 100%);
-    animation: beamsBack 70s linear infinite;
-}
-
-@keyframes beams {
-    from { background-position: 0% 0; }
-    to { background-position: 200% 0; }
-}
-
-@keyframes beamsBack {
-    from { background-position: 0 0, 0 0, 300% 0; }
-    to { background-position: 0 0, 0 0, 0% 0; }
 }
 
 /* fine grain on top so the gradient doesn't look flat */
@@ -141,7 +92,7 @@ span {
     top: 0%;
     left: 0%;
     padding: 3rem 12%;
-    background: rgba(13, 19, 16, 0.75);
+    background: color-mix(in srgb, var(--bg-color) 75%, transparent);
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
@@ -222,7 +173,7 @@ h1, h2 {
 }
 
 .btn:hover {
-    background: #f0c66d;
+    background: color-mix(in srgb, var(--main-color) 80%, white);
 }
 
 .btn-group a:nth-of-type(2) {
@@ -547,12 +498,12 @@ a.project-card {
 }
 
 .project-card:hover {
-    border-color: rgba(227, 176, 75, 0.5);
+    border-color: color-mix(in srgb, var(--main-color) 50%, transparent);
     transform: translateY(-4px);
 }
 
 .project-preview {
-    background: #0a0f0c;
+    background: var(--bg-color);
     border-bottom: 1px solid var(--line-color);
     min-height: 20rem;
 }
@@ -1121,8 +1072,4 @@ a.project-card {
         animation: none;
     }
 
-    body::before,
-    html::before {
-        animation: none;
-    }
 }

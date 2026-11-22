@@ -61,7 +61,7 @@
         left: 0;
         width: 100%;
         padding: 1rem 6%;
-        background: rgba(13, 19, 16, 0.97);
+        background: color-mix(in srgb, var(--bg-color) 97%, transparent);
         display: none;
     }
 
