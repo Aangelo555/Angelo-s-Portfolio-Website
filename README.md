@@ -4,14 +4,14 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 **Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
-![Home page](assets/PortfoliowelcomeV3.png)
+![Home page](assets/readme/PortfoliowelcomeV4.png)
 
 ## Pages
 
 - **Home:** intro, 3D model, featured projects
 - **About:** who I am, my journey (education and volunteering) and tech stack
 - **Projects:** all my projects with filters (Front-End, Full-Stack, Group Projects, Design)
-- **Certs:** certifications and online courses
+- **Certs:** certifications, badges and online courses
 - **Contact:** a working contact form and my socials
 
 ## Features
