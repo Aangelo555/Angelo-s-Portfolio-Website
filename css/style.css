@@ -562,12 +562,17 @@ a.project-card {
 .project-preview {
     background: var(--bg-color);
     border-bottom: 1px solid var(--line-color);
-    min-height: 20rem;
+    aspect-ratio: 2 / 1; /* same shape on every screen, so images crop the same */
+    position: relative;
+    overflow: hidden;
 }
 
+/* image fills the box exactly, so tall images can't stretch it */
 .project-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 20rem;
+    height: 100%;
     object-fit: cover;
     object-position: top;
     display: block;
