@@ -18,13 +18,14 @@ html {
    VARIABLES & BASE
 ======================== */
 :root {
-  --bg-color: #06100c;          /* night sky, tinted green so the gold fits */
-  --second-bg-color: #0c1813;
-  --card-color: #101d17;
+  --bg-color: #050913;          /* polar night sky, blue black */
+  --second-bg-color: #0a101d;
+  --card-color: #0f1626;
   --text-color: #eeeee6;
   --main-color: #e8b44f;        /* gold */
   --line-color: rgba(255, 255, 255, 0.08);
-  --beam-color: #10b981;        /* colour of the moving light in the background */
+  --beam-color: #43e889;        /* aurora green, the main colour of real northern lights */
+  --aurora-top-color: #a052e0;  /* purple fringe at the top of the aurora */
 }
 
 body {
@@ -283,24 +284,6 @@ h1, h2 {
     height: auto;
 }
 
-/* soft glow behind the 3D PC so it stands out from the background */
-.home-img::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-        radial-gradient(ellipse 28% 24% at 50% 52%, color-mix(in srgb, var(--main-color) 14%, transparent) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 45% at 50% 55%, color-mix(in srgb, var(--beam-color) 40%, transparent) 0%, transparent 70%);
-    animation: pcGlow 6s ease-in-out infinite alternate;
-}
-
-@keyframes pcGlow {
-    from { opacity: 0.6; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1.05); }
-}
-
 .home-content .btn-group {
     margin-top: 3rem;
 }
@@ -539,7 +522,10 @@ h1, h2 {
 }
 
 .project-card {
-    background: var(--card-color);
+    /* frosted glass, so the aurora glows through the card */
+    background: color-mix(in srgb, var(--card-color) 60%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
     border: 1px solid var(--line-color);
     border-radius: 10px;
     overflow: hidden;
@@ -996,7 +982,10 @@ a.project-card {
 }
 
 .project-card-full {
-    background: var(--card-color);
+    /* frosted glass, so the aurora glows through the card */
+    background: color-mix(in srgb, var(--card-color) 60%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    backdrop-filter: blur(18px) saturate(150%);
     border: 1px solid var(--line-color);
     border-radius: 10px;
     overflow: hidden;
@@ -1017,6 +1006,15 @@ a.project-card {
 
 .project-card-full:hover {
     border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* screenshot zooms in slowly on hover */
+.project-card-full .project-img {
+    transition: transform 0.8s ease;
+}
+
+.project-card-full:hover .project-img {
+    transform: scale(1.04);
 }
 
 .project-card-full .project-header {
@@ -1071,7 +1069,7 @@ a.project-card {
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(35px);
     }
     to {
         opacity: 1;
@@ -1081,24 +1079,24 @@ a.project-card {
 
 /* Hero load-in (home page) */
 .home-content > * {
-    animation: fadeUp 0.8s ease backwards;
+    animation: fadeUp 1s ease-out backwards;
 }
 
-.home-content > *:nth-child(1) { animation-delay: 0.1s; }
-.home-content > *:nth-child(2) { animation-delay: 0.3s; }
+.home-content > *:nth-child(1) { animation-delay: 0.2s; }
+.home-content > *:nth-child(2) { animation-delay: 0.35s; }
 .home-content > *:nth-child(3) { animation-delay: 0.5s; }
-.home-content > *:nth-child(4) { animation-delay: 0.7s; }
-.home-content > *:nth-child(5) { animation-delay: 0.9s; }
+.home-content > *:nth-child(4) { animation-delay: 0.65s; }
+.home-content > *:nth-child(5) { animation-delay: 0.8s; }
 
 .home-img {
-    animation: fadeUp 1s ease 0.6s backwards;
+    animation: fadeUp 1.2s ease-out 0.6s backwards;
 }
 
 /* Fade up on scroll */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(35px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
 }
 
 .reveal.show {
@@ -1106,22 +1104,16 @@ a.project-card {
     transform: translateY(0);
 }
 
-/* Cards appear one by one */
+/* Cards appear one by one, --delay is set in script.js */
 .stagger > * {
     opacity: 0;
 }
 
-.stagger.show > * {
+.stagger > .show {
     opacity: 1;
-    animation: fadeUp 0.7s ease backwards;
+    animation: fadeUp 0.9s ease-out backwards;
+    animation-delay: var(--delay, 0s);
 }
-
-.stagger.show > *:nth-child(2) { animation-delay: 0.15s; }
-.stagger.show > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger.show > *:nth-child(4) { animation-delay: 0.45s; }
-.stagger.show > *:nth-child(5) { animation-delay: 0.6s; }
-.stagger.show > *:nth-child(6) { animation-delay: 0.75s; }
-.stagger.show > *:nth-child(7) { animation-delay: 0.9s; }
 
 /* turns off animations if reduce motion is on */
 @media (prefers-reduced-motion: reduce) {
@@ -1134,9 +1126,12 @@ a.project-card {
     }
 
     .home-content > *,
-    .home-img,
-    .home-img::before {
+    .home-img {
         animation: none;
+    }
+
+    .project-card-full:hover .project-img {
+        transform: none;
     }
 
 }

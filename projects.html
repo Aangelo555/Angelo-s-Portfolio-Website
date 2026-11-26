@@ -245,7 +245,7 @@
     <footer class="projects-footer">
         <div class="footer-row">
             <div>
-                <p class="footer-sub">Designed and coded by Angelo Howe with HTML, CSS, JavaScript and Three.js.</p>
+                <p class="footer-sub">Designed and coded by Angelo Howe with HTML, CSS, JavaScript, Three.js and WebGL.</p>
                 <p class="footer-note">Hosted on Vercel. Last updated Nov 2026</p>
             </div>
             <div class="footer-links">
@@ -282,6 +282,7 @@
                 cards.forEach(card => {
                     if (filter === 'all' || card.dataset.category.includes(filter)) {
                         card.style.display = ''; // back to the CSS layout (flex)
+                        card.classList.add('show'); // in case it hasn't scrolled into view yet
 
                         // turn off the CSS stagger animation, otherwise it restarts with its old delay and the card flashes
                         card.style.animation = 'none';
