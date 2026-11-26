@@ -4,24 +4,27 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 **Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
-![Home page](assets/readme/PortfoliowelcomeV5.png)
+![Home page](assets/readme/PortfoliowelcomeV6.png)
 
 ## Pages
 
 - **Home:** intro, 3D model, featured projects
 - **About:** who I am, my journey (education and volunteering) and tech stack
-- **Projects:** all my projects with filters (Front-End, Full-Stack, Group Projects, Design)
+- **Projects:** all my projects with filters (Front-End, Full-Stack, Data Analysis, Team Projects, UI/UX Design)
 - **Certs:** certifications, badges and online courses
 - **Contact:** a working contact form and my socials
 
 ## Features
 
 - Interactive 3D models made with Three.js
-- Animated northern lights background with twinkling stars, written as a WebGL shader so it runs smoothly on laptops
-- Background light slowly shifts to gold as you scroll down the page
-- See-through navbar that turns into frosted glass when you scroll
+- Animated northern lights background written as a WebGL shader, using domain-warped noise for the flowing light
+- Green aurora that fades into purple at the top, like real northern lights
+- The aurora drifts slightly toward your mouse, and moves up out of the way as you scroll
+- Stars drawn once on their own layer at full sharpness, so they cost nothing per frame
+- Background runs at half resolution and 30 frames a second, so it stays smooth on laptops
+- Frosted glass project cards and navbar that let the aurora glow through
 - Typing animation in the hero section
-- Scroll animations when sections come into view
+- Scroll animations where each card fades in as it comes into view
 - Project filters, where a project can sit in more than one category
 - Image gallery popup for my design work, with arrow buttons and keyboard controls
 - Working contact form that sends messages straight to my email (Formspree)
@@ -32,9 +35,13 @@ My personal portfolio website, where I show my projects, design work, certificat
 ## Projects
 
 - **PC Build Planner:** full stack PC part picker with user accounts and saved builds (React, Express, MongoDB)
+- **Angelo's Pizza Co.:** pizza ordering app with a saved cart and checkout (React)
 - **Who's That Bloke?:** football quiz game (React)
-- **Time2Play:** mobile app UI/UX design in Figma, G121 Silver Medallion Award
 - **StudyHub:** group web app for Information Technology students (Node.js, Express, MySQL)
+- **HDB Resale Price Analysis:** data analysis and Tableau dashboard (Python, pandas, Tableau)
+- **Man United Since Ferguson:** data analysis and Tableau dashboard (Python, pandas, Tableau)
+- **PolyPath:** group AI career advisor chatbot
+- **Time2Play:** mobile app UI/UX design in Figma, G121 Silver Medallion Award
 - **SG Green Plan 2030:** website UI design and email newsletter
 
 ## Tech Stack
