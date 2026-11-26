@@ -143,7 +143,7 @@ span {
 
 .navbar a {
     position: relative;
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     color: var(--text-color);
     margin-left: 4rem;
     font-weight: 500;
@@ -204,7 +204,7 @@ h1, h2 {
     padding: 1rem 3rem;
     background: var(--main-color);
     border-radius: 8px;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     color: var(--bg-color);
     border: 2px solid transparent;
     font-weight: 600;
@@ -261,10 +261,10 @@ h1, h2 {
 }
 
 .home-content p {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     font-weight: 400;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     max-width: 56rem;
 }
 
@@ -368,15 +368,15 @@ h1, h2 {
 }
 
 .fact-label {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.6);
     font-weight: 600;
     white-space: nowrap;
 }
 
 .fact-value {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 400;
     text-align: right;
 }
@@ -389,9 +389,9 @@ h1, h2 {
 }
 
 .about-content p {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     line-height: 1.9;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 2.5rem;
 }
 
@@ -426,18 +426,18 @@ h1, h2 {
 }
 
 .journey-side {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.65);
     padding-top: 0.4rem;
 }
 
 .journey-body h4 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
 }
 
 .journey-sub {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: rgba(255, 255, 255, 0.85);
     margin-top: 0.4rem;
 }
@@ -451,8 +451,8 @@ h1, h2 {
 }
 
 .journey-points li {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.75);
 }
 
 /* less space when there is no subtitle */
@@ -499,7 +499,7 @@ h1, h2 {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -593,7 +593,7 @@ a.project-card {
 }
 
 .project-header h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
     color: var(--text-color);
 }
@@ -604,16 +604,16 @@ a.project-card {
 }
 
 .project-desc {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.75rem;
+    color: rgba(255, 255, 255, 0.78);
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
 
 .project-link {
     margin-top: auto;
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.45);
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
     transition: 0.3s ease;
 }
 
@@ -648,8 +648,8 @@ a.project-card {
 }
 
 .contact p {
-    font-size: 1.8rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.9rem;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 1rem;
 }
 
@@ -681,9 +681,9 @@ a.project-card {
 }
 
 .contact-info p {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     line-height: 1.9;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
     max-width: 45rem;
     margin-bottom: 4rem;
 }
@@ -719,8 +719,8 @@ a.project-card {
     display: flex;
     align-items: center;
     gap: 1.2rem;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.85);
     transition: 0.3s ease;
 }
 
@@ -747,7 +747,7 @@ a.project-card {
 
 .contact-form label {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 600;
     color: var(--main-color);
     margin-bottom: 0.8rem;
@@ -757,7 +757,7 @@ a.project-card {
 .contact-form textarea {
     width: 100%;
     padding: 1.4rem 1.6rem;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     color: var(--text-color);
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -796,14 +796,14 @@ a.project-card {
 }
 
 .footer-sub {
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 0.6rem;
 }
 
 .footer-note {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.35);
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-links {
@@ -812,8 +812,8 @@ a.project-card {
 }
 
 .footer-links a {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.7);
     transition: 0.3s ease;
 }
 
@@ -861,9 +861,9 @@ a.project-card {
 }
 
 .certs-hero p {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     line-height: 1.9;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
     max-width: 50rem;
 }
 
@@ -909,22 +909,22 @@ a.project-card {
 }
 
 .cert-text h3 {
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     font-weight: 600;
     margin-bottom: 0.3rem;
 }
 
 .cert-text span {
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 .cert-view {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.7);
     white-space: nowrap;
     transition: 0.3s ease;
 }
@@ -953,8 +953,8 @@ a.project-card {
 }
 
 .projects-page-header p {
-    font-size: 1.8rem;
-    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.9rem;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .filter-btns {
@@ -966,12 +966,12 @@ a.project-card {
 }
 
 .filter-btn {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     padding: 0.8rem 2rem;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     background: transparent;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
     transition: 0.3s ease;
     font-family: "Archivo", sans-serif;
@@ -1027,7 +1027,7 @@ a.project-card {
 
 /* category under the title */
 .project-meta {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     color: var(--main-color);
 }
 
@@ -1040,8 +1040,8 @@ a.project-card {
 }
 
 .project-stack .tag {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
     background: rgba(255, 255, 255, 0.06);
     border-radius: 6px;
     padding: 0.4rem 1rem;
@@ -1053,7 +1053,7 @@ a.project-card {
 }
 
 .card-link {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 500;
     color: var(--main-color);
     background: none;

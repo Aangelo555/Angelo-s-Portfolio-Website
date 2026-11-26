@@ -23,7 +23,7 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableZoom = false;
 controls.enablePan = false;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 0.15;
+controls.autoRotateSpeed = 1.5;
 
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
@@ -38,9 +38,12 @@ loader.load('./models/gaming_desktop_pc.glb', (gltf) => {
     scene.add(gltf.scene);
 });
 
+// time since last frame, so it spins the same speed on any screen
+const clock = new THREE.Clock();
+
 function animate() {
     requestAnimationFrame(animate);
-    controls.update();
+    controls.update(clock.getDelta());
     renderer.render(scene, camera);
 }
 animate();
