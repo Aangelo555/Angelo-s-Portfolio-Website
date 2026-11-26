@@ -118,24 +118,13 @@ span {
 }
 
 .logo {
-    font-stretch: 112%;
+    font-stretch: 118%;
+    letter-spacing: -0.02em; /* wider letters set a bit tighter, so the name reads as one word mark */
     font-size: 2.6rem;
     color: var(--text-color);
     font-weight: 800;
     cursor: pointer;
     transition: 0.3s ease;
-}
-
-/* small AH mark next to the name, same image as the favicon */
-.logo::before {
-    content: "";
-    width: 3.4rem;
-    height: 3.4rem;
-    border-radius: 8px;
-    background: url("../assets/favicon_v12.png") center / cover;
-    display: inline-block;
-    vertical-align: middle;
-    margin: -0.4rem 1.2rem 0 0;
 }
 
 .logo span {
