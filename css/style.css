@@ -25,14 +25,11 @@ html {
    VARIABLES & BASE
 ======================== */
 :root {
-  --bg-color: #050913;          /* polar night sky, blue black */
-  --second-bg-color: #0a101d;
-  --card-color: #0f1626;
-  --text-color: #eeeee6;
-  --main-color: #e8b44f;        /* gold */
+  --bg-color: #130f0c;          /* espresso brown */
+  --second-bg-color: #1b1612;
+  --text-color: #f0e8dd;        /* warm white, same colour family as the background */
+  --main-color: #e8c9a0;        /* sand, a light tint of the background colour */
   --line-color: rgba(255, 255, 255, 0.08);
-  --beam-color: #43e889;        /* aurora green, the main colour of real northern lights */
-  --aurora-top-color: #a052e0;  /* purple fringe at the top of the aurora */
 }
 
 body {
@@ -41,7 +38,7 @@ body {
 }
 
 /* ===== Background ===== */
-/* the moving light is drawn with WebGL in script.js onto this canvas */
+/* the topographic map is drawn with WebGL in script.js onto this canvas */
 #bg-canvas {
     position: fixed;
     inset: 0;
@@ -88,7 +85,7 @@ span {
     width: 76%;
     height: 1px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--line-color);
 }
 
 /* ========================
@@ -100,7 +97,7 @@ span {
     top: 0%;
     left: 0%;
     padding: 3rem 12%;
-    /* see-through at the top so the light flows behind it */
+    /* see-through at the top so the map shows behind it */
     background: transparent;
     border-bottom: 1px solid transparent;
     display: flex;
@@ -112,7 +109,7 @@ span {
 
 /* once you scroll down, the navbar gets a dark background so the text stays readable */
 .header.scrolled {
-    /* frosted glass: a bit see-through so the green light still shows, blurred so text behind it doesn't */
+    /* frosted glass: a bit see-through, blurred so text behind it doesn't clash */
     background: color-mix(in srgb, var(--second-bg-color) 65%, transparent);
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
@@ -279,8 +276,6 @@ h1, h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    isolation: isolate;
 }
 
 #three-canvas {
@@ -512,55 +507,143 @@ h1, h2 {
 }
 
 /* ========================
-   PROJECTS (INDEX)
+   SELECTED WORK (INDEX)
 ======================== */
-.projects {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.work {
+    display: grid;
+    grid-template-columns: 32rem 1fr;
+    gap: 10rem;
+    align-items: start;
 }
 
-.projects-grid {
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    width: 90%;
-    margin-bottom: 5rem;
+/* stays on screen while the project cards scroll past */
+.work-intro {
+    position: sticky;
+    top: 14rem;
 }
 
-.project-card {
-    /* frosted glass, so the aurora glows through the card */
-    background: color-mix(in srgb, var(--card-color) 60%, transparent);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    backdrop-filter: blur(18px) saturate(150%);
-    border: 1px solid var(--line-color);
-    border-radius: 10px;
-    overflow: hidden;
-    width: 33%;
-    cursor: pointer;
-    transition: 0.3s ease;
-    display: flex;
-    flex-direction: column;
+.work-intro h2 {
+    font-size: 5.2rem;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 2rem;
 }
 
-a.project-card {
+.work-intro p {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 3rem;
+}
+
+/* project names list, the one on screen turns white with a gold line */
+.work-index {
+    list-style: none;
+    margin-bottom: 4rem;
+    border-left: 1px solid var(--line-color);
+}
+
+.work-index a {
+    display: block;
+    padding: 0.9rem 0 0.9rem 2rem;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.work-index a:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.work-index a.active {
     color: var(--text-color);
+    border-left-color: var(--main-color);
 }
 
-.project-card:hover {
-    border-color: color-mix(in srgb, var(--main-color) 50%, transparent);
-    transform: translateY(-4px);
+.work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9rem;
 }
 
-.project-preview {
-    background: var(--bg-color);
-    border-bottom: 1px solid var(--line-color);
-    aspect-ratio: 2 / 1; /* same shape on every screen, so images crop the same */
+.work-card {
+    display: block;
+    color: var(--text-color);
+    scroll-margin-top: 12rem;
+}
+
+.work-img {
     position: relative;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--line-color);
+    background: var(--second-bg-color);
 }
 
-/* image fills the box exactly, so tall images can't stretch it */
+.work-img .project-img {
+    transition: transform 0.8s ease;
+}
+
+.work-card:hover .work-img .project-img {
+    transform: scale(1.03);
+}
+
+.work-info {
+    padding-top: 2.4rem;
+}
+
+.work-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+.work-top h3 {
+    font-size: 3.4rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.work-year {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.work-desc {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 60ch;
+    margin-bottom: 2rem;
+}
+
+.work-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.work-bottom .project-stack {
+    margin-bottom: 0;
+}
+
+.work-link {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.3s ease;
+}
+
+.work-card:hover .work-link {
+    color: var(--main-color);
+}
+
 .project-img {
     position: absolute;
     inset: 0;
@@ -571,79 +654,81 @@ a.project-card {
     display: block;
 }
 
-.project-info {
-    padding: 2.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.project-header h3 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.project-year {
-    font-size: 1.4rem;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.project-desc {
-    font-size: 1.75rem;
-    color: rgba(255, 255, 255, 0.78);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-}
-
-.project-link {
-    margin-top: auto;
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.6);
-    transition: 0.3s ease;
-}
-
-.project-card:hover .project-link {
-    color: var(--main-color);
-}
-
-.project-link i,
 .card-link i {
     vertical-align: middle;
 }
 
 /* ========================
-   CONTACT
+   CONTACT CTA (INDEX)
 ======================== */
-.contact {
-    min-height: auto;
-    padding: 10rem 12%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 2rem;
+.contact-cta {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
 }
 
-.contact h2 {
-    font-size: 6rem;
+.contact-cta h2 {
+    font-size: 8rem;
     font-weight: 700;
-    line-height: 1.2;
-    max-width: 70rem;
+    line-height: 1.05;
+    max-width: 12ch;
+    margin-bottom: 2.5rem;
 }
 
-.contact p {
+.contact-cta p {
     font-size: 1.9rem;
+    line-height: 1.7;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1rem;
+    max-width: 52ch;
+    margin-bottom: 3.5rem;
+}
+
+/* big text link with an arrow that slides on hover */
+.cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--main-color);
+    border-bottom: 2px solid color-mix(in srgb, var(--main-color) 40%, transparent);
+    padding-bottom: 0.6rem;
+    transition: border-color 0.3s ease;
+}
+
+.cta-link i {
+    transition: transform 0.3s ease;
+}
+
+.cta-link:hover {
+    border-color: var(--main-color);
+}
+
+.cta-link:hover i {
+    transform: translateX(0.6rem);
+}
+
+/* tablets and phones: work section stacks, heading no longer sticky */
+@media (max-width: 991px) {
+    .work {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .work-intro {
+        position: static;
+    }
+
+    .work-index {
+        display: none;
+    }
+
+    .work-list {
+        gap: 7rem;
+    }
+
+    .contact-cta h2 {
+        font-size: 5.6rem;
+    }
 }
 
 /* ========================
@@ -829,101 +914,191 @@ a.project-card {
 /* ========================
    CERTS PAGE
 ======================== */
-.certs-wrapper {
-    max-width: 110rem;
-    margin: 0 auto;
-}
-
+/* big title on the left, intro on the right, both sitting on the same bottom line */
 .certs-hero {
-    padding-top: 15rem;
-    padding-bottom: 6rem;
-}
-
-.certs-hero .certs-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 42rem;
     gap: 6rem;
+    align-items: end;
+    padding-top: 20rem;
+    padding-bottom: 8rem;
 }
 
 .certs-hero h1 {
-    font-size: 6rem;
+    font-size: 10rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 2.5rem;
+    line-height: 0.9;
 }
 
-.certs-hero p {
-    font-size: 1.9rem;
-    line-height: 1.9;
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 50rem;
+.certs-intro p {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
 }
 
-#certs-canvas {
-    width: 380px;
-    height: 380px;
+.certs-intro .certs-count {
+    margin-top: 1.6rem;
+    color: var(--main-color);
 }
 
-.certs-group-title {
-    font-size: 3.2rem;
-    font-weight: 700;
-    margin-bottom: 2.5rem;
+.certs-content {
+    padding-top: 0;
 }
 
-.cert-list {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 7rem;
+/* one group per issuer: issuer on the left, certs on the right */
+.cert-group {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem;
+    padding: 4rem 0;
+    border-top: 1px solid var(--line-color);
 }
 
-.cert-row {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 2rem 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: 0.3s ease;
-}
-
-.cert-row:hover {
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.cert-text {
-    flex: 1;
-}
-
-/* small badge picture next to the name */
-.cert-badge {
-    width: 4.8rem;
-    height: 4.8rem;
-}
-
-.cert-text h3 {
-    font-size: 1.9rem;
+/* issuer is kept small so the cert names do the talking */
+.cert-issuer h2 {
+    font-size: 1.8rem;
     font-weight: 600;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
 }
 
-.cert-text span {
+.cert-issuer p {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.issuer-link {
+    display: inline-block;
+    margin-top: 1.6rem;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+.issuer-link:hover {
+    color: var(--main-color);
+}
+
+/* each cert: big name, date, view */
+.cert-row {
+    display: grid;
+    grid-template-columns: 1fr 10rem 7rem;
+    align-items: baseline;
+    gap: 2.4rem;
+    padding: 0 0 2.4rem;
+    color: var(--text-color);
+}
+
+.cert-row + .cert-row {
+    padding-top: 2.4rem;
+    border-top: 1px solid var(--line-color);
+}
+
+.cert-row:last-child {
+    padding-bottom: 0;
+}
+
+.cert-row h3 {
+    font-size: 3.2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    font-stretch: 105%;
+    transition: color 0.3s ease, transform 0.4s ease;
+}
+
+.cert-row h3 small {
     font-size: 1.6rem;
-    color: rgba(255, 255, 255, 0.65);
+    font-weight: 400;
+    font-stretch: 100%;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cert-date {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
 }
 
 .cert-view {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.6rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: right;
     white-space: nowrap;
-    transition: 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-.cert-view:hover {
+/* hovering a certificate nudges the name and turns it sand */
+a.cert-row:hover h3 {
     color: var(--main-color);
+    transform: translateX(1rem);
+}
+
+a.cert-row:hover .cert-view {
+    color: var(--main-color);
+}
+
+/* online courses use the same rows, just smaller and quieter */
+.courses .cert-row {
+    padding-bottom: 1.6rem;
+}
+
+.courses .cert-row + .cert-row {
+    padding-top: 1.6rem;
+}
+
+.courses .cert-row h3 {
+    font-size: 1.9rem;
+    font-weight: 500;
+    font-stretch: 100%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Cisco badges are square, so show the whole badge in the preview */
+.row-preview.badge {
+    width: 18rem;
+    aspect-ratio: 1;
+    object-fit: contain;
+    padding: 2rem;
+    background: var(--second-bg-color);
+}
+
+/* tablets and phones */
+@media (max-width: 991px) {
+    .certs-hero {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+        padding-top: 14rem;
+        padding-bottom: 5rem;
+    }
+
+    .certs-hero h1 {
+        font-size: 6.4rem;
+    }
+
+    .cert-group {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .cert-row {
+        grid-template-columns: 1fr auto;
+        gap: 0.6rem 2rem;
+    }
+
+    .cert-row h3 {
+        font-size: 2.4rem;
+    }
+
+    .cert-date {
+        grid-column: 1;
+    }
+
+    .cert-view {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+    }
 }
 
 /* ========================
@@ -1272,8 +1447,8 @@ a.project-card {
         animation: none;
     }
 
-    .project-row:hover .feature-img .project-img {
+    .project-row:hover .feature-img .project-img,
+    .work-card:hover .work-img .project-img {
         transform: none;
     }
-
 }

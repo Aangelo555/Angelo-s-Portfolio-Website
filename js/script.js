@@ -1,10 +1,31 @@
 // Mobile menu
+// opens a full screen menu, the icon swaps between menu and close
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
+function setMenu(open) {
+    navbar.classList.toggle('active', open);
+    document.body.classList.toggle('menu-open', open);
+    menuIcon.classList.toggle('bx-menu', !open);
+    menuIcon.classList.toggle('bx-x', open);
+}
+
 menuIcon.onclick = () => {
-    navbar.classList.toggle('active');
+    setMenu(!navbar.classList.contains('active'));
 };
+
+// close it after tapping a link, pressing Escape, or going back to desktop size
+navbar.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMenu(false));
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 991) setMenu(false);
+});
 
 // Typing animation
 // web dev roles first, since that's the main goal
@@ -82,8 +103,9 @@ function updateHeader() {
 window.addEventListener('scroll', updateHeader);
 updateHeader();
 
-// ===== Background aurora (WebGL) =====
-// slow flowing northern lights drawn on the graphics card
+// ===== Background: topographic map (WebGL) =====
+// slowly shifting contour lines, like a terrain map, drawn on the graphics card
+// a soft hill rises under the mouse and those lines turn gold
 (function () {
     const canvas = document.createElement('canvas');
     canvas.id = 'bg-canvas';
@@ -93,7 +115,13 @@ updateHeader();
     const gl = canvas.getContext('webgl', { alpha: false, antialias: false, depth: false, powerPreference: 'low-power' });
     if (!gl) return; // no WebGL, the plain dark background shows instead
 
-    // if the graphics card resets (driver crash, too many tabs), fall back to the plain background
+    // needed for fwidth(), which keeps every line the same thickness
+    if (!gl.getExtension('OES_standard_derivatives')) {
+        canvas.remove();
+        return;
+    }
+
+    // if the graphics card resets, fall back to the plain background
     canvas.addEventListener('webglcontextlost', () => canvas.remove());
 
     const vertexSrc = `
@@ -102,6 +130,7 @@ updateHeader();
     `;
 
     const fragmentSrc = `
+        #extension GL_OES_standard_derivatives : enable
         #ifdef GL_FRAGMENT_PRECISION_HIGH
         precision highp float;
         #else
@@ -111,11 +140,10 @@ updateHeader();
         uniform float uTime;
         uniform float uScroll;
         uniform float uFade;
-        uniform float uScale;
         uniform vec2 uMouse;
         uniform vec3 uBg;
-        uniform vec3 uBeam;
-        uniform vec3 uTop;
+        uniform vec3 uLine;
+        uniform vec3 uAccent;
 
         float hash(vec2 p) {
             vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -131,12 +159,11 @@ updateHeader();
                        mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x), f.y);
         }
 
-        // layered noise, each layer rotated so you don't see grid lines
         float fbm(vec2 p) {
             float v = 0.0;
             float a = 0.5;
             mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 3; i++) {
                 v += a * noise(p);
                 p = rot * p * 2.0;
                 a *= 0.5;
@@ -148,56 +175,39 @@ updateHeader();
             vec2 uv = gl_FragCoord.xy / uRes;
             vec2 p = uv;
             p.x *= uRes.x / uRes.y;
-            float t = uTime * 0.04;
+            float t = uTime * 0.025;
 
-            // the aurora drifts a little toward the mouse
-            p += uMouse * 0.06;
+            // the map slides up as you scroll, like moving across the terrain
+            vec2 m = p * 1.6 + vec2(0.0, uScroll * 2.0);
 
-            // stretch sideways so the flow makes long curtains, not blobs
-            vec2 s = vec2(p.x * 0.75, p.y * 2.0);
+            // terrain height, slowly shifting
+            float h = fbm(m + vec2(t, t * 0.6));
 
-            // domain warping: noise pushes noise around, which gives the silky flowing shapes
-            vec2 q = vec2(fbm(s + vec2(0.0, t)), fbm(s + vec2(5.2, 1.3) - t));
-            vec2 r = vec2(fbm(s + 2.5 * q + vec2(1.7, 9.2) + t * 1.5),
-                          fbm(s + 2.5 * q + vec2(8.3, 2.8) - t * 1.2));
-            float f = fbm(s + 2.8 * r);
+            // a soft hill rises under the mouse
+            vec2 mouse = vec2((uMouse.x + 0.5) * uRes.x / uRes.y, uMouse.y + 0.5);
+            float near = exp(-dot(p - mouse, p - mouse) * 6.0);
+            h += near * 0.12;
 
-            // light lives in the upper part of the screen and moves up as you scroll
-            float mask = smoothstep(0.2 + uScroll * 0.3, 0.95, uv.y);
+            // contour lines: one line every 1/22 of the height, drawn the same thickness everywhere
+            float level = h * 22.0;
+            float w = fwidth(level);
+            float line = 1.0 - smoothstep(w * 0.5, w * 1.5, abs(fract(level + 0.5) - 0.5));
 
-            // thin bright ribbons along the flow lines
-            float band = 1.0 - abs(sin(f * 7.0));
-            float ribbon = pow(band, 11.0) * smoothstep(0.35, 0.7, f); // higher power = thinner, sharper ribbons
+            // every 5th line is stronger, like the index lines on a real map
+            float index = step(0.5, 1.0 - step(0.001, abs(mod(floor(level + 0.5), 5.0))));
 
-            // fine vertical streaks inside the light, like the rays in a real aurora
-            float rays = 0.6 + 0.25 * noise(vec2(p.x * 45.0 + r.y * 6.0, p.y * 1.5 + t * 3.0))
-                             + 0.15 * noise(vec2(p.x * 14.0 - r.x * 4.0, p.y * 0.8 - t * 2.0));
+            float strength = mix(0.1, 0.24, index);
+            vec3 lineCol = mix(uLine, uAccent, near * 0.9);
+            strength += near * 0.3;
 
-            // fast, gentle shimmer on top of the slow drift, real aurora rays flicker like this
-            rays *= 0.9 + 0.2 * noise(vec2(p.x * 60.0 + r.y * 8.0, uTime * 1.4));
+            vec3 col = uBg + lineCol * line * strength;
 
-            // colour ramp: dark green in the soft parts, the beam colour in the middle, pale mint on the brightest ribbons
-            float glow = smoothstep(0.22, 0.75, f) * mask;
-            vec3 deep = uBeam * 0.3;
-
-            // the tops of the light shift to a second colour, like the purple fringe on real aurora
-            float topMix = smoothstep(0.5, 0.95, uv.y) * (0.4 + 0.6 * clamp(r.x * 1.5 - 0.3, 0.0, 1.0));
-            vec3 body = mix(deep, mix(uBeam, uTop, topMix), glow);
-            vec3 mint = mix(mix(uBeam, uTop, topMix), vec3(1.0), 0.45); // pale version of the colour underneath
-
-            vec3 col = uBg;
-            col += body * glow * rays * 1.5;
-            col += mint * ribbon * 0.45 * mask * rays;
-
-            // dark edges pull your eye to the middle
+            // fade the lines out towards the edges so the middle stays calm
             vec2 v = uv - 0.5;
-            col *= 1.0 - dot(v, v) * 0.6;
+            col = mix(uBg, col, 1.0 - dot(v, v) * 1.2);
 
             col = col * uFade + uBg * (1.0 - uFade);
-
-            // tiny random noise per pixel, stops the dark gradients from showing visible colour steps (banding)
-            col += (hash(gl_FragCoord.xy + fract(uTime)) - 0.5) / 255.0;
-
+            col += (hash(gl_FragCoord.xy) - 0.5) / 255.0;
             gl_FragColor = vec4(col, 1.0);
         }
     `;
@@ -233,31 +243,23 @@ updateHeader();
     const uFade = gl.getUniformLocation(program, 'uFade');
     const uMouse = gl.getUniformLocation(program, 'uMouse');
 
-    // read the colours from the CSS variables, so changing them in style.css changes the aurora too
+    // colours come from the CSS variables in style.css
     function hexToRgb(hex) {
         const n = parseInt(hex.trim().replace('#', ''), 16);
         return [(n >> 16 & 255) / 255, (n >> 8 & 255) / 255, (n & 255) / 255];
     }
     const styles = getComputedStyle(document.documentElement);
     gl.uniform3fv(gl.getUniformLocation(program, 'uBg'), hexToRgb(styles.getPropertyValue('--bg-color')));
-    const beam = hexToRgb(styles.getPropertyValue('--beam-color'));
-    gl.uniform3fv(gl.getUniformLocation(program, 'uBeam'), beam);
+    gl.uniform3fv(gl.getUniformLocation(program, 'uLine'), hexToRgb(styles.getPropertyValue('--text-color')));
+    gl.uniform3fv(gl.getUniformLocation(program, 'uAccent'), hexToRgb(styles.getPropertyValue('--main-color')));
 
-    // colour for the tops of the aurora, if style.css doesn't set one, use a teal made from the beam colour
-    const topHex = styles.getPropertyValue('--aurora-top-color').trim();
-    const top = topHex ? hexToRgb(topHex) : [beam[0] * 0.3, beam[1] * 0.85, beam[2] * 0.95 + 0.15];
-    gl.uniform3fv(gl.getUniformLocation(program, 'uTop'), top);
-
-    // draw at 3/4 size (or less on big screens) and let CSS stretch it
-    // sharp enough for the thin ribbons, and still about half the work of full size
-    const uScale = gl.getUniformLocation(program, 'uScale');
     let lastFrame = 0; // time of the last draw, 0 means draw straight away
 
+    // full sharpness, since the lines are thin (capped on very high res screens)
     function resize() {
-        const scale = Math.min(0.75, 1440 / window.innerWidth);
-        gl.uniform1f(uScale, scale);
-        canvas.width = Math.round(window.innerWidth * scale);
-        canvas.height = Math.round(window.innerHeight * scale);
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(window.innerWidth * ratio);
+        canvas.height = Math.round(window.innerHeight * ratio);
         gl.viewport(0, 0, canvas.width, canvas.height);
         gl.uniform2f(uRes, canvas.width, canvas.height);
         lastFrame = 0; // resizing clears the canvas, so redraw on the next frame
@@ -265,7 +267,7 @@ updateHeader();
     resize();
     window.addEventListener('resize', resize);
 
-    // scroll position, smoothed so the aurora eases up as you scroll
+    // scroll position, smoothed so the map glides
     let scroll = 0, smoothScroll = 0;
 
     function updateScroll() {
@@ -278,41 +280,40 @@ updateHeader();
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const start = performance.now();
 
-    // mouse position from -0.5 to 0.5, smoothed so the aurora follows slowly
-    // only on devices with a real mouse
-    let mouseX = 0, mouseY = 0, smoothX = 0, smoothY = 0;
+    // mouse position from -0.5 to 0.5, smoothed so the hill follows slowly
+    // starts off screen so nothing is gold until the mouse moves
+    let mouseX = 5, mouseY = 5, smoothX = 5, smoothY = 5;
     if (window.matchMedia('(hover: hover)').matches && !reduceMotion) {
         window.addEventListener('mousemove', (e) => {
             mouseX = e.clientX / window.innerWidth - 0.5;
             mouseY = 0.5 - e.clientY / window.innerHeight; // flipped, WebGL counts y from the bottom
+            if (smoothX === 5) { smoothX = mouseX; smoothY = mouseY; } // first move, no sliding in from far away
         });
     }
 
     function draw() {
         if (!reduceMotion) requestAnimationFrame(draw);
 
-        // the aurora moves slowly, so 30 frames a second looks the same and halves the work
+        // the map moves slowly, so 30 frames a second is plenty
         const now = performance.now();
         if (!reduceMotion && now - lastFrame < 32) return;
 
-        // frames since last draw (1 on a 60Hz screen), so the easing is the same speed on any screen
+        // frames since last draw (1 on a 60Hz screen), so easing is the same speed on any screen
         const frames = (now - lastFrame) / 16.7;
         lastFrame = now;
 
         smoothScroll += (scroll - smoothScroll) * (1 - Math.pow(0.95, frames));
-        smoothX += (mouseX - smoothX) * (1 - Math.pow(0.97, frames));
-        smoothY += (mouseY - smoothY) * (1 - Math.pow(0.97, frames));
+        smoothX += (mouseX - smoothX) * (1 - Math.pow(0.9, frames));
+        smoothY += (mouseY - smoothY) * (1 - Math.pow(0.9, frames));
         gl.uniform2f(uMouse, smoothX, smoothY);
 
         // time loops so the numbers never get too big
-        const seconds = ((performance.now() - start) / 1000) % 10000;
-
-        // starts a bit into the animation so the first frame already looks good
-        gl.uniform1f(uTime, reduceMotion ? 80 : 80 + seconds);
+        const seconds = ((now - start) / 1000) % 10000;
+        gl.uniform1f(uTime, reduceMotion ? 10 : 10 + seconds);
         gl.uniform1f(uScroll, smoothScroll);
 
-        // fades in over 2 seconds the first time the page opens
-        const fade = Math.min(seconds / 2, 1);
+        // fades in over 1.5 seconds the first time the page opens
+        const fade = Math.min(seconds / 1.5, 1);
         gl.uniform1f(uFade, reduceMotion ? 1 : fade * fade * (3 - 2 * fade));
 
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
@@ -321,76 +322,4 @@ updateHeader();
 
     // with reduce motion on, only redraw when scrolling, no constant animation
     if (reduceMotion) window.addEventListener('scroll', () => requestAnimationFrame(draw));
-})();
-
-// ===== Stars =====
-// drawn once on a normal 2D canvas at full sharpness, sits on top of the aurora
-// (in the shader they were drawn at half size, so the tiny dots got lost)
-(function () {
-    const canvas = document.createElement('canvas');
-    canvas.id = 'star-canvas';
-    // screen blend makes them fade into the bright parts of the aurora instead of sitting on top
-    canvas.style.cssText = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: 0; transition: opacity 2s ease; mix-blend-mode: screen;';
-
-    const bg = document.getElementById('bg-canvas');
-    if (bg) bg.after(canvas);
-    else document.body.prepend(canvas);
-
-    const ctx = canvas.getContext('2d');
-
-    // same random numbers every time, so the stars stay in the same spots after a resize
-    let seed = 7;
-    function random() {
-        seed = (seed * 16807) % 2147483647;
-        return (seed - 1) / 2147483646;
-    }
-
-    // each star: x and y as a fraction of the screen, size and brightness
-    const stars = [];
-    for (let i = 0; i < 150; i++) {
-        stars.push({
-            x: random(),
-            y: Math.pow(random(), 1.6),        // more stars near the top, like a real night sky
-            size: 0.6 + Math.pow(random(), 3) * 1.1,
-            alpha: 0.35 + random() * 0.6
-        });
-    }
-
-    function drawStars() {
-        const ratio = window.devicePixelRatio || 1;
-        canvas.width = Math.round(window.innerWidth * ratio);
-        canvas.height = Math.round(window.innerHeight * ratio);
-        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-        // fewer stars on small screens so phones don't look crowded
-        const count = Math.round(stars.length * Math.min(1, window.innerWidth / 1400));
-
-        for (let i = 0; i < count; i++) {
-            const star = stars[i];
-            const x = star.x * window.innerWidth;
-            const y = star.y * window.innerHeight;
-
-            // soft dot: bright in the middle, fading out to the edge, so it looks like a point of light not a flat circle
-            const radius = star.size * 2.2;
-            const glow = ctx.createRadialGradient(x, y, 0, x, y, radius);
-            glow.addColorStop(0, `rgba(235, 242, 255, ${star.alpha})`);
-            glow.addColorStop(0.3, `rgba(225, 235, 255, ${star.alpha * 0.45})`);
-            glow.addColorStop(1, 'rgba(225, 235, 255, 0)');
-
-            ctx.fillStyle = glow;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    drawStars();
-    requestAnimationFrame(() => canvas.style.opacity = '1'); // fades in with the aurora
-
-    // redraw after resizing, waits until you stop dragging the window
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(drawStars, 150);
-    });
 })();

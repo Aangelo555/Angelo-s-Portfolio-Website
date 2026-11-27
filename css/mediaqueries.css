@@ -49,35 +49,80 @@
 ======================== */
 @media (max-width: 991px) {
 
-    /* Navbar */
+    /* Navbar: full screen menu on phones and tablets */
     #menu-icon {
         display: block;
         cursor: pointer;
+        position: relative;
+        z-index: 2; /* stays above the open menu */
+    }
+
+    .logo {
+        position: relative;
+        z-index: 2;
     }
 
     .navbar {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        padding: 1rem 6%;
-        background: color-mix(in srgb, var(--bg-color) 97%, transparent);
-        display: none;
+        position: fixed;
+        inset: 0;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10rem 6% 6rem;
+        background: var(--bg-color);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s;
     }
 
     .navbar.active {
-        display: block;
+        opacity: 1;
+        visibility: visible;
     }
 
+    /* big stacked links */
     .navbar a {
         display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
+        margin: 0;
+        padding: 1.4rem 0;
+        font-size: 4.4rem;
+        font-weight: 700;
+        font-stretch: 112%;
+        border-bottom: 1px solid var(--line-color);
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: color 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
     }
 
-    /* no sliding underline in the mobile menu, the gold text is enough */
+    /* links slide up one after another when the menu opens */
+    .navbar.active a {
+        opacity: 1;
+        transform: none;
+    }
+
+    .navbar.active a:nth-child(2) { transition-delay: 0.05s; }
+    .navbar.active a:nth-child(3) { transition-delay: 0.1s; }
+    .navbar.active a:nth-child(4) { transition-delay: 0.15s; }
+    .navbar.active a:nth-child(5) { transition-delay: 0.2s; }
+    .navbar.active a:nth-child(6) { transition-delay: 0.25s; }
+
+    /* no sliding underline in the menu, the coloured text is enough */
     .navbar a::after {
         display: none;
+    }
+
+    /* the frosted header would trap the menu inside it, so turn it off while the menu is open */
+    .menu-open .header {
+        background: transparent;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        border-bottom-color: transparent;
+    }
+
+    /* page behind the menu can't scroll */
+    body.menu-open {
+        overflow: hidden;
     }
 
     /* Home */
@@ -89,6 +134,10 @@
     .home-content {
         align-items: center;
         text-align: center;
+    }
+
+    .hero-links {
+        justify-content: center;
     }
 
     #three-canvas {
@@ -120,41 +169,7 @@
         gap: 5rem;
     }
 
-    /* Projects */
-    .projects-page-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .projects-grid {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .project-card {
-        width: 100%;
-    }
-
-    /* Certs page */
-    .certs-hero .certs-wrapper {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .certs-hero p {
-        margin: 0 auto;
-    }
-
-    #certs-canvas {
-        width: 100%;
-        max-width: 380px;
-        height: auto;
-    }
-
-    /* Other sections */
-    .contact {
-        padding: 8rem 6%;
-    }
-
+    /* Projects page */
     .projects-page {
         padding: 12rem 6% 6rem;
     }
@@ -177,6 +192,13 @@
         font-size: 2.6rem;
     }
 
+    /* availability note drops to its own line, so the divider line isn't needed */
+    .hero-status {
+        width: 100%;
+        padding-left: 0;
+        border-left: none;
+    }
+
     /* About */
     .about-title {
         font-size: 4.5rem;
@@ -187,18 +209,9 @@
         font-size: 4rem;
     }
 
-    .contact h2 {
-        font-size: 4rem;
-    }
-
-    /* Projects */
-    .projects-page-grid {
-        grid-template-columns: 1fr;
-    }
-
     /* Certs page */
     .certs-hero h1 {
-        font-size: 4.5rem;
+        font-size: 5.6rem;
     }
 
     /* Contact page */

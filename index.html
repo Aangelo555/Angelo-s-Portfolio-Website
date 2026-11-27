@@ -60,60 +60,82 @@
 
     <div class="divider"></div>
 
-    <!-- ===== FEATURED PROJECTS ===== -->
-    <section class="projects" id="projects">
-        <h2 class="section-title reveal">Featured Projects</h2>
-        <div class="projects-grid stagger">
-            <a href="https://pcbuildplanner.vercel.app" target="_blank" class="project-card">
-                <div class="project-preview">
+    <!-- ===== SELECTED WORK =====
+         heading stays in place on the left while the projects scroll past on the right -->
+    <section class="work" id="projects">
+        <div class="work-intro reveal">
+            <h2>Selected work</h2>
+            <p>Three web apps I built and deployed myself, from the interface to the database.</p>
+
+            <!-- highlights the project that is on screen -->
+            <ul class="work-index">
+                <li><a href="#work-pc" class="active">PC Build Planner</a></li>
+                <li><a href="#work-pizza">Angelo's Pizza Co.</a></li>
+                <li><a href="#work-bloke">Who's That Bloke?</a></li>
+            </ul>
+
+            <a href="./projects.html" class="btn">View all projects</a>
+        </div>
+
+        <div class="work-list">
+            <a href="https://pcbuildplanner.vercel.app" target="_blank" class="work-card reveal" id="work-pc">
+                <div class="work-img">
                     <img src="./assets/projects/pcbuilder.png" alt="PC Build Planner" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
+                <div class="work-info">
+                    <div class="work-top">
                         <h3>PC Build Planner</h3>
-                        <span class="project-year">2026</span>
+                        <span class="work-year">2026</span>
                     </div>
-                    <p class="project-desc">A full stack PC part picker that checks if your parts work together, with user accounts and saved builds.</p>
-                    <span class="project-link">pcbuildplanner.vercel.app <i class="bx bx-link-external"></i></span>
+                    <p class="work-desc">A full stack PC part picker that checks if your parts work together, with user accounts and saved builds.</p>
+                    <div class="work-bottom">
+                        <div class="project-stack"><span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">JWT</span></div>
+                        <span class="work-link">pcbuildplanner.vercel.app <i class="bx bx-link-external"></i></span>
+                    </div>
                 </div>
             </a>
-            <a href="https://angelo-pizza-co.vercel.app" target="_blank" class="project-card">
-                <div class="project-preview">
+            <a href="https://angelo-pizza-co.vercel.app" target="_blank" class="work-card reveal" id="work-pizza">
+                <div class="work-img">
                     <img src="./assets/projects/pizza-app.png" alt="Angelo's Pizza Co. ordering app" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
+                <div class="work-info">
+                    <div class="work-top">
                         <h3>Angelo's Pizza Co.</h3>
-                        <span class="project-year">2026</span>
+                        <span class="work-year">2026</span>
                     </div>
-                    <p class="project-desc">A React pizza ordering app with a search and filter menu, a saved cart and a checkout with pickup times.</p>
-                    <span class="project-link">angelo-pizza-co.vercel.app <i class="bx bx-link-external"></i></span>
+                    <p class="work-desc">A React pizza ordering app with a search and filter menu, a saved cart and a checkout with pickup times.</p>
+                    <div class="work-bottom">
+                        <div class="project-stack"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">CSS</span></div>
+                        <span class="work-link">angelo-pizza-co.vercel.app <i class="bx bx-link-external"></i></span>
+                    </div>
                 </div>
             </a>
-            <a href="https://whos-that-bloke.vercel.app" target="_blank" class="project-card">
-                <div class="project-preview">
+            <a href="https://whos-that-bloke.vercel.app" target="_blank" class="work-card reveal" id="work-bloke">
+                <div class="work-img">
                     <img src="./assets/projects/Whoisthatbloke.png" alt="Who's That Bloke? game" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
+                <div class="work-info">
+                    <div class="work-top">
                         <h3>Who's That Bloke?</h3>
-                        <span class="project-year">2026</span>
+                        <span class="work-year">2026</span>
                     </div>
-                    <p class="project-desc">A React football quiz game where you guess Manchester United players from their photos.</p>
-                    <span class="project-link">whos-that-bloke.vercel.app <i class="bx bx-link-external"></i></span>
+                    <p class="work-desc">A React football quiz game where you guess Manchester United players from their photos.</p>
+                    <div class="work-bottom">
+                        <div class="project-stack"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">CSS</span></div>
+                        <span class="work-link">whos-that-bloke.vercel.app <i class="bx bx-link-external"></i></span>
+                    </div>
                 </div>
             </a>
         </div>
-        <a href="./projects.html" class="btn">View All Projects</a>
     </section>
 
     <div class="divider"></div>
 
     <!-- ===== CONTACT ===== -->
-    <section class="contact" id="contact">
+    <section class="contact-cta">
         <h2 class="reveal">Looking for an intern?</h2>
         <p class="reveal">I'm available for internships from March 2027. Send me a message and I'll get back to you.</p>
-        <a href="./contact.html" class="btn">Get in touch</a>
+        <a href="./contact.html" class="cta-link reveal">Get in touch <i class="bx bx-right-arrow-alt"></i></a>
     </section>
 
     <div class="divider"></div>
@@ -134,6 +156,23 @@
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- selected work: mark the project in the middle of the screen as active -->
+    <script>
+        const workLinks = document.querySelectorAll(".work-index a");
+
+        const workObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                workLinks.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+                });
+            });
+        }, { rootMargin: "-45% 0px -45% 0px" });
+
+        document.querySelectorAll(".work-card").forEach((card) => workObserver.observe(card));
+    </script>
     <script type="module" src="js/three.js"></script>
   </body>
 </html>

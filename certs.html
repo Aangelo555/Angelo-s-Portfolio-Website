@@ -4,21 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Certifications | Angelo Howe</title>
-    <meta name="description" content="Portfolio of Angelo Howe, a Year 2 Information Technology student at Republic Polytechnic specialising in Full Stack Development. Projects, skills and contact details.">
+    <meta name="description" content="Certificates and online courses completed by Angelo Howe, a Year 2 Information Technology student at Republic Polytechnic, in web development, Python, networking, AI and design.">
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/mediaqueries.css" />
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="icon" type="image/png" href="./assets/favicon_v14.png">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-        }
-    }
-    </script>
   </head>
   <body>
 
@@ -38,149 +30,131 @@
 
     <!-- ===== HERO ===== -->
     <section class="certs-hero">
-        <div class="certs-wrapper">
-            <div class="certs-hero-text reveal">
-                <h1>My Certifications</h1>
-                <p>Certifications and courses completed outside of class, covering Python, web development, networking, AI and design. This list is regularly updated as I continue to build my skills.</p>
-            </div>
-            <canvas id="certs-canvas"></canvas>
+        <h1 class="reveal">Certifications</h1>
+        <div class="certs-intro reveal">
+            <p>Certificates and courses I've done outside of class. Mostly web development and Python, with some networking, AI and design along the way.</p>
+            <p class="certs-count">7 certificates and 10 online courses</p>
         </div>
     </section>
 
-    <div class="divider"></div>
-
-    <!-- ===== CERTS LIST ===== -->
+    <!-- ===== CERTS =====
+         grouped by who gave them. hovering a certificate shows a preview of it -->
     <section class="certs-content">
-        <div class="certs-wrapper">
 
-            <h2 class="certs-group-title reveal">Certifications and Badges</h2>
-            <div class="cert-list stagger">
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>CSS (Basic)</h3>
-                        <span>HackerRank, Nov 2026</span>
-                    </div>
-                    <a href="https://www.hackerrank.com/certificates/5fb6eb71c500" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
-                <div class="cert-row">
-                    <img src="./assets/badges/devnet-associate.png" alt="DevNet Associate badge" class="cert-badge">
-                    <div class="cert-text">
-                        <h3>DevNet Associate</h3>
-                        <span>Cisco Networking Academy course badge, Jul 2026</span>
-                    </div>
-                    <a href="./assets/certificates/DevNetAssociateCert.pdf" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
-                <div class="cert-row">
-                    <img src="./assets/badges/networking-basics.png" alt="Networking Basics badge" class="cert-badge">
-                    <div class="cert-text">
-                        <h3>Networking Basics</h3>
-                        <span>Cisco Networking Academy course badge, Aug 2025</span>
-                    </div>
-                    <a href="./assets/certificates/NetworkingBasicsCert.pdf" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
-                <div class="cert-row">
-                    <img src="./assets/badges/computer-hardware-basics.png" alt="Computer Hardware Basics badge" class="cert-badge">
-                    <div class="cert-text">
-                        <h3>Computer Hardware Basics</h3>
-                        <span>Cisco Networking Academy course badge, Apr 2025</span>
-                    </div>
-                    <a href="./assets/certificates/ComputerHardwareBasicsCert.pdf" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
+        <div class="cert-group">
+            <div class="cert-issuer reveal">
+                <h2>HackerRank</h2>
+                <p>Skill certificate</p>
             </div>
-
-            <h2 class="certs-group-title reveal">Online Courses</h2>
             <div class="cert-list stagger">
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Certified Entry-Level Python Programmer (PCEP-30-02) Cert Prep</h3>
-                        <span>LinkedIn Learning, Nov 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Building a Website with Node.js and Express.js</h3>
-                        <span>LinkedIn Learning, Aug 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Programming Foundations: APIs and Web Services</h3>
-                        <span>LinkedIn Learning, Aug 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>JavaScript: Web Form Programming</h3>
-                        <span>LinkedIn Learning, Jul 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Learning Photoshop</h3>
-                        <span>LinkedIn Learning, Jul 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>AI Ethics &amp; Governance</h3>
-                        <span>AI Singapore and NUS AI Institute, Jul 2026</span>
-                    </div>
-                    <a href="./assets/certificates/AIEthicsGovernanceCert.pdf" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>AI for Essential Digital Skills</h3>
-                        <span>AI Singapore, Jul 2026</span>
-                    </div>
-                    <a href="./assets/certificates/AIEssentialDigitalSkillsCert.pdf" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>JavaScript: Enhancing the DOM</h3>
-                        <span>LinkedIn Learning, Jun 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Illustrator 2023 Quick Start</h3>
-                        <span>LinkedIn Learning, May 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Python Object-Oriented Programming</h3>
-                        <span>LinkedIn Learning, Feb 2026</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Python for Data Visualization</h3>
-                        <span>LinkedIn Learning, Dec 2025</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>Agile Foundations</h3>
-                        <span>LinkedIn Learning, Nov 2025</span>
-                    </div>
-                </div>
-                <div class="cert-row">
-                    <div class="cert-text">
-                        <h3>AI for Industry: Literacy in AI</h3>
-                        <span>AI Singapore, Jan 2024</span>
-                    </div>
-                    <a href="./assets/certificates/AILiteracyCert.pdf" target="_blank" class="cert-view">View <i class="bx bx-link-external"></i></a>
-                </div>
+                <a href="https://www.hackerrank.com/certificates/5fb6eb71c500" target="_blank" class="cert-row">
+                    <h3>CSS (Basic)</h3>
+                    <span class="cert-date">Nov 2026</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
             </div>
-
-            <!-- ----- More to come ----- -->
-            <p style="text-align: center; font-size: 1.5rem; color: rgba(255, 255, 255, 0.5); margin: 2rem 0;">
-                <i class="bx bx-loader-alt"></i> Always learning, more certs on the way.
-            </p>
-
-            <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank" class="btn">View All on LinkedIn</a>
-
         </div>
+
+        <div class="cert-group">
+            <div class="cert-issuer reveal">
+                <h2>Cisco Networking Academy</h2>
+                <p>Course badges</p>
+            </div>
+            <div class="cert-list stagger">
+                <a href="./assets/certificates/DevNetAssociateCert.pdf" target="_blank" class="cert-row" data-preview="./assets/badges/devnet-associate.png" data-fit="contain">
+                    <h3>DevNet Associate</h3>
+                    <span class="cert-date">Jul 2026</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
+                <a href="./assets/certificates/NetworkingBasicsCert.pdf" target="_blank" class="cert-row" data-preview="./assets/badges/networking-basics.png" data-fit="contain">
+                    <h3>Networking Basics</h3>
+                    <span class="cert-date">Aug 2025</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
+                <a href="./assets/certificates/ComputerHardwareBasicsCert.pdf" target="_blank" class="cert-row" data-preview="./assets/badges/computer-hardware-basics.png" data-fit="contain">
+                    <h3>Computer Hardware Basics</h3>
+                    <span class="cert-date">Apr 2025</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="cert-group">
+            <div class="cert-issuer reveal">
+                <h2>AI Singapore</h2>
+                <p>Certificates</p>
+            </div>
+            <div class="cert-list stagger">
+                <a href="./assets/certificates/AIEthicsGovernanceCert.pdf" target="_blank" class="cert-row" data-preview="./assets/certificates/ai-ethics-governance.jpg">
+                    <h3>AI Ethics &amp; Governance <small>with NUS</small></h3>
+                    <span class="cert-date">Jul 2026</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
+                <a href="./assets/certificates/AIEssentialDigitalSkillsCert.pdf" target="_blank" class="cert-row" data-preview="./assets/certificates/ai-essential-digital-skills.jpg">
+                    <h3>AI for Essential Digital Skills</h3>
+                    <span class="cert-date">Jul 2026</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
+                <a href="./assets/certificates/AILiteracyCert.pdf" target="_blank" class="cert-row" data-preview="./assets/certificates/ai-literacy.jpg">
+                    <h3>AI for Industry: Literacy in AI</h3>
+                    <span class="cert-date">Jan 2024</span>
+                    <span class="cert-view">View <i class="bx bx-link-external"></i></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="cert-group courses">
+            <div class="cert-issuer reveal">
+                <h2>LinkedIn Learning</h2>
+                <p>Online courses</p>
+                <a href="https://www.linkedin.com/in/angelo-h-a74b47377/" target="_blank" class="issuer-link">See them on LinkedIn <i class="bx bx-link-external"></i></a>
+            </div>
+            <div class="cert-list stagger">
+                <div class="cert-row">
+                    <h3>Certified Entry-Level Python Programmer (PCEP-30-02) Cert Prep</h3>
+                    <span class="cert-date">Nov 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Building a Website with Node.js and Express.js</h3>
+                    <span class="cert-date">Aug 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Programming Foundations: APIs and Web Services</h3>
+                    <span class="cert-date">Aug 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>JavaScript: Web Form Programming</h3>
+                    <span class="cert-date">Jul 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Learning Photoshop</h3>
+                    <span class="cert-date">Jul 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>JavaScript: Enhancing the DOM</h3>
+                    <span class="cert-date">Jun 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Illustrator 2023 Quick Start</h3>
+                    <span class="cert-date">May 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Python Object-Oriented Programming</h3>
+                    <span class="cert-date">Feb 2026</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Python for Data Visualization</h3>
+                    <span class="cert-date">Dec 2025</span>
+                </div>
+                <div class="cert-row">
+                    <h3>Agile Foundations</h3>
+                    <span class="cert-date">Nov 2025</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- floating preview, moved by the script at the bottom -->
+        <img class="row-preview" id="row-preview" src="" alt="">
     </section>
 
     <div class="divider"></div>
@@ -201,6 +175,28 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script type="module" src="js/certs.js"></script>
+    <!-- certificate preview that follows the mouse, only with a real mouse -->
+    <script>
+        const preview = document.getElementById("row-preview");
+
+        if (window.matchMedia("(hover: hover)").matches) {
+            document.querySelectorAll(".cert-row[data-preview]").forEach((row) => {
+                row.addEventListener("mouseenter", () => {
+                    preview.src = row.dataset.preview;
+                    preview.classList.toggle("badge", row.dataset.fit === "contain");
+                    preview.classList.add("visible");
+                });
+
+                row.addEventListener("mouseleave", () => {
+                    preview.classList.remove("visible");
+                });
+
+                row.addEventListener("mousemove", (e) => {
+                    preview.style.left = e.clientX + "px";
+                    preview.style.top = e.clientY + "px";
+                });
+            });
+        }
+    </script>
   </body>
 </html>

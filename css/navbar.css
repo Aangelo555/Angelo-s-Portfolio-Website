@@ -26,7 +26,12 @@
 /* ----- Mobile menu ----- */
 @media (max-width: 991px) {
     .navbar a.nav-resume {
-        display: inline-block;
-        margin: 1rem 0 3rem;
+        align-self: flex-start;
+        margin: 4rem 0 0;
+        padding: 1rem 3rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-stretch: 100%;
+        border-bottom: 2px solid var(--main-color);
     }
 }
