@@ -1,0 +1,533 @@
+/* ==========================================================
+   BASE
+   Shared by every page: colours, background, navbar, buttons, footer and animations
+========================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Archivo", sans-serif;
+}
+
+html {
+  font-size: 55%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* everything scales down a little on phones */
+@media (max-width: 600px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+/* outline is turned off above, so keyboard users get a gold ring instead (mouse clicks don't show it) */
+:focus-visible {
+  outline: 2px solid var(--main-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ========================
+   VARIABLES & BASE
+======================== */
+:root {
+  --bg-color: #130f0c;          /* espresso brown */
+  --second-bg-color: #1b1612;
+  --text-color: #f0e8dd;        /* warm white, same colour family as the background */
+  --main-color: #e8c9a0;        /* sand, a light tint of the background colour */
+  --line-color: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* ===== Background ===== */
+/* the topographic map is drawn with WebGL in script.js onto this canvas */
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* fine grain on top so the gradient doesn't look flat */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+span {
+    color: var(--main-color);
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--bg-color);
+}
+
+/* ========================
+   DIVIDER
+======================== */
+.divider {
+    width: 76%;
+    height: 1px;
+    margin: 0 auto;
+    background: var(--line-color);
+}
+
+/* ========================
+   HEADER / NAVBAR
+======================== */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    padding: 3rem 12%;
+    /* see-through at the top so the map shows behind it */
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* once you scroll down, the navbar gets a dark background so the text stays readable */
+.header.scrolled {
+    /* frosted glass: a bit see-through, blurred so text behind it doesn't clash */
+    background: color-mix(in srgb, var(--second-bg-color) 65%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--line-color);
+}
+
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--main-color);
+    display: none;
+}
+
+.logo {
+    font-stretch: 118%;
+    letter-spacing: -0.02em; /* wider letters set a bit tighter, so the name reads as one word mark */
+    font-size: 2.6rem;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.logo span {
+    color: var(--text-color);
+}
+
+.navbar a {
+    position: relative;
+    font-size: 1.9rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* gold line under the link, grows out from the middle on hover */
+.navbar a:not(.nav-resume)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.6rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--main-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--main-color);
+}
+
+.navbar a:not(.nav-resume):hover::after {
+    transform: scaleX(1);
+}
+
+/* Resume button in the navbar */
+.navbar a.nav-resume {
+    margin-left: 4rem;
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 8px;
+}
+
+.navbar a.nav-resume:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    border: 2px solid var(--main-color);
+}
+
+/* ========================
+   ACTIVE NAV
+======================== */
+.active-nav {
+    color: var(--main-color) !important;
+}
+
+/* current page keeps its line showing */
+.navbar a.active-nav::after {
+    transform: scaleX(1);
+}
+
+/* ----- Navbar on smaller screens ----- */
+@media (max-width: 1200px) {
+    .header {
+        padding: 3rem 6%;
+    }
+
+    .navbar a {
+        margin-left: 2.5rem;
+    }
+
+    .navbar a.nav-resume {
+        margin-left: 2.5rem;
+    }
+}
+
+/* phones and tablets: full screen menu */
+@media (max-width: 991px) {
+    #menu-icon {
+        display: block;
+        cursor: pointer;
+        position: relative;
+        z-index: 2; /* stays above the open menu */
+    }
+
+    .logo {
+        position: relative;
+        z-index: 2;
+    }
+
+    .navbar {
+        position: fixed;
+        inset: 0;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10rem 6% 6rem;
+        background: var(--bg-color);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s;
+    }
+
+    .navbar.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* big stacked links */
+    .navbar a {
+        display: block;
+        margin: 0;
+        padding: 1.4rem 0;
+        font-size: 4.4rem;
+        font-weight: 700;
+        font-stretch: 112%;
+        border-bottom: 1px solid var(--line-color);
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: color 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* links slide up one after another when the menu opens */
+    .navbar.active a {
+        opacity: 1;
+        transform: none;
+    }
+
+    .navbar.active a:nth-child(2) { transition-delay: 0.05s; }
+    .navbar.active a:nth-child(3) { transition-delay: 0.1s; }
+    .navbar.active a:nth-child(4) { transition-delay: 0.15s; }
+    .navbar.active a:nth-child(5) { transition-delay: 0.2s; }
+    .navbar.active a:nth-child(6) { transition-delay: 0.25s; }
+
+    /* no sliding underline in the menu, the coloured text is enough */
+    .navbar a::after {
+        display: none;
+    }
+
+    /* Resume sits under the links as a button */
+    .navbar a.nav-resume {
+        align-self: flex-start;
+        margin: 4rem 0 0;
+        padding: 1rem 3rem;
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-stretch: 100%;
+        border-bottom: 2px solid var(--main-color);
+    }
+
+    /* the frosted header would trap the menu inside it, so turn it off while the menu is open */
+    .menu-open .header {
+        background: transparent;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        border-bottom-color: transparent;
+    }
+
+    /* page behind the menu can't scroll */
+    body.menu-open {
+        overflow: hidden;
+    }
+}
+
+/* ========================
+   SECTIONS (GLOBAL)
+======================== */
+section {
+    padding: 10rem 12%;
+}
+
+@media (max-width: 1200px) {
+    section {
+        padding: 10rem 6%;
+    }
+}
+
+/* wide letters for big headings */
+h1, h2 {
+    font-stretch: 112%;
+    letter-spacing: -0.01em;
+}
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-group {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--main-color);
+    border-radius: 8px;
+    font-size: 1.8rem;
+    color: var(--bg-color);
+    border: 2px solid transparent;
+    font-weight: 600;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background: color-mix(in srgb, var(--main-color) 80%, white);
+}
+
+.btn-group a:nth-of-type(2) {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.btn-group a:nth-of-type(2):hover {
+    border-color: var(--text-color);
+}
+
+/* ========================
+   SHARED BY HOME, PROJECTS AND CERTS
+======================== */
+/* screenshots that fill their box */
+.project-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+/* tech used, shown as small tags */
+.project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.project-stack .tag {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    padding: 0.4rem 1rem;
+}
+
+/* small gold text links (hero, projects) */
+.card-link {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--main-color);
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+.card-link i {
+    vertical-align: middle;
+}
+
+/* screenshot that follows the mouse (projects list and certs), moved by the script on each page */
+.row-preview {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 32rem;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 8px;
+    border: 1px solid var(--line-color);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0;
+    transform: translate(2.4rem, -50%) scale(0.96);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.row-preview.visible {
+    opacity: 1;
+    transform: translate(2.4rem, -50%) scale(1);
+}
+
+/* phones have no hover, so no preview */
+@media (hover: none) {
+    .row-preview {
+        display: none;
+    }
+}
+
+/* ========================
+   FOOTER
+======================== */
+.projects-footer {
+    padding: 4rem 12%;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.footer-sub {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.6rem;
+}
+
+.footer-note {
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.footer-links a {
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--main-color);
+}
+
+/* ========================
+   ANIMATIONS
+======================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade up on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Cards appear one by one, --delay is set in script.js */
+.stagger > * {
+    opacity: 0;
+}
+
+.stagger > .show {
+    opacity: 1;
+    animation: fadeUp 0.9s ease-out backwards;
+    animation-delay: var(--delay, 0s);
+}
+
+/* turns off the scroll animations if reduce motion is on */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .stagger > * {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none !important;
+    }
+}

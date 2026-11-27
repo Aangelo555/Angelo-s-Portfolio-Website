@@ -1,0 +1,195 @@
+/* ==========================================================
+   CERTS PAGE
+   Certificates grouped by issuer, with a preview on hover
+========================================================== */
+
+/* big title on the left, intro on the right, both sitting on the same bottom line */
+.certs-hero {
+    display: grid;
+    grid-template-columns: 1fr 42rem;
+    gap: 6rem;
+    align-items: end;
+    padding-top: 20rem;
+    padding-bottom: 8rem;
+}
+
+.certs-hero h1 {
+    font-size: 10rem;
+    font-weight: 700;
+    line-height: 0.9;
+}
+
+.certs-intro p {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.certs-intro .certs-count {
+    margin-top: 1.6rem;
+    color: var(--main-color);
+}
+
+.certs-content {
+    padding-top: 0;
+}
+
+/* one group per issuer: issuer on the left, certs on the right */
+.cert-group {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem;
+    padding: 4rem 0;
+    border-top: 1px solid var(--line-color);
+}
+
+/* issuer is kept small so the cert names do the talking */
+.cert-issuer h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.cert-issuer p {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.issuer-link {
+    display: inline-block;
+    margin-top: 1.6rem;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease;
+}
+
+.issuer-link:hover {
+    color: var(--main-color);
+}
+
+/* each cert: big name, date, view */
+.cert-row {
+    display: grid;
+    grid-template-columns: 1fr 10rem 7rem;
+    align-items: baseline;
+    gap: 2.4rem;
+    padding: 0 0 2.4rem;
+    color: var(--text-color);
+}
+
+.cert-row + .cert-row {
+    padding-top: 2.4rem;
+    border-top: 1px solid var(--line-color);
+}
+
+.cert-row:last-child {
+    padding-bottom: 0;
+}
+
+.cert-row h3 {
+    font-size: 3.2rem;
+    font-weight: 600;
+    line-height: 1.15;
+    font-stretch: 105%;
+    transition: color 0.3s ease, transform 0.4s ease;
+}
+
+.cert-row h3 small {
+    font-size: 1.6rem;
+    font-weight: 400;
+    font-stretch: 100%;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.cert-date {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+.cert-view {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-align: right;
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+/* hovering a certificate nudges the name and turns it sand */
+a.cert-row:hover h3 {
+    color: var(--main-color);
+    transform: translateX(1rem);
+}
+
+a.cert-row:hover .cert-view {
+    color: var(--main-color);
+}
+
+/* online courses use the same rows, just smaller and quieter */
+.courses .cert-row {
+    padding-bottom: 1.6rem;
+}
+
+.courses .cert-row + .cert-row {
+    padding-top: 1.6rem;
+}
+
+.courses .cert-row h3 {
+    font-size: 1.9rem;
+    font-weight: 500;
+    font-stretch: 100%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Cisco badges are square, so show the whole badge in the preview */
+.row-preview.badge {
+    width: 18rem;
+    aspect-ratio: 1;
+    object-fit: contain;
+    padding: 2rem;
+    background: var(--second-bg-color);
+}
+
+/* tablets and phones */
+@media (max-width: 991px) {
+    .certs-hero {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+        padding-top: 14rem;
+        padding-bottom: 5rem;
+    }
+
+    .certs-hero h1 {
+        font-size: 6.4rem;
+    }
+
+    .cert-group {
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .certs-hero h1 {
+        font-size: 5.6rem;
+    }
+
+    .cert-row {
+        grid-template-columns: 1fr auto;
+        gap: 0.6rem 2rem;
+    }
+
+    .cert-row h3 {
+        font-size: 2.4rem;
+    }
+
+    .cert-date {
+        grid-column: 1;
+    }
+
+    .cert-view {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+    }
+}

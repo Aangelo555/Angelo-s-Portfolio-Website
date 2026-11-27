@@ -1,0 +1,150 @@
+/* ==========================================================
+   CONTACT PAGE
+   Contact details and the message form
+========================================================== */
+
+.contact-page {
+    padding-top: 18rem;
+    padding-bottom: 12rem;
+}
+
+.contact-wrapper {
+    max-width: 110rem;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 5rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 8rem;
+    align-items: start;
+}
+
+.contact-info p {
+    font-size: 1.9rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 45rem;
+    margin-bottom: 4rem;
+}
+
+.contact-email {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 2.4rem;
+    color: var(--text-color);
+    margin-bottom: 4rem;
+    overflow-wrap: anywhere;
+    transition: 0.3s ease;
+}
+
+.contact-email i {
+    font-size: 2.6rem;
+    color: var(--main-color);
+}
+
+.contact-email:hover {
+    color: var(--main-color);
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.contact-links a,
+.contact-links span {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.85);
+    transition: 0.3s ease;
+}
+
+.contact-links i {
+    font-size: 2rem;
+    color: var(--main-color);
+}
+
+.contact-links a:hover {
+    color: var(--main-color);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--main-color);
+    margin-bottom: 0.8rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1.4rem 1.6rem;
+    font-size: 1.7rem;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.contact-form textarea {
+    min-height: 16rem;
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--main-color);
+}
+
+.contact-form .btn {
+    align-self: flex-start;
+    cursor: pointer;
+}
+
+/* tablets: form goes under the info */
+@media (max-width: 991px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-title {
+        font-size: 5rem;
+    }
+
+    .contact-email {
+        font-size: 1.9rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

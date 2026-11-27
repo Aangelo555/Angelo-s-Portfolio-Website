@@ -1,0 +1,395 @@
+/* ==========================================================
+   HOME PAGE
+   Hero with the 3D PC, selected work and the contact section
+========================================================== */
+
+/* ========================
+   HERO
+======================== */
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12rem;
+}
+
+.home-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* availability note next to the GitHub and LinkedIn links */
+.hero-status {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding-left: 2.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.home-content h1 span {
+    color: var(--text-color);
+}
+
+.home-content h1 {
+    font-size: 7.6rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    line-height: 1;
+}
+
+.home-content h3 {
+    font-size: 4rem;
+    margin: 1rem 0;
+}
+
+.home-content p {
+    font-size: 1.9rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 56rem;
+}
+
+.home-img {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#three-canvas {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+
+.home-content .btn-group {
+    margin-top: 3rem;
+}
+
+/* GitHub and LinkedIn links */
+.hero-links {
+    display: flex;
+    flex-wrap: wrap; /* the availability note drops to a new line on small phones */
+    align-items: center;
+    gap: 1.2rem 2.5rem;
+    margin-top: 2.5rem;
+}
+
+#loading-text {
+    font-size: 2rem;
+    color: var(--main-color);
+}
+
+.cursor {
+    color: var(--main-color);
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Hero load-in (home page) */
+.home-content > * {
+    animation: fadeUp 1s ease-out backwards;
+}
+
+.home-content > *:nth-child(1) { animation-delay: 0.2s; }
+.home-content > *:nth-child(2) { animation-delay: 0.35s; }
+.home-content > *:nth-child(3) { animation-delay: 0.5s; }
+.home-content > *:nth-child(4) { animation-delay: 0.65s; }
+.home-content > *:nth-child(5) { animation-delay: 0.8s; }
+
+.home-img {
+    animation: fadeUp 1.2s ease-out 0.6s backwards;
+}
+
+/* ----- Hero on smaller screens ----- */
+@media (max-width: 1600px) {
+    .home {
+        gap: 6rem;
+    }
+
+    .home-content h1 {
+        font-size: 6.5rem;
+    }
+
+    .home-content h3 {
+        font-size: 3.2rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    .home {
+        gap: 4rem;
+    }
+}
+
+/* tablets: 3D PC goes under the text, everything centred */
+@media (max-width: 991px) {
+    .home {
+        flex-direction: column;
+        padding-top: 14rem;
+    }
+
+    .home-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-links {
+        justify-content: center;
+    }
+
+    #three-canvas {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-content h1 {
+        font-size: 6rem;
+    }
+
+    .home-content h3 {
+        font-size: 2.6rem;
+    }
+
+    /* availability note drops to its own line, so the divider line isn't needed */
+    .hero-status {
+        width: 100%;
+        padding-left: 0;
+        border-left: none;
+    }
+}
+
+/* ========================
+   SELECTED WORK
+======================== */
+.work {
+    display: grid;
+    grid-template-columns: 32rem 1fr;
+    gap: 10rem;
+    align-items: start;
+}
+
+/* stays on screen while the project cards scroll past */
+.work-intro {
+    position: sticky;
+    top: 14rem;
+}
+
+.work-intro h2 {
+    font-size: 5.2rem;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+}
+
+.work-intro p {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 3rem;
+}
+
+/* project names list, the one on screen turns white with a gold line */
+.work-index {
+    list-style: none;
+    margin-bottom: 4rem;
+    border-left: 1px solid var(--line-color);
+}
+
+.work-index a {
+    display: block;
+    padding: 0.9rem 0 0.9rem 2rem;
+    margin-left: -1px;
+    border-left: 2px solid transparent;
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.work-index a:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.work-index a.active {
+    color: var(--text-color);
+    border-left-color: var(--main-color);
+}
+
+.work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9rem;
+}
+
+.work-card {
+    display: block;
+    color: var(--text-color);
+    scroll-margin-top: 12rem;
+}
+
+.work-img {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--line-color);
+    background: var(--second-bg-color);
+}
+
+.work-img .project-img {
+    transition: transform 0.8s ease;
+}
+
+.work-card:hover .work-img .project-img {
+    transform: scale(1.03);
+}
+
+.work-info {
+    padding-top: 2.4rem;
+}
+
+.work-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    margin-bottom: 1.2rem;
+}
+
+.work-top h3 {
+    font-size: 3.4rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.work-year {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.work-desc {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 60ch;
+    margin-bottom: 2rem;
+}
+
+.work-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.work-bottom .project-stack {
+    margin-bottom: 0;
+}
+
+.work-link {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.55);
+    transition: color 0.3s ease;
+}
+
+.work-card:hover .work-link {
+    color: var(--main-color);
+}
+
+/* ========================
+   CONTACT SECTION
+======================== */
+.contact-cta {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+}
+
+.contact-cta h2 {
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1.05;
+    max-width: 12ch;
+    margin-bottom: 2.5rem;
+}
+
+.contact-cta p {
+    font-size: 1.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 52ch;
+    margin-bottom: 3.5rem;
+}
+
+/* big text link with an arrow that slides on hover */
+.cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--main-color);
+    border-bottom: 2px solid color-mix(in srgb, var(--main-color) 40%, transparent);
+    padding-bottom: 0.6rem;
+    transition: border-color 0.3s ease, opacity 0.9s ease-out, transform 0.9s ease-out; /* keeps the scroll fade-in */
+}
+
+.cta-link i {
+    transition: transform 0.3s ease;
+}
+
+.cta-link:hover {
+    border-color: var(--main-color);
+}
+
+.cta-link:hover i {
+    transform: translateX(0.6rem);
+}
+
+/* tablets and phones: work section stacks, heading no longer sticky */
+@media (max-width: 991px) {
+    .work {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .work-intro {
+        position: static;
+    }
+
+    .work-index {
+        display: none;
+    }
+
+    .work-list {
+        gap: 7rem;
+    }
+
+    .contact-cta h2 {
+        font-size: 5.6rem;
+    }
+}
+
+/* no load-in or image zoom if reduce motion is on */
+@media (prefers-reduced-motion: reduce) {
+    .home-content > *,
+    .home-img {
+        animation: none;
+    }
+
+    .work-card:hover .work-img .project-img {
+        transform: none;
+    }
+}

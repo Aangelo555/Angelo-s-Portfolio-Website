@@ -1,0 +1,271 @@
+/* ==========================================================
+   ABOUT PAGE
+   Intro, photo and bio, journey and tech stack
+========================================================== */
+
+/* the whole page sits on one 12 column grid.
+   bio, journey details and tech chips all start at column 6, so they line up down the page */
+.about-main,
+.journey-row,
+.stack-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 3rem;
+}
+
+/* ----- Intro ----- */
+.about-intro {
+    padding-top: 20rem;
+    padding-bottom: 10rem;
+}
+
+.about-intro h1 {
+    max-width: 26ch;
+    font-size: 7.2rem;
+    font-weight: 600;
+    line-height: 1.08;
+}
+
+/* ----- Photo and bio ----- */
+.about-main {
+    padding-top: 0;
+    align-items: start;
+}
+
+.about-photo {
+    grid-column: 1 / span 4;
+    max-width: 42rem;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.about-photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+/* small zoom on hover */
+.about-photo:hover img {
+    transform: scale(1.02);
+}
+
+.about-bio {
+    grid-column: 6 / span 7;
+    max-width: 76rem; /* keeps lines a comfortable length on big screens */
+}
+
+.about-bio p {
+    font-size: 2rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.6rem;
+}
+
+/* three facts side by side under the bio */
+.about-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 2.4rem;
+    border-top: 1px solid var(--line-color);
+}
+
+.about-facts dt {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.6rem;
+}
+
+.about-facts dd {
+    font-size: 1.9rem;
+}
+
+/* ----- Journey and tech stack ----- */
+.about-head {
+    font-size: 5.2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4rem;
+}
+
+.journey-group + .journey-group {
+    margin-top: 6rem;
+}
+
+.group-label {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* year, name, details */
+.journey-row {
+    align-items: baseline;
+    padding: 3.2rem 0;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.journey-year {
+    grid-column: 1 / span 2;
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.journey-row h4 {
+    grid-column: 3 / span 3;
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.journey-detail {
+    grid-column: 6 / span 7;
+}
+
+.journey-detail p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.journey-detail ul {
+    list-style: none;
+    margin-top: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.journey-detail li {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* organisation names */
+.journey-detail strong {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.journey-detail a {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+/* category on the left, chips from column 6 */
+.stack-row {
+    align-items: center;
+    padding: 2.4rem 0;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.stack-row:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.stack-row h3 {
+    grid-column: 1 / span 5;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.stack-row .tech-list {
+    grid-column: 6 / span 7;
+}
+
+/* tech chips with their logos */
+.tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+.tech-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    transition: border-color 0.3s ease;
+}
+
+.tech-item:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tech-item img {
+    width: 2.2rem;
+    height: 2.2rem;
+}
+
+/* makes black logos white */
+.tech-item .icon-white {
+    filter: brightness(0) invert(1);
+}
+
+/* tablets: photo and bio side by side but tighter, rows stack */
+@media (max-width: 991px) {
+    .about-intro {
+        padding-top: 14rem;
+        padding-bottom: 6rem;
+    }
+
+    .about-intro h1 {
+        font-size: 5.2rem;
+    }
+
+    .about-photo {
+        grid-column: 1 / span 12;
+        max-width: 36rem;
+        margin-bottom: 5rem;
+    }
+
+    .about-bio {
+        grid-column: 1 / span 12;
+    }
+
+    .journey-row,
+    .stack-row {
+        row-gap: 1rem;
+    }
+
+    .journey-year {
+        grid-column: 1 / span 12;
+    }
+
+    .journey-row h4,
+    .journey-detail,
+    .stack-row h3,
+    .stack-row .tech-list {
+        grid-column: 1 / span 12;
+    }
+
+    .about-head {
+        font-size: 4.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .about-intro h1 {
+        font-size: 4.4rem;
+    }
+
+    .about-bio p {
+        font-size: 1.8rem;
+    }
+
+    .about-facts {
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+    }
+}

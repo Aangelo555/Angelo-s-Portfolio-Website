@@ -1,0 +1,339 @@
+/* ==========================================================
+   PROJECTS PAGE
+   Filters, big project rows, the compact list and the gallery popup
+========================================================== */
+
+.projects-page {
+    min-height: 100vh;
+    padding: 12rem 12% 6rem;
+}
+
+.projects-page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.projects-page-header h1 {
+    font-size: 7rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.projects-page-header p {
+    font-size: 1.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.filter-btns {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    font-size: 1.6rem;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-family: "Archivo", sans-serif;
+}
+
+.filter-btn:hover {
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+.filter-btn.active {
+    background: var(--main-color);
+    border-color: var(--main-color);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
+/* category under the title */
+.project-meta {
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.project-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+/* ----- Big project rows: image and text side by side ----- */
+.project-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-bottom: 9rem;
+}
+
+/* every second big row puts the image on the right (the flip class is set in projects.html) */
+.project-row.flip .feature-img {
+    order: 2;
+}
+
+.feature-img {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--line-color);
+}
+
+.feature-img .project-img {
+    transition: transform 0.8s ease;
+}
+
+.project-row:hover .feature-img .project-img {
+    transform: scale(1.03);
+}
+
+.feature-info h3 {
+    font-size: 4.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0.8rem 0 1.8rem;
+}
+
+.feature-info .project-desc {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 52ch;
+    margin-bottom: 2.4rem;
+}
+
+/* ----- "All" view: the non-featured projects become a compact list ----- */
+.more-title {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line-color);
+    margin-top: 2rem;
+}
+
+.all-view .project-row:not([data-featured]) {
+    grid-template-columns: 2fr 1fr 1.6fr 24rem; /* fixed last column so every row lines up */
+    gap: 3rem;
+    margin-bottom: 0;
+    padding: 2.6rem 1.2rem;
+    border-bottom: 1px solid var(--line-color);
+    transition: background 0.3s ease, opacity 0.9s ease-out, transform 0.9s ease-out; /* keeps the scroll fade-in */
+}
+
+.all-view .project-row:not([data-featured]):hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* hide the big parts, the hover preview shows the image instead */
+.all-view .project-row:not([data-featured]) .feature-img,
+.all-view .project-row:not([data-featured]) .project-desc {
+    display: none;
+}
+
+/* let the title, type, tech and links sit straight in the row's columns */
+.all-view .project-row:not([data-featured]) .feature-info {
+    display: contents;
+}
+
+.all-view .project-row:not([data-featured]) h3 {
+    order: 1;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.all-view .project-row:not([data-featured]) .project-meta {
+    order: 2;
+    font-size: 1.6rem;
+}
+
+/* tags turn into plain text, like "React, Vite, CSS" */
+.all-view .project-row:not([data-featured]) .project-stack {
+    order: 3;
+    display: block; /* plain text line, so the commas wrap with the words */
+    margin: 0;
+}
+
+.all-view .project-row:not([data-featured]) .tag {
+    background: none;
+    padding: 0;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.all-view .project-row:not([data-featured]) .tag + .tag::before {
+    content: ", ";
+}
+
+.all-view .project-row:not([data-featured]) .project-links {
+    order: 4;
+    justify-content: flex-end;
+    gap: 2.4rem;
+}
+
+/* links stay on one line, and are quieter than the gold type so each row only has one gold accent */
+.all-view .project-row:not([data-featured]) .card-link {
+    font-size: 1.5rem;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.65);
+    transition: color 0.3s ease;
+}
+
+.all-view .project-row:not([data-featured]) .card-link:hover {
+    color: var(--main-color);
+    text-decoration: none;
+}
+
+/* tablets and phones: big rows stack, list rows stack */
+@media (max-width: 991px) {
+    .projects-page {
+        padding: 12rem 6% 6rem;
+    }
+
+    .project-row,
+    .project-row.flip {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        margin-bottom: 7rem;
+    }
+
+    .project-row.flip .feature-img {
+        order: 0;
+    }
+
+    .all-view .project-row:not([data-featured]) {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .all-view .project-row:not([data-featured]) .project-links {
+        justify-content: flex-start;
+        margin-top: 0.8rem;
+    }
+}
+
+/* ========================
+   GALLERY POPUP
+======================== */
+.gallery {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.gallery.open {
+    display: flex;
+}
+
+/* ----- Image area ----- */
+.gallery-frame {
+    width: 80%;
+    max-width: 900px;
+    max-height: 85vh; /* shrinks to fit the image, tall ones still scroll */
+    overflow-y: auto;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--main-color) 30%, transparent);
+}
+
+.gallery-frame img {
+    display: block;
+    width: 100%;
+}
+
+/* ----- Arrows ----- */
+.gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 2px solid var(--main-color);
+    background: transparent;
+    color: var(--main-color);
+    font-size: 3.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.gallery-arrow:hover {
+    background: var(--main-color);
+    color: black;
+    box-shadow: 0 0 20px var(--main-color);
+}
+
+.gallery-arrow.left {
+    left: 3%;
+}
+
+.gallery-arrow.right {
+    right: 3%;
+}
+
+/* ----- Close button + counter ----- */
+.gallery-close {
+    position: absolute;
+    top: 2rem;
+    right: 3%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 4rem;
+    cursor: pointer;
+}
+
+.gallery-close:hover {
+    color: var(--main-color);
+}
+
+.gallery-count {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1.6rem;
+    color: #aaa;
+}
+
+/* ----- Mobile ----- */
+@media (max-width: 600px) {
+    .gallery-frame {
+        width: 92%;
+        max-height: 75vh;
+    }
+
+    .gallery-arrow {
+        top: auto;
+        bottom: 1.5rem;
+        transform: none;
+        width: 4.4rem;
+        height: 4.4rem;
+    }
+
+    .gallery-count {
+        bottom: 2.6rem;
+    }
+}
+
+/* no image zoom if reduce motion is on */
+@media (prefers-reduced-motion: reduce) {
+    .project-row:hover .feature-img .project-img {
+        transform: none;
+    }
+}
