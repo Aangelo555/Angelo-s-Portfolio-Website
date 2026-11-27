@@ -270,9 +270,13 @@ updateHeader();
     // scroll position, smoothed so the map glides
     let scroll = 0, smoothScroll = 0;
 
+    // time of the last scroll or mouse move, used to draw at full speed while things are moving
+    let lastMove = 0;
+
     function updateScroll() {
         const max = document.documentElement.scrollHeight - window.innerHeight;
         scroll = max > 0 ? window.scrollY / max : 0;
+        lastMove = performance.now();
     }
     window.addEventListener('scroll', updateScroll);
     updateScroll();
@@ -288,15 +292,18 @@ updateHeader();
             mouseX = e.clientX / window.innerWidth - 0.5;
             mouseY = 0.5 - e.clientY / window.innerHeight; // flipped, WebGL counts y from the bottom
             if (smoothX === 5) { smoothX = mouseX; smoothY = mouseY; } // first move, no sliding in from far away
+            lastMove = performance.now();
         });
     }
 
     function draw() {
         if (!reduceMotion) requestAnimationFrame(draw);
 
-        // the map moves slowly, so 30 frames a second is plenty
+        // full speed while scrolling or moving the mouse (and for 1 second after, so it glides to a stop)
+        // when nothing is happening the map moves slowly, so 30 frames a second is plenty and saves power
         const now = performance.now();
-        if (!reduceMotion && now - lastFrame < 32) return;
+        const moving = now - lastMove < 1000;
+        if (!reduceMotion && !moving && now - lastFrame < 32) return;
 
         // frames since last draw (1 on a 60Hz screen), so easing is the same speed on any screen
         const frames = (now - lastFrame) / 16.7;
