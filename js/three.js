@@ -23,7 +23,7 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableZoom = false;
 controls.enablePan = false;
 controls.autoRotate = true;
-controls.autoRotateSpeed = 1.3;
+controls.autoRotateSpeed = 0.7;
 
 const dracoLoader = new DRACOLoader();
 dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');

@@ -167,11 +167,14 @@ updateHeader();
 
             // thin bright ribbons along the flow lines
             float band = 1.0 - abs(sin(f * 7.0));
-            float ribbon = pow(band, 8.0) * smoothstep(0.35, 0.7, f);
+            float ribbon = pow(band, 11.0) * smoothstep(0.35, 0.7, f); // higher power = thinner, sharper ribbons
 
             // fine vertical streaks inside the light, like the rays in a real aurora
             float rays = 0.6 + 0.25 * noise(vec2(p.x * 45.0 + r.y * 6.0, p.y * 1.5 + t * 3.0))
                              + 0.15 * noise(vec2(p.x * 14.0 - r.x * 4.0, p.y * 0.8 - t * 2.0));
+
+            // fast, gentle shimmer on top of the slow drift, real aurora rays flicker like this
+            rays *= 0.9 + 0.2 * noise(vec2(p.x * 60.0 + r.y * 8.0, uTime * 1.4));
 
             // colour ramp: dark green in the soft parts, the beam colour in the middle, pale mint on the brightest ribbons
             float glow = smoothstep(0.22, 0.75, f) * mask;
@@ -245,13 +248,13 @@ updateHeader();
     const top = topHex ? hexToRgb(topHex) : [beam[0] * 0.3, beam[1] * 0.85, beam[2] * 0.95 + 0.15];
     gl.uniform3fv(gl.getUniformLocation(program, 'uTop'), top);
 
-    // draw at half size (or less on big screens) and let CSS stretch it
-    // the aurora is soft so you can't tell, and it's at least 4 times less work for the graphics card
+    // draw at 3/4 size (or less on big screens) and let CSS stretch it
+    // sharp enough for the thin ribbons, and still about half the work of full size
     const uScale = gl.getUniformLocation(program, 'uScale');
     let lastFrame = 0; // time of the last draw, 0 means draw straight away
 
     function resize() {
-        const scale = Math.min(0.5, 960 / window.innerWidth);
+        const scale = Math.min(0.75, 1440 / window.innerWidth);
         gl.uniform1f(uScale, scale);
         canvas.width = Math.round(window.innerWidth * scale);
         canvas.height = Math.round(window.innerHeight * scale);
@@ -326,7 +329,8 @@ updateHeader();
 (function () {
     const canvas = document.createElement('canvas');
     canvas.id = 'star-canvas';
-    canvas.style.cssText = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: 0; transition: opacity 2s ease;';
+    // screen blend makes them fade into the bright parts of the aurora instead of sitting on top
+    canvas.style.cssText = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; opacity: 0; transition: opacity 2s ease; mix-blend-mode: screen;';
 
     const bg = document.getElementById('bg-canvas');
     if (bg) bg.after(canvas);
@@ -343,12 +347,12 @@ updateHeader();
 
     // each star: x and y as a fraction of the screen, size and brightness
     const stars = [];
-    for (let i = 0; i < 160; i++) {
+    for (let i = 0; i < 150; i++) {
         stars.push({
             x: random(),
-            y: Math.pow(random(), 1.8),        // more stars near the top, like a real night sky
-            size: 0.4 + Math.pow(random(), 3) * 1.1,
-            alpha: 0.2 + random() * 0.55
+            y: Math.pow(random(), 1.6),        // more stars near the top, like a real night sky
+            size: 0.6 + Math.pow(random(), 3) * 1.1,
+            alpha: 0.35 + random() * 0.6
         });
     }
 
@@ -366,18 +370,17 @@ updateHeader();
             const x = star.x * window.innerWidth;
             const y = star.y * window.innerHeight;
 
-            ctx.fillStyle = `rgba(225, 235, 255, ${star.alpha})`;
-            ctx.beginPath();
-            ctx.arc(x, y, star.size, 0, Math.PI * 2);
-            ctx.fill();
+            // soft dot: bright in the middle, fading out to the edge, so it looks like a point of light not a flat circle
+            const radius = star.size * 2.2;
+            const glow = ctx.createRadialGradient(x, y, 0, x, y, radius);
+            glow.addColorStop(0, `rgba(235, 242, 255, ${star.alpha})`);
+            glow.addColorStop(0.3, `rgba(225, 235, 255, ${star.alpha * 0.45})`);
+            glow.addColorStop(1, 'rgba(225, 235, 255, 0)');
 
-            // the biggest ones get a faint glow
-            if (star.size > 1.1) {
-                ctx.fillStyle = `rgba(225, 235, 255, ${star.alpha * 0.12})`;
-                ctx.beginPath();
-                ctx.arc(x, y, star.size * 3, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            ctx.fillStyle = glow;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
 
