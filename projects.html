@@ -31,7 +31,7 @@
     <section class="projects-page">
         <div class="projects-page-header reveal">
             <h1>All Projects</h1>
-            <p class="projects-page-sub">A collection of web apps, data projects, team projects and UI designs I've worked on. More projects are currently in development and will be added here soon.</p>
+            <p class="projects-page-sub">A collection of web apps, data projects, team projects and UI designs I've worked on.</p>
         </div>
 
         <div class="filter-btns reveal">
@@ -43,17 +43,18 @@
             <button class="filter-btn" data-filter="design">UI/UX Design</button>
         </div>
 
-        <div class="projects-page-grid stagger">
+        <!-- ===== PROJECTS =====
+             "All" view: featured projects as big rows, the rest as a compact list
+             other filters: every matching project as a big row -->
+        <div class="project-rows all-view" id="project-rows">
 
-            <div class="project-card-full" data-category="fullstack">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="fullstack" data-featured>
+                <div class="feature-img">
                     <img src="./assets/projects/pcbuilder.png" alt="PC Build Planner" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>PC Build Planner</h3>
-                        <span class="project-meta">Full-Stack</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">Full-Stack, 2026</span>
+                    <h3>PC Build Planner</h3>
                     <p class="project-desc">A full stack PC part picker that checks if your parts work together as you build, with live price and power usage. Sign up to save your builds, powered by my own REST API with hashed passwords and JWT login.</p>
                     <div class="project-stack"><span class="tag">React</span><span class="tag">Express</span><span class="tag">MongoDB</span><span class="tag">JWT</span></div>
                     <div class="project-links">
@@ -61,17 +62,31 @@
                         <a href="https://github.com/Aangelo555/pc-build-planner" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" data-category="frontend">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="group fullstack" data-featured id="studyhub">
+                <div class="feature-img">
+                    <img src="./assets/projects/studyhub2.jpg" alt="StudyHub web app" class="project-img">
+                </div>
+                <div class="feature-info">
+                    <span class="project-meta">Full-Stack, Team Project, 2026</span>
+                    <h3>StudyHub</h3>
+                    <p class="project-desc">A web app that helps Information Technology students at Republic Polytechnic keep track of their assignments, deadlines and certs. I built 4 of its features and set up the security scans in our CI/CD pipeline, which check for leaked secrets and vulnerabilities on every push.</p>
+                    <div class="project-stack"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span></div>
+                    <div class="project-links">
+                        <button class="card-link view-gallery" data-images="./assets/projects/studyhub2.jpg,./assets/projects/studyhub.jpg">View screens <i class="bx bx-images"></i></button>
+                        <a href="https://github.com/bryan01703/C270-Team1" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-row reveal" data-category="frontend" data-featured>
+                <div class="feature-img">
                     <img src="./assets/projects/pizza-app.png" alt="Angelo's Pizza Co. ordering app" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>Angelo's Pizza Co.</h3>
-                        <span class="project-meta">Front-End</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">Front-End, 2026</span>
+                    <h3>Angelo's Pizza Co.</h3>
                     <p class="project-desc">A pizza ordering app where you can search and filter the menu, build an order that saves after a refresh, and check out with a pickup time during opening hours.</p>
                     <div class="project-stack"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">CSS</span></div>
                     <div class="project-links">
@@ -79,53 +94,15 @@
                         <a href="https://github.com/Aangelo555/pizza_app" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" data-category="frontend">
-                <div class="project-preview">
-                    <img src="./assets/projects/Whoisthatbloke.png" alt="Who's That Bloke? game" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>Who's That Bloke?</h3>
-                        <span class="project-meta">Front-End</span>
-                    </div>
-                    <p class="project-desc">A football quiz game where you guess Manchester United players from their photos across 8 rounds, with live scoring and a results screen.</p>
-                    <div class="project-stack"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">CSS</span></div>
-                    <div class="project-links">
-                        <a href="https://whos-that-bloke.vercel.app" target="_blank" class="card-link">Live site <i class="bx bx-link-external"></i></a>
-                        <a href="https://github.com/Aangelo555/WhosThatBloke" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card-full" id="studyhub" data-category="group fullstack">
-                <div class="project-preview">
-                    <img src="./assets/projects/studyhub.jpg" alt="StudyHub web app" class="project-img">
-                </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>StudyHub</h3>
-                        <span class="project-meta">Group Project, Full-Stack</span>
-                    </div>
-                    <p class="project-desc">A web app that helps Information Technology students at Republic Polytechnic keep track of their assignments, deadlines and certs. I built 4 of its features and set up the security scans in our CI/CD pipeline, which check for leaked secrets and vulnerabilities on every push.</p>
-                    <div class="project-stack"><span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">MySQL</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span></div>
-                    <div class="project-links">
-                        <button class="card-link view-gallery" data-images="./assets/projects/studyhub.jpg,./assets/projects/studyhub2.jpg">View screens</button>
-                        <a href="https://github.com/bryan01703/C270-Team1" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card-full" data-category="data">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="data" data-featured>
+                <div class="feature-img">
                     <img src="./assets/projects/hdb-dashboard.png" alt="HDB resale prices Tableau dashboard" class="project-img" style="object-position: left top;">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>HDB Resale Price Analysis</h3>
-                        <span class="project-meta">Data Analysis</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">Data Analysis, 2026</span>
+                    <h3>HDB Resale Price Analysis</h3>
                     <p class="project-desc">An analysis of 245,000+ HDB resale transactions from 2017 onwards, looking at how town, lease left and location affect price per sqm. I cleaned and analysed the data in pandas, then built an interactive dashboard in Tableau Public.</p>
                     <div class="project-stack"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Tableau</span><span class="tag">Jupyter</span></div>
                     <div class="project-links">
@@ -133,17 +110,33 @@
                         <a href="https://github.com/Aangelo555/hdb-resale-analysis" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" data-category="data">
-                <div class="project-preview">
+            <h2 class="more-title reveal">More projects</h2>
+
+            <article class="project-row reveal" data-category="frontend">
+                <div class="feature-img">
+                    <img src="./assets/projects/Whoisthatbloke.png" alt="Who's That Bloke? game" class="project-img">
+                </div>
+                <div class="feature-info">
+                    <span class="project-meta">Front-End, 2026</span>
+                    <h3>Who's That Bloke?</h3>
+                    <p class="project-desc">A football quiz game where you guess Manchester United players from their photos across 8 rounds, with live scoring and a results screen.</p>
+                    <div class="project-stack"><span class="tag">React</span><span class="tag">Vite</span><span class="tag">CSS</span></div>
+                    <div class="project-links">
+                        <a href="https://whos-that-bloke.vercel.app" target="_blank" class="card-link">Live site <i class="bx bx-link-external"></i></a>
+                        <a href="https://github.com/Aangelo555/WhosThatBloke" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-row reveal" data-category="data">
+                <div class="feature-img">
                     <img src="./assets/projects/man-united-dashboard.png" alt="Man United since Ferguson Tableau dashboard" class="project-img" style="object-position: left top;">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>Man United Since Ferguson</h3>
-                        <span class="project-meta">Data Analysis</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">Data Analysis, 2026</span>
+                    <h3>Man United Since Ferguson</h3>
                     <p class="project-desc">An analysis of 4,940 Premier League matches from 2013/14 to 2025/26, looking at how Man United compare to the top 4, at home vs away, and in goals scored and conceded. I built league tables from raw match results in pandas, then made an interactive dashboard in Tableau Public.</p>
                     <div class="project-stack"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">Tableau</span><span class="tag">Jupyter</span></div>
                     <div class="project-links">
@@ -151,92 +144,73 @@
                         <a href="https://github.com/Aangelo555/man-united-analysis" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" id="polypath" data-category="group">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="group" id="polypath">
+                <div class="feature-img">
                     <img src="./assets/projects/polypath-home.jpg" alt="PolyPath career guidance site" class="project-img" style="object-position: left top;">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>PolyPath</h3>
-                        <span class="project-meta">Group Project</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">AI Chatbot, Team Project, 2026</span>
+                    <h3>PolyPath</h3>
                     <p class="project-desc">An AI career advisor that helps School of Infocomm students find the right courses and career paths. I gathered and organised the course and career data that powers the bot's answers, so students get accurate info, and led the marketing to get students using it.</p>
-                    <div class="project-stack"><span class="tag">Botpress</span><span class="tag">n8n</span><span class="tag">Data Collection</span></div>
+                    <div class="project-stack"><span class="tag">Botpress</span><span class="tag">n8n</span></div>
                     <div class="project-links">
-                        <button class="card-link view-gallery" data-images="./assets/projects/polypath-home.jpg,./assets/projects/polypath-features.jpg">View screens</button>
+                        <button class="card-link view-gallery" data-images="./assets/projects/polypath-home.jpg,./assets/projects/polypath-features.jpg">View screens <i class="bx bx-images"></i></button>
                         <a href="https://github.com/weihao2/C240-team3" target="_blank" class="card-link">GitHub <i class="bx bx-link-external"></i></a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" id="time2play" data-category="group design" style="scroll-margin-top: 10rem;">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="group design" id="time2play">
+                <div class="feature-img">
                     <img src="./assets/projects/time2play.jpg" alt="Time2Play app screens" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>Time2Play</h3>
-                        <span class="project-meta">Group Project, Design</span>
-                    </div>
-                    <p class="project-desc">A mobile app concept that helps kids cut down screen time by turning tasks into points they can trade for rewards. We interviewed 10 parents about their kids' phone habits and how they set limits, and used that to shape the design. Won the G121 Silver Medallion Award ($1,000).</p>
-                    <div class="project-stack"><span class="tag">Figma</span><span class="tag">UI/UX</span><span class="tag">Prototyping</span></div>
+                <div class="feature-info">
+                    <span class="project-meta">UI/UX Design, Team Project, 2025</span>
+                    <h3>Time2Play</h3>
+                    <p class="project-desc">A mobile app concept that helps kids cut down screen time by turning tasks into points they can trade for rewards. We interviewed 10 parents about their kids' phone habits and how they set limits, and I designed all of the app's screens from what we learnt. Won the G121 Silver Medallion Award ($1,000).</p>
+                    <div class="project-stack"><span class="tag">Figma</span></div>
                     <div class="project-links">
                         <a href="https://www.figma.com/proto/fMwkXOBAaXLDkQ0Ydpgd6b/Time2Play-?node-id=58003-42&starting-point-node-id=58003%3A42&scaling=scale-down" target="_blank" class="card-link">Live prototype <i class="bx bx-link-external"></i></a>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" data-category="design">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="design">
+                <div class="feature-img">
                     <img src="./assets/projects/sg-green-plan-website.jpg" alt="SG Green Plan 2030 website design" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>SG Green Plan 2030 Website</h3>
-                        <span class="project-meta">Design</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">UI/UX Design, 2026</span>
+                    <h3>SG Green Plan 2030 Website</h3>
                     <p class="project-desc">A 4-page website UI design for SG Green Plan 2030 with Home, Events, About and Contact pages. Made for my Fundamentals of Design final assessment.</p>
-                    <div class="project-stack"><span class="tag">UI Design</span><span class="tag">Illustrator</span><span class="tag">Photoshop</span></div>
+                    <div class="project-stack"><span class="tag">Illustrator</span><span class="tag">Photoshop</span></div>
                     <div class="project-links">
-                        <button class="card-link view-gallery" data-images="./assets/projects/fa-home.jpg,./assets/projects/fa-events.jpg,./assets/projects/fa-about.jpg,./assets/projects/fa-contact.jpg">View screens</button>
+                        <button class="card-link view-gallery" data-images="./assets/projects/fa-home.jpg,./assets/projects/fa-events.jpg,./assets/projects/fa-about.jpg,./assets/projects/fa-contact.jpg">View screens <i class="bx bx-images"></i></button>
                     </div>
                 </div>
-            </div>
+            </article>
 
-            <div class="project-card-full" data-category="design">
-                <div class="project-preview">
+            <article class="project-row reveal" data-category="design">
+                <div class="feature-img">
                     <img src="./assets/projects/resilient-future-edm.jpg" alt="Resilient Future EDM" class="project-img">
                 </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>Resilient Future EDM</h3>
-                        <span class="project-meta">Design</span>
-                    </div>
+                <div class="feature-info">
+                    <span class="project-meta">Email Design, 2026</span>
+                    <h3>Resilient Future EDM</h3>
                     <p class="project-desc">An email newsletter (EDM) for the SG Green Plan 2030 "Resilient Future" pillar, with a pixel city skyline, key climate stats and a call to action. Made for my Fundamentals of Design module.</p>
-                    <div class="project-stack"><span class="tag">Photoshop</span><span class="tag">Illustrator</span><span class="tag">Email Design</span></div>
+                    <div class="project-stack"><span class="tag">Photoshop</span><span class="tag">Illustrator</span></div>
                     <div class="project-links">
-                        <button class="card-link view-gallery" data-images="./assets/projects/edm.jpg">View screens</button>
+                        <button class="card-link view-gallery" data-images="./assets/projects/edm.jpg">View screens <i class="bx bx-images"></i></button>
                     </div>
                 </div>
-            </div>
-
-            <div class="project-card-full" data-category="upcoming">
-                <div class="project-preview">
-                    <img src="./assets/projects/final-whistle.jpg" alt="Final Whistle coming soon" class="project-img" style="object-position: left top;">
-                </div>
-                <div class="project-info">
-                    <div class="project-header">
-                        <h3>Final Whistle</h3>
-                        <span class="project-meta">In Development</span>
-                    </div>
-                    <p class="project-desc">A web app for following live football matches as they happen. Currently in the planning stage, more details will be added once development starts.</p>
-                    <div class="project-stack"><span class="tag">Football</span><span class="tag">Live Data</span></div>
-                </div>
-            </div>
-
+            </article>
         </div>
+
+        <!-- floating preview image for the compact list rows -->
+        <img class="row-preview" id="row-preview" src="" alt="">
+
     </section>
 
     <div class="divider"></div>
@@ -270,38 +244,83 @@
     <script src="js/script.js"></script>
     <script>
         // ----- Project filter -----
+        // "All" shows the featured projects big and the rest as a list
+        // any other filter shows every matching project as a big row
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.project-card-full');
+        const rowsBox = document.getElementById('project-rows');
+        const projects = document.querySelectorAll('.project-row');
+        const moreTitle = document.querySelector('.more-title');
+
+        function isCompact(project) {
+            return rowsBox.classList.contains('all-view') && !project.hasAttribute('data-featured');
+        }
+
+        // big rows swap the image side every second row, counting only the visible ones
+        function flipRows() {
+            let bigCount = 0;
+            projects.forEach(project => {
+                if (project.style.display === 'none' || isCompact(project)) return;
+                project.classList.toggle('flip', bigCount % 2 === 1);
+                bigCount++;
+            });
+        }
+
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filter = btn.dataset.filter;
-                let shown = 0; // counts only the visible cards
+                let shown = 0;
 
-                cards.forEach(card => {
-                    if (filter === 'all' || card.dataset.category.includes(filter)) {
-                        card.style.display = ''; // back to the CSS layout (flex)
-                        card.classList.add('show'); // in case it hasn't scrolled into view yet
+                rowsBox.classList.toggle('all-view', filter === 'all');
+                moreTitle.style.display = filter === 'all' ? '' : 'none';
 
-                        // turn off the CSS stagger animation, otherwise it restarts with its old delay and the card flashes
-                        card.style.animation = 'none';
+                projects.forEach(project => {
+                    if (filter === 'all' || project.dataset.category.includes(filter)) {
+                        project.style.display = '';
+                        project.classList.add('show'); // in case it hasn't scrolled into view yet
 
-                        // fade in one by one, in the order they appear on screen
-                        card.animate(
+                        // fade in one by one
+                        project.animate(
                             [
                                 { opacity: 0, transform: 'translateY(20px)' },
                                 { opacity: 1, transform: 'translateY(0)' }
                             ],
-                            { duration: 400, delay: shown * 100, easing: 'ease-out', fill: 'backwards' }
+                            { duration: 400, delay: shown * 80, easing: 'ease-out', fill: 'backwards' }
                         );
                         shown++;
                     } else {
-                        card.style.display = 'none';
+                        project.style.display = 'none';
                     }
                 });
+
+                flipRows();
             });
         });
+
+        flipRows();
+
+        // ----- Hover preview on list rows -----
+        // a small screenshot follows the mouse, only on the compact rows and only with a real mouse
+        const preview = document.getElementById('row-preview');
+        if (window.matchMedia('(hover: hover)').matches) {
+            projects.forEach(project => {
+                const img = project.querySelector('.project-img');
+
+                project.addEventListener('mouseenter', () => {
+                    if (!isCompact(project)) return;
+                    preview.src = img.src;
+                    preview.classList.add('visible');
+                });
+                project.addEventListener('mouseleave', () => {
+                    preview.classList.remove('visible');
+                });
+                project.addEventListener('mousemove', (e) => {
+                    preview.style.left = e.clientX + 'px';
+                    preview.style.top = e.clientY + 'px';
+                });
+            });
+        }
 
         // ----- Gallery popup -----
         const gallery = document.getElementById('gallery');
