@@ -4,31 +4,33 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 **Live site:** [angelohowe.vercel.app](https://angelohowe.vercel.app)
 
-![Home page](assets/readme/PortfoliowelcomeV6.png)
+![Home page](assets/readme/PortfoliowelcomeV7.png)
 
 ## Pages
 
-- **Home:** intro, 3D model, featured projects
+- **Home:** intro, 3D model, selected work and a contact section
 - **About:** who I am, my journey (education and volunteering) and tech stack
 - **Projects:** all my projects with filters (Front-End, Full-Stack, Data Analysis, Team Projects, UI/UX Design)
-- **Certs:** certifications, badges and online courses
+- **Certs:** certificates grouped by issuer and online courses, with a preview of each certificate on hover
 - **Contact:** a working contact form and my socials
 
 ## Features
 
-- Interactive 3D models made with Three.js
-- Animated northern lights background written as a WebGL shader, using domain-warped noise for the flowing light
-- Green aurora that fades into purple at the top, like real northern lights
-- The aurora drifts slightly toward your mouse, and moves up out of the way as you scroll
-- Stars drawn once on their own layer at full sharpness, so they cost nothing per frame
-- Background runs at half resolution and 30 frames a second, so it stays smooth on laptops
-- Frosted glass project cards and navbar that let the aurora glow through
+- Interactive 3D model of a gaming PC made with Three.js
+- Animated topographic map background written as a WebGL shader, with contour lines that slowly shift like terrain
+- A soft hill rises under your mouse and its lines light up in the accent colour
+- The map slides as you scroll, like moving across the terrain
+- Background colours are read from the CSS variables, so changing the theme also changes the map
+- Background is capped at 30 frames a second, so it stays smooth on laptops
+- Selected work section where the heading stays on screen and highlights the project you're looking at
+- Certificate preview that follows your mouse on the certs page
 - Typing animation in the hero section
-- Scroll animations where each card fades in as it comes into view
+- Scroll animations where each item fades in as it comes into view
 - Project filters, where a project can sit in more than one category
 - Image gallery popup for my design work, with arrow buttons and keyboard controls
 - Working contact form that sends messages straight to my email (Formspree)
 - Resume button in the navbar that opens my resume PDF
+- Full screen menu on phones and tablets
 - Fully responsive for laptop, tablet and mobile
 - Animations turn off for users who have "reduce motion" switched on in their device settings
 
@@ -57,9 +59,8 @@ My personal portfolio website, where I show my projects, design work, certificat
 
 ## Credits
 
-3D models from Sketchfab, both licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/):
+3D model from Sketchfab, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/):
 - ["Gaming Desktop PC"](https://sketchfab.com/3d-models/gaming-desktop-pc-d1d8282c9916438091f11aeb28787b66) by Yolala3D (Y3D), used on the home page
-- ["Certificate"](https://sketchfab.com/3d-models/certificate-409d9c30c88946558e4e278eb58de61a) by NoLagHere, used on the certs page
 
 ## Author
 
