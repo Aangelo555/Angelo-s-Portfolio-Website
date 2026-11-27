@@ -34,14 +34,6 @@
     .home {
         gap: 4rem;
     }
-
-    .about {
-        padding-top: 15rem;
-    }
-
-    .about-container {
-        gap: 6rem;
-    }
 }
 
 /* ========================
@@ -146,23 +138,6 @@
         height: auto;
     }
 
-    /* About */
-    .about-container {
-        grid-template-columns: 1fr;
-        gap: 5rem;
-    }
-
-    .about-img {
-        width: 100%;
-        max-width: 40rem;
-        margin: 0 auto;
-    }
-
-    .about-title {
-        font-size: 5rem;
-        text-align: center;
-    }
-
     /* Contact page */
     .contact-grid {
         grid-template-columns: 1fr;
@@ -199,17 +174,7 @@
         border-left: none;
     }
 
-    /* About */
-    .about-title {
-        font-size: 4.5rem;
-    }
-
-    /* Titles */
-    .section-title {
-        font-size: 4rem;
-    }
-
-    /* Certs page */
+    /* Certs page title */
     .certs-hero h1 {
         font-size: 5.6rem;
     }
